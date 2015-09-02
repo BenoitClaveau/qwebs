@@ -1,0 +1,29 @@
+{
+  "name": "qwebs",
+  "version": "0.0.0",
+  "description": "Promise web framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beny78/qwebs.git"
+  },
+  "keywords": [
+    "promise",
+    "Q",
+    "web",
+    "framework",
+    "server",
+    "webserver",
+    "router",
+    "route"
+  ],
+  "author": "Benoît Claveau <beny78@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/beny78/qwebs/issues"
+  },
+  "homepage": "https://github.com/beny78/qwebs"
+}
