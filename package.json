@@ -1,6 +1,6 @@
 {
   "name": "qwebs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Promise web server",
   "main": "index.js",
   "dependencies": {
