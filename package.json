@@ -1,8 +1,19 @@
 {
   "name": "qwebs",
   "version": "0.0.0",
-  "description": "Promise web framework",
+  "description": "Promise web server",
   "main": "index.js",
+  "dependencies": {
+    "q": "^1.4.1",
+    "html-compress": "^0.0.4",
+    "css-compressor": "^1.0.0",
+    "multiparty": "^4.1.2",
+    "uglify-js": "^2.4.24",
+    "sass.js": "^0.6.3",
+    "jwt-simple": "^0.2.0",
+    "jimp": "^0.2.5"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,15 +23,19 @@
   },
   "keywords": [
     "promise",
-    "Q",
-    "web",
-    "framework",
-    "server",
+    "q",
     "webserver",
+    "web",
+    "server",
+    "http",
     "router",
-    "route"
+    "route",
+    "switch"
   ],
-  "author": "Benoît Claveau <beny78@gmail.com>",
+  "author": {
+    "name": "Benoît Claveau",
+    "email": "beny78@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/beny78/qwebs/issues"
