@@ -1,7 +1,7 @@
 {
   "name": "qwebs",
-  "version": "0.0.5",
-  "description": "Promise web server",
+  "version": "0.0.6",
+  "description": "Web server",
   "main": "index.js",
   "dependencies": {
     "q": "^1.4.1",
@@ -10,7 +10,6 @@
     "multiparty": "^4.1.2",
     "uglify-js": "^2.4.24",
     "sass.js": "^0.6.3",
-    "jwt-simple": "^0.2.0",
     "jimp": "^0.2.5"
   },
   "devDependencies": {},
@@ -22,11 +21,11 @@
     "url": "https://github.com/beny78/qwebs.git"
   },
   "keywords": [
-    "promise",
-    "q",
     "webserver",
+    "promise",
     "web",
     "server",
+    "q",
     "http",
     "router",
     "route",

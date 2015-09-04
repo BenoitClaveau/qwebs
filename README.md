@@ -1,6 +1,7 @@
 # qwebs
 Qwebs is a web server designed to be used with single page application framework
 
+## Define your service
 ```js
 /*!
  * qwebs service
@@ -26,7 +27,7 @@ ApplicationService.prototype.getHello = function (request, response, promise) {
     return promise.then(function (self) {
         var name = request.params.name;  //get data from url params
         content = { name: name };
-        return response.send({ request: request, content: results });
+        return response.send({ request: request, content: content });
     });
 };
 
@@ -40,6 +41,7 @@ ApplicationService.prototype.postHello = function (request, response, promise) {
 exports = module.exports = new ApplicationService();
 ```
 
+## Create your server
 ```js
 /*!
  * qwebs server
@@ -56,7 +58,7 @@ qwebs.init({
   },
   bundles: {           //set bundles
     "/app.css": [{
-      "css/app.css"
+      "css/app.scss"
     }],
     "/app.js": [{
       'libs/angular-material.js',
@@ -81,6 +83,7 @@ http.createServer(function (request, response) {
   * Fully integrates promises
   * Assets are loaded into memory
   * OOP
+  * Css, Sass
   * Html, css and javascript minification
   * Images are not written to disk but in buffer
   * No template engine
