@@ -10,7 +10,7 @@ var qwebs = require('../../lib/qwebs'),
 
 qwebs.init();
 
-qwebs.get('/helloworld').register(applicationService, "getHelloworld"); 
+qwebs.get('/helloworld').register(applicationService, "getHelloWorld"); 
 
 http.createServer(function (request, response) {
     return qwebs.invoke(request, response);

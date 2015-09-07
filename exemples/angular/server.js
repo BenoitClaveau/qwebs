@@ -15,15 +15,19 @@ qwebs.init({
         verbose: true
     },
     bundles: {
-        "app.js": ["./web/controller.js"]
+        "/app.js": ["./web/controller.js"]
     }    
 }).then(function() {
     
     qwebs.get("/").register(applicationService, "index");
-    qwebs.get("/helloworld").register(applicationService, "getHelloworld"); 
+    qwebs.get("/cities").register(applicationService, "cities"); 
+    qwebs.post("/city").register(applicationService, "city"); 
+    
 }).then(function() {
 
     http.createServer(function (request, response) {
-        return qwebs.invoke(request, response);
+        return qwebs.invoke(request, response).catch(function(error) {
+            console.log(error);
+        });
     }).listen(1337, "127.0.0.1");
 });

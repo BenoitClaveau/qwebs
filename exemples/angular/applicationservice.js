@@ -8,6 +8,11 @@ var qwebs = require('../../lib/qwebs'),
 
 
 function ApplicationService() {
+    this.data = [
+        {name: "Paris"},
+        {name: "Lyon"},
+        {name: "Marseille"}
+    ];
 };
 
 ApplicationService.prototype.constructor = ApplicationService;
@@ -19,10 +24,16 @@ ApplicationService.prototype.index = function (request, response, promise) {
     });
 };
 
-ApplicationService.prototype.getHelloworld = function (request, response, promise) {
+ApplicationService.prototype.cities = function (request, response, promise) {
     return promise.then(function (self) {
-        var content = { message: "Hello World" };
-        return response.send({ request: request, content: content });
+        return response.send({ request: request, content: self.data });
+    });
+};
+
+ApplicationService.prototype.city = function (request, response, promise) {
+    return promise.then(function (self) {
+        self.data.push(request.body);
+        return response.send({ request: request, content: request.body });
     });
 };
 
