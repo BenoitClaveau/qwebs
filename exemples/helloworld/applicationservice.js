@@ -1,3 +1,6 @@
+/*!
+ * qwebs service
+ */
 "use strict";
 
 var Q = require('q');

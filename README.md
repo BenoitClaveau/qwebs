@@ -1,14 +1,24 @@
 # qwebs
 Qwebs is a web server designed to be used with single page application framework
 
+## Create your own server
+```js
+var qwebs = require('../../lib/qwebs'),
+    applicationService = require('./applicationservice'),
+    http = require('http'),
+    request = require('request');
+
+qwebs.init();
+
+qwebs.get('/helloworld').register(applicationService, "getHelloworld"); 
+
+http.createServer(function (request, response) {
+    return qwebs.invoke(request, response);
+}).listen(1337, "127.0.0.1");
+```
+
 ## Define your service
 ```js
-/*!
- * qwebs service
- */
- 
-"use strict";
-
 var Q = require('q');
 
 function ApplicationService() {
@@ -16,49 +26,25 @@ function ApplicationService() {
 
 ApplicationService.prototype.constructor = ApplicationService;
 
-ApplicationService.prototype.index = function (request, response, promise) {
+ApplicationService.prototype.getHelloworld = function (request, response, promise) {
     return promise.then(function (self) {
-        request.url = "/template.html";  //override route to display template.html from assets folder ('public')
-        return qwebs.assets.invoke(request, response);
-    });
-};
-
-ApplicationService.prototype.getHello = function (request, response, promise) {
-    return promise.then(function (self) {
-        var name = request.params.name;  //get data from url params
-        content = { name: name };
+        var content = { message: "Hello World" };
         return response.send({ request: request, content: content });
-    });
-};
-
-ApplicationService.prototype.postHello = function (request, response, promise) {
-    return promise.then(function (self) {
-        var name = request.body.name;   //read data from body
-        return response.send({ request: request, content: name });
     });
 };
 
 exports = module.exports = new ApplicationService();
 ```
 
-## Create your server
-```js
-/*!
- * qwebs server
- */
-
-```
-
 ## Features
 
-  * Routing
+  * Http Routing
   * Fully integrates promises
-  * Assets are loaded into memory
-  * OOP
-  * Css, Sass
+  * Optimize memory usage
+  * Services injection management
+  * Use Css or Sass
   * Html, css and javascript minification
-  * Images are not written to disk but in buffer
-  * No template engine
+  * Image stream
   
 ## Installation
 

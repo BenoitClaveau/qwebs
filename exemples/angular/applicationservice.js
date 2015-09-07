@@ -1,6 +1,11 @@
+/*!
+ * qwebs service
+ */
 "use strict";
 
-var Q = require('q');
+var qwebs = require('../../lib/qwebs'), 
+    Q = require('q');
+
 
 function ApplicationService() {
 };
@@ -14,18 +19,10 @@ ApplicationService.prototype.index = function (request, response, promise) {
     });
 };
 
-ApplicationService.prototype.getHello = function (request, response, promise) {
+ApplicationService.prototype.getHelloworld = function (request, response, promise) {
     return promise.then(function (self) {
-        var name = request.params.name;  //get data from url params
-        content = { name: name };
+        var content = { message: "Hello World" };
         return response.send({ request: request, content: content });
-    });
-};
-
-ApplicationService.prototype.postHello = function (request, response, promise) {
-    return promise.then(function (self) {
-        var name = request.body.name;   //read data from body
-        return response.send({ request: request, content: name });
     });
 };
 
