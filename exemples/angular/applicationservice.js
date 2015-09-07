@@ -1,12 +1,3 @@
-# qwebs
-Qwebs is a web server designed to be used with single page application framework
-
-## Define your service
-```js
-/*!
- * qwebs service
- */
- 
 "use strict";
 
 var Q = require('q');
@@ -39,30 +30,3 @@ ApplicationService.prototype.postHello = function (request, response, promise) {
 };
 
 exports = module.exports = new ApplicationService();
-```
-
-## Create your server
-```js
-/*!
- * qwebs server
- */
-
-```
-
-## Features
-
-  * Routing
-  * Fully integrates promises
-  * Assets are loaded into memory
-  * OOP
-  * Css, Sass
-  * Html, css and javascript minification
-  * Images are not written to disk but in buffer
-  * No template engine
-  
-## Installation
-
-```bash
-$ npm install qwebs
-```
-  

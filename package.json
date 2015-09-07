@@ -1,7 +1,7 @@
 {
   "name": "qwebs",
-  "version": "0.0.8",
-  "description": "Web server",
+  "version": "0.0.9",
+  "description": "Back-end web server",
   "main": "index.js",
   "dependencies": {
     "q": "^1.4.1",
@@ -12,7 +12,10 @@
     "sass.js": "^0.6.3",
     "jimp": "^0.2.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine-node": "^2.0.0",
+    "request": "^2.61.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,8 +24,12 @@
     "url": "https://github.com/beny78/qwebs.git"
   },
   "keywords": [
+    "backend",
     "webserver",
     "promise",
+    "back-end",
+    "back",
+    "end",
     "web",
     "server",
     "q",
