@@ -44,7 +44,7 @@ exports = module.exports = new ApplicationService();
   * Services injection management
   * Use Css or Sass
   * Html, css and javascript minification
-  * Image stream
+  * Image as stream
   
 ## Installation
 
