@@ -35,8 +35,12 @@
     "q",
     "http",
     "router",
+    "routing",
     "route",
-    "switch"
+    "switch",
+    "backbone",
+    "angular",
+    "react"
   ],
   "author": {
     "name": "Benoît Claveau",

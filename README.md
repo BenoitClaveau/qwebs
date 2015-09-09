@@ -1,5 +1,5 @@
 # qwebs
-Qwebs is a web server designed to be used with single page application framework
+Qwebs is a web server designed to be used with single page application framework like Angular, React or Backbone.
 
 ## Create your own server
 ```js
@@ -39,10 +39,11 @@ exports = module.exports = new ApplicationService();
 ## Features
 
   * Http Routing
-  * Fully integrates promises
+  * Promise
   * Optimize memory usage
   * Services injection management
   * Use Css or Sass
+  * Deflate or gzip response
   * Html, css and javascript minification
   * Image as stream
   
@@ -51,4 +52,19 @@ exports = module.exports = new ApplicationService();
 ```bash
 $ npm install qwebs
 ```
+
+## Examples
+
+To run our examples, clone the Qwebs repo and install the dependencies.
+
+```bash
+$ git clone https://github.com/beny78/qwebs --depth 1
+$ cd qwebs
+$ npm install
+$ cd exemples/helloworld
+$ node server.js
+```
+
+
+
   
