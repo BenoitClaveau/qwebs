@@ -3,15 +3,17 @@
  */
 "use strict";
 
-var qwebs = require('../../lib/qwebs'),
+var qwebs = require('../../lib/qwebs').configure(),
     applicationService = require('./applicationservice'),
     http = require('http'),
     request = require('request');
 
-qwebs.init();
-
 qwebs.get('/helloworld').register(applicationService, "getHelloWorld"); 
 
-http.createServer(function (request, response) {
-    return qwebs.invoke(request, response);
-}).listen(1337, "127.0.0.1");
+qwebs.init().then(function() {
+    http.createServer(function (request, response) {
+        return qwebs.invoke(request, response).catch(function(error) {
+            console.log(error);
+        });
+    }).listen(1337, "127.0.0.1");
+});

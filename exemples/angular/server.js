@@ -3,28 +3,16 @@
  */
 "use strict";
 
-var qwebs = require("../../lib/qwebs"),
+var qwebs = require("../../lib/qwebs").configure(),
     applicationService = require("./applicationservice"),
     http = require("http"),
     request = require("request");
-
-qwebs.init({
-    config: {
-        folder: "public", //assets are defined in public folder
-        compress: false,
-        verbose: true
-    },
-    bundles: {
-        "/app.js": ["./web/controller.js"]
-    }    
-}).then(function() {
+ 
+qwebs.get("/").register(applicationService, "index");
+qwebs.get("/cities").register(applicationService, "cities"); 
+qwebs.post("/city").register(applicationService, "city"); 
     
-    qwebs.get("/").register(applicationService, "index");
-    qwebs.get("/cities").register(applicationService, "cities"); 
-    qwebs.post("/city").register(applicationService, "city"); 
-    
-}).then(function() {
-
+qwebs.init().then(function() {
     http.createServer(function (request, response) {
         return qwebs.invoke(request, response).catch(function(error) {
             console.log(error);
