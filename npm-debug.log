@@ -1,0 +1,118 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@2.7.4
+3 info using node@v0.12.2
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose publish [ '.' ]
+6 silly cache add args [ '.', null ]
+7 verbose cache add spec .
+8 silly cache add parsed spec { raw: '.',
+8 silly cache add   scope: null,
+8 silly cache add   name: null,
+8 silly cache add   rawSpec: '.',
+8 silly cache add   spec: 'E:\\Project\\qwebs',
+8 silly cache add   type: 'directory' }
+9 verbose addLocalDirectory C:\Users\bclaveau\AppData\Roaming\npm-cache\qwebs\0.0.14\package.tgz not in flight; packing
+10 verbose tar pack [ 'C:\\Users\\bclaveau\\AppData\\Roaming\\npm-cache\\qwebs\\0.0.14\\package.tgz',
+10 verbose tar pack   'E:\\Project\\qwebs' ]
+11 verbose tarball C:\Users\bclaveau\AppData\Roaming\npm-cache\qwebs\0.0.14\package.tgz
+12 verbose folder E:\Project\qwebs
+13 info prepublish qwebs@0.0.14
+14 verbose addLocalTarball adding from inside cache C:\Users\bclaveau\AppData\Roaming\npm-cache\qwebs\0.0.14\package.tgz
+15 silly cache afterAdd qwebs@0.0.14
+16 verbose afterAdd C:\Users\bclaveau\AppData\Roaming\npm-cache\qwebs\0.0.14\package\package.json not in flight; writing
+17 verbose afterAdd C:\Users\bclaveau\AppData\Roaming\npm-cache\qwebs\0.0.14\package\package.json written
+18 silly publish { name: 'qwebs',
+18 silly publish   version: '0.0.14',
+18 silly publish   description: 'Back-end web server',
+18 silly publish   main: 'index.js',
+18 silly publish   dependencies:
+18 silly publish    { q: '^1.4.1',
+18 silly publish      'html-compress': '^0.0.4',
+18 silly publish      'clean-css': '^3.4.1',
+18 silly publish      multiparty: '^4.1.2',
+18 silly publish      'uglify-js': '^2.4.24',
+18 silly publish      'sass.js': '^0.6.3',
+18 silly publish      jimp: '^0.2.5' },
+18 silly publish   devDependencies: { 'jasmine-node': '^2.0.0', request: '^2.61.0' },
+18 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+18 silly publish   repository: { type: 'git', url: 'https://github.com/beny78/qwebs.git' },
+18 silly publish   keywords:
+18 silly publish    [ 'backend',
+18 silly publish      'webserver',
+18 silly publish      'promise',
+18 silly publish      'back-end',
+18 silly publish      'back',
+18 silly publish      'end',
+18 silly publish      'web',
+18 silly publish      'server',
+18 silly publish      'q',
+18 silly publish      'http',
+18 silly publish      'router',
+18 silly publish      'routing',
+18 silly publish      'route',
+18 silly publish      'switch',
+18 silly publish      'backbone',
+18 silly publish      'angular',
+18 silly publish      'react' ],
+18 silly publish   author: { name: 'Benoît Claveau', email: 'beny78@gmail.com' },
+18 silly publish   license: 'MIT',
+18 silly publish   bugs: { url: 'https://github.com/beny78/qwebs/issues' },
+18 silly publish   homepage: 'https://github.com/beny78/qwebs',
+18 silly publish   readme: '# qwebs\r\nQwebs is a web server designed to be used with single page application framework like Angular, React or Backbone.\r\n\r\n## Create your own server\r\n```js\r\nvar qwebs = require(\'../../lib/qwebs\'),\r\n    applicationService = require(\'./applicationservice\'),\r\n    http = require(\'http\'),\r\n    request = require(\'request\');\r\n\r\nqwebs.init();\r\n\r\nqwebs.get(\'/helloworld\').register(applicationService, "getHelloworld"); \r\n\r\nhttp.createServer(function (request, response) {\r\n    return qwebs.invoke(request, response);\r\n}).listen(1337, "127.0.0.1");\r\n```\r\n\r\n## Define your service\r\n```js\r\nvar Q = require(\'q\');\r\n\r\nfunction ApplicationService() {\r\n};\r\n\r\nApplicationService.prototype.constructor = ApplicationService;\r\n\r\nApplicationService.prototype.getHelloworld = function (request, response, promise) {\r\n    return promise.then(function (self) {\r\n        var content = { message: "Hello World" };\r\n        return response.send({ request: request, content: content });\r\n    });\r\n};\r\n\r\nexports = module.exports = new ApplicationService();\r\n```\r\n\r\n## Features\r\n\r\n  * Http Routing\r\n  * Promise\r\n  * Optimize memory usage\r\n  * Services injection management\r\n  * Use Css or Sass\r\n  * Deflate or gzip response\r\n  * Html, css and javascript minification\r\n  * Image as stream\r\n  \r\n## Installation\r\n\r\n```bash\r\n$ npm install qwebs\r\n```\r\n\r\n## Examples\r\n\r\nTo run our examples, clone the Qwebs repo and install the dependencies.\r\n\r\n```bash\r\n$ git clone https://github.com/beny78/qwebs --depth 1\r\n$ cd qwebs\r\n$ npm install\r\n$ cd exemples/helloworld\r\n$ node server.js\r\n```\r\n\r\n\r\n\r\n  ',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: '3279ddc4a7ad834d8466bc0bf39dad8a07d7fc73',
+18 silly publish   _id: 'qwebs@0.0.14',
+18 silly publish   _shasum: '7944a81a9771f2dd6b4717f57d56529cf9eeb998',
+18 silly publish   _from: '.' }
+19 silly mapToRegistry name qwebs
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/qwebs
+23 verbose publish registryBase https://registry.npmjs.org/
+24 silly publish uploading C:\Users\bclaveau\AppData\Roaming\npm-cache\qwebs\0.0.14\package.tgz
+25 verbose request uri https://registry.npmjs.org/qwebs
+26 verbose request sending authorization for write operation
+27 info attempt registry request try #1 at 11:38:45
+28 verbose request using bearer token for auth
+29 verbose request id de4a27413f0475eb
+30 http request PUT https://registry.npmjs.org/qwebs
+31 http 403 https://registry.npmjs.org/qwebs
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=60',
+32 verbose headers   'content-length': '96',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Wed, 23 Sep 2015 09:38:46 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'close',
+32 verbose headers   'x-served-by': 'cache-fra1226-FRA',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1443001125.421342,VS0,VE1253' }
+33 verbose request invalidating C:\Users\bclaveau\AppData\Roaming\npm-cache\registry.npmjs.org\qwebs on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 0.0.14." : qwebs
+35 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:247:14)
+35 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:170:14)
+35 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:344:22)
+35 verbose stack     at Request.emit (events.js:110:17)
+35 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1239:14)
+35 verbose stack     at Request.emit (events.js:129:20)
+35 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1187:12)
+35 verbose stack     at IncomingMessage.emit (events.js:129:20)
+35 verbose stack     at _stream_readable.js:908:16
+35 verbose stack     at process._tickCallback (node.js:355:11)
+36 verbose statusCode 403
+37 verbose pkgid qwebs
+38 verbose cwd E:\Project\qwebs
+39 error Windows_NT 6.1.7601
+40 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+41 error node v0.12.2
+42 error npm  v2.7.4
+43 error code E403
+44 error "You cannot publish over the previously published version 0.0.14." : qwebs
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]
