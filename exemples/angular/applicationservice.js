@@ -6,7 +6,6 @@
 var qwebs = require('../../lib/qwebs'), 
     Q = require('q');
 
-
 function ApplicationService() {
     this.data = [
         {name: "Paris"},
@@ -19,8 +18,7 @@ ApplicationService.prototype.constructor = ApplicationService;
 
 ApplicationService.prototype.index = function (request, response, promise) {
     return promise.then(function (self) {
-        request.url = "/template.html";  //override route to display template.html from assets folder ('public')
-        return qwebs.assets.invoke(request, response);
+        return qwebs.reroute("/template.html", request, response); //reroute to asset
     });
 };
 

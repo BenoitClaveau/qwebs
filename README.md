@@ -3,25 +3,29 @@ Qwebs is a web server designed to be used with single page application framework
 
 ## Create your own server
 ```js
-var qwebs = require('../../lib/qwebs'),
+var qwebs = require('qwebs').configure(), //read config.json
     applicationService = require('./applicationservice'),
     http = require('http'),
     request = require('request');
-
-qwebs.init();
-
+    
 qwebs.get('/helloworld').register(applicationService, "getHelloworld"); 
 
-http.createServer(function (request, response) {
-    return qwebs.invoke(request, response);
-}).listen(1337, "127.0.0.1");
+qwebs.init().then(function() {
+    http.createServer(function (request, response) {
+        return qwebs.invoke(request, response).catch(function(error) {
+            console.log(error);
+        });
+    }).listen(1337, "127.0.0.1");
+});
 ```
 
 ## Define your service
 ```js
-var Q = require('q');
+var Q = require('q'),
+    qwebs = require('qwebs');
 
 function ApplicationService() {
+    if (qwebs.config.verbose) console.log("ApplicationService created.");
 };
 
 ApplicationService.prototype.constructor = ApplicationService;

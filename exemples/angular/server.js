@@ -3,7 +3,7 @@
  */
 "use strict";
 
-var qwebs = require("../../lib/qwebs").configure(),
+var qwebs = require("../../lib/qwebs").configure(),  //read config.json
     applicationService = require("./applicationservice"),
     http = require("http"),
     request = require("request");
