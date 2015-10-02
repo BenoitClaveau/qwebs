@@ -35,4 +35,4 @@ ApplicationService.prototype.city = function (request, response, promise) {
     });
 };
 
-exports = module.exports = new ApplicationService();
+exports = module.exports = ApplicationService;

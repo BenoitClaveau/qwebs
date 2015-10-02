@@ -17,4 +17,4 @@ ApplicationService.prototype.getHelloWorld = function (request, response, promis
     });
 };
 
-exports = module.exports = new ApplicationService();
+exports = module.exports = ApplicationService;

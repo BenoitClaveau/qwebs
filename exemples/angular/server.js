@@ -3,16 +3,17 @@
  */
 "use strict";
 
-var qwebs = require("../../lib/qwebs").configure(),  //read config.json
-    applicationService = require("./applicationservice"),
-    http = require("http"),
-    request = require("request");
- 
-qwebs.get("/").register(applicationService, "index");
-qwebs.get("/cities").register(applicationService, "cities"); 
-qwebs.post("/city").register(applicationService, "city"); 
-    
-qwebs.init().then(function() {
+var Qwebs = require('../../lib/qwebs');
+
+var qwebs = new Qwebs();
+
+qwebs.inject("$app", "./applicationservice");
+
+qwebs.get("/").register("$app", "index");
+qwebs.get("/cities").register("$app", "cities"); 
+qwebs.post("/city").register("$app", "city"); 
+
+qwebs.load().then(function() {
     http.createServer(function (request, response) {
         return qwebs.invoke(request, response).catch(function(error) {
             console.log(error);
