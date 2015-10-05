@@ -7,3 +7,4 @@
 'use strict';
 
 module.exports = require('./lib/qwebs');
+module.exports = require('./lib/dataerror');
