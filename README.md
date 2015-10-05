@@ -1,16 +1,69 @@
-# qwebs
-Qwebs is a promise web server designed to be used with single page application framework like Angular, React or Backbone.
+# Qwebs
+Qwebs is a Web Server build with Promises.
+Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
 
-## Create your own server
+## Features
+
+  * Promises
+  * Injector
+  * Http Routing
+  * Optimize memory usage
+  * Css, Sass
+  * Optimise response size
+  * Html, css and javascript minification
+  * No temporary image
+  
+### Promises
+
+Qwebs is build and designed to be used with Promises.
+Your code will be easyier to read and maintain in the future.
+
+### Injector
+
+Easier access to Qwebs services.
+Just declare the service name in your constructor.
+
+```js
+Ex: function UserService($config) {
+```
+
+### Http Routing
+
+Declare your routes
+
+```js
+qwebs.get('/user/:id', "$users", "get"); 
+qwebs.post('/user', "$users", "save"); 
+```
+
+### Optimize memory usage
+
+All assets are loaded in memory at startup.
+No files are read during runtime.
+
+### Css, Sass
+
+Qwebs included a Sass preprocessor.
+No need to compile your sass via an external program.
+
+### Optimize response size
+
+Your response size is automatically compressed in Gzip or Deflate.
+
+### No temporary image
+
+Image is not saved in a temporary file.
+We do not want that Qwebs accesses the disk.
+We prefer use stream.
+
+## Create your server
 
 ```js
 var Qwebs = require('qwebs');
 
 var qwebs = new Qwebs();
-
 qwebs.inject("$app", "./applicationservice");
-
-qwebs.get('/helloworld').register("$app", "getHelloworld"); 
+qwebs.get('/helloworld', "$app", "getHelloworld"); 
 
 qwebs.load().then(function() {
     http.createServer(function (request, response) {
@@ -41,50 +94,6 @@ ApplicationService.prototype.getHelloworld = function (request, response, promis
 
 exports = module.exports = ApplicationService;
 ```
-
-## Features
-
-  * Promise
-  * Http Routing
-  * Injector
-  * Optimize memory usage
-  * Css, Sass
-  * Optimise response size
-  * Html, css and javascript minification
-  * No temporary image
-  
-### Promise  
-
-Qwebs is construct to be used with promise.
-Your code will be easy to read and maintain in the future.
-
-### Injector
-
-Qwebs include a service injector.
-You can easily access to every service.
-Just declare the service name in your constructor.
-```js
-Ex: function MyService($config) {
-```
-
-### Optimize memory usage
-
-Qwebs load all assets in memory.
-No file are read during runtime.
-
-### Css, Sass
-
-Qwebs include a Sass preprocessor.
-No need to compile your sass via an external program.
-
-### Optimize response size
-
-Qwebs Gzip or Deflate the response.
-
-### Image
-
-Qwebs will not save image stream as temporary file.
-Because we do not want that Qwebs accesses the disk.
 
 ## Installation
 
