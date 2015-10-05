@@ -8,6 +8,7 @@ Qwebs is designed to be used with Single Page Application framework like Angular
   * Injector
   * Http Routing
   * Optimize memory usage
+  * Bundle
   * Css, Sass
   * Optimise response size
   * Html, css and javascript minification
@@ -15,7 +16,6 @@ Qwebs is designed to be used with Single Page Application framework like Angular
   
 ### Promises
 
-Qwebs is build and designed to be used with Promises.
 Your code will be easyier to read and maintain in the future.
 
 ### Injector
@@ -40,6 +40,44 @@ qwebs.post('/user', "$users", "save");
 
 All assets are loaded in memory at startup.
 No files are read during runtime.
+
+### Bundle (bundle.json)
+
+Create your own CSS, or JS bundles.
+
+ * JS
+ * CSS, SCSS 
+
+```json
+{
+    "/app.js":[
+        "bower_components/angular-material/angular-material.js",
+        "bower_components/angular-route/angular-route.js",
+        "bower_components/angular-aria/angular-aria.js",
+        "bower_components/angular-sanitize/angular-sanitize.js",
+        "bower_components/angular-i18n/angular-locale_fr-fr.js",
+        "bower_components/angular-animate/angular-animate.js",
+        "web/app.js"
+    ],
+    "/app.css":[
+        "assets/mixins.scss",
+        "bower_components/angular-material/angular-material.css",
+        "assets/master.scss"
+    ]   
+}
+```
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel=stylesheet type="text/css" href="/app.css">
+    </head>
+    <body>
+        <script src="/app.js"></script>
+    </body>
+</html>
+```
 
 ### Css, Sass
 
