@@ -6,15 +6,15 @@
   "dependencies": {
     "q": "^1.4.1",
     "html-compress": "^0.0.4",
-    "clean-css": "^3.4.1",
+    "clean-css": "^3.4.5",
     "multiparty": "^4.1.2",
     "uglify-js": "^2.4.24",
     "sass.js": "^0.6.3",
-    "jimp": "^0.2.5"
+    "jimp": "^0.2.7"
   },
   "devDependencies": {
     "jasmine-node": "^2.0.0",
-    "request": "^2.61.0"
+    "request": "^2.64.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
