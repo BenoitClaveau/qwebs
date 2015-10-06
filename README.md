@@ -1,11 +1,11 @@
 # Qwebs
-> Qwebs is a Web Server build with [Promises] (https://www.npmjs.com/package/q).
+> Qwebs is a Web Server build with [Promises](https://www.npmjs.com/package/q).
 > 
 > Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
 
 ## Features
 
-  * [Promises] (https://www.npmjs.com/package/q)
+  * [Promises](https://www.npmjs.com/package/q)
   * Dependency injection
   * Http Routing
   * Optimize memory usage
