@@ -1,11 +1,12 @@
 # Qwebs
-Qwebs is a Web Server build with Promises.
-Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
+> Qwebs is a Web Server build with [Promises] (https://www.npmjs.com/package/q).
+> 
+> Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
 
 ## Features
 
-  * Promises
-  * Injector
+  * [Promises] (https://www.npmjs.com/package/q)
+  * Dependency injection
   * Http Routing
   * Optimize memory usage
   * Bundle
@@ -16,12 +17,15 @@ Qwebs is designed to be used with Single Page Application framework like Angular
   
 ### Promises
 
-Your code will be easyier to read and maintain in the future.
+  * Easier to read
+  * Easier to maintain in the future
+  * Easier error handling
 
-### Injector
+### Dependency injection
 
-Easier access to Qwebs services.
-Just declare the service name in your constructor.
+> Just declare the service name in your constructor.
+> 
+> Qwebs will create your service with its dependencies.
 
 ```js
 Ex: function UserService($config) {
@@ -32,14 +36,15 @@ Ex: function UserService($config) {
 Declare your routes
 
 ```js
-qwebs.get('/user/:id', "$users", "get"); 
-qwebs.post('/user', "$users", "save"); 
+qwebs.get("/user/:id", "$users", "get"); 
+qwebs.post("/user", "$users", "save"); 
 ```
 
 ### Optimize memory usage
 
-All assets are loaded in memory at startup.
-No files are read during runtime.
+> All assets are loaded in memory at startup.
+> 
+> We do not want read during runtime.
 
 ### Bundle (bundle.json)
 
@@ -81,18 +86,19 @@ Create your own CSS, or JS bundles.
 
 ### Css, Sass
 
-Qwebs included a Sass preprocessor.
-No need to compile your sass via an external program.
+> Qwebs included a Sass preprocessor.
+> 
+> No need to compile your sass via an external program.
 
 ### Optimize response size
 
-Your response size is automatically compressed in Gzip or Deflate.
+> Your response is automatically compressed in Gzip or Deflate.
 
 ### No temporary image
 
-Image is not saved in a temporary file.
-We do not want that Qwebs accesses the disk.
-We prefer use stream.
+> Image is not saved in a temporary file.
+> 
+> We prefer data stream.
 
 ## Create your server
 
@@ -133,6 +139,23 @@ ApplicationService.prototype.getHelloworld = function (request, response, promis
 exports = module.exports = ApplicationService;
 ```
 
+### API
+
+  * get(route, service, method)
+  * post(route, service, method)
+  * put(route, service, method)
+  * delete(route, service, method)
+  * invoke(request, response)
+  * invoke(request, response, overridenUrl)
+  
+### Services
+
+  * $config
+  * $qwebs
+  * $injector
+  * $qjimp
+  * $repository 
+  
 ## Installation
 
 ```bash
@@ -141,7 +164,7 @@ $ npm install qwebs
 
 ## Examples
 
-To run our examples, clone the Qwebs repo and install the dependencies.
+> To run our examples, clone the Qwebs repo and install the dependencies.
 
 ```bash
 $ git clone https://github.com/beny78/qwebs --depth 1

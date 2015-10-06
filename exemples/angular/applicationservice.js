@@ -8,9 +8,9 @@ var qwebs = require('../../lib/qwebs'),
 
 function ApplicationService() {
     this.data = [
-        {name: "Paris"},
-        {name: "Lyon"},
-        {name: "Marseille"}
+        { name: "Paris" },
+        { name: "Lyon" },
+        { name: "Marseille" }
     ];
 };
 

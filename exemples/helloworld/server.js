@@ -1,9 +1,7 @@
-/*!
- * qwebs server
- */
 "use strict";
 
-var Qwebs = require('../../lib/qwebs');
+var http = require("http"),
+    Qwebs = require('../../lib/qwebs');
 
 var qwebs = new Qwebs();
 qwebs.inject("$app", "./applicationservice");
