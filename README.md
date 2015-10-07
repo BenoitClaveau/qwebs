@@ -37,21 +37,21 @@ Declare your routes
 
 ```js
 qwebs.get("/user/:id", "$users", "get"); 
-qwebs.post("/user", "$users", "save"); 
+qwebs.post("/user", "$users", "save");
 ```
 
 ### Optimize memory usage
 
 > All assets are loaded in memory at startup.
 > 
-> We do not want read during runtime.
+> We do not want read file during runtime.
 
 ### Bundle (bundle.json)
 
-Create your own CSS, or JS bundles.
+Create your own CSS or JS bundle.
 
  * JS
- * CSS, SCSS 
+ * CSS, SCSS
 
 ```json
 {
@@ -92,11 +92,11 @@ Create your own CSS, or JS bundles.
 
 ### Optimize response size
 
-> Your response is automatically compressed in Gzip or Deflate.
+> Your response is automatically compressed with Gzip or Deflate.
 
 ### No temporary image
 
-> Image is not saved in a temporary file.
+> Images are not saved in temporary files.
 > 
 > We prefer data stream.
 
@@ -174,6 +174,14 @@ $ cd exemples/helloworld
 $ node server.js
 ```
 
+## Test
 
+> To run our tests, clone the Qwebs repo and install the dependencies.
 
-  
+```bash
+$ git clone https://github.com/beny78/qwebs --depth 1
+$ cd qwebs
+$ npm install
+$ cd tests
+$ node.exe "..\node_modules\jasmine-node\bin\jasmine-node" --verbose .
+```
