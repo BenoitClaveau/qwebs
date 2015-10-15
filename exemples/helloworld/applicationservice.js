@@ -17,4 +17,19 @@ ApplicationService.prototype.getHelloWorld = function (request, response, promis
     });
 };
 
+ApplicationService.prototype.getHelloWorld2 = function (request, response, promise) {
+    return promise.then(function (self) {
+        var content = { message: "Hello World " + request.params.test };
+        return response.send({ request: request, content: content });
+    });
+};
+
+ApplicationService.prototype.getHelloWorld3 = function (request, response, promise) {
+    return promise.then(function (self) {
+        var content = { message: "Hello World " + request.params.test + " " + request.params.value };
+        return response.send({ request: request, content: content });
+    });
+};
+
+
 exports = module.exports = ApplicationService;
