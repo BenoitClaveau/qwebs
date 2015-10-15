@@ -3,9 +3,9 @@
 var http = require("http"),
     Qwebs = require('../../lib/qwebs');
 
-var qwebs = new Qwebs();
+var qwebs = new Qwebs({});
 qwebs.inject("$app", "./applicationservice");
-qwebs.get('/helloworld', "$app", "getHelloworld"); 
+qwebs.get('/', "$app", "getHelloWorld"); 
 
 qwebs.load().then(function() {
     http.createServer(function (request, response) {
@@ -13,4 +13,6 @@ qwebs.load().then(function() {
             console.log(error);
         });
     }).listen(1337, "127.0.0.1");
+}).catch(function(error) {
+    console.log(error);
 });
