@@ -6,8 +6,6 @@ var http = require("http"),
 var qwebs = new Qwebs({});
 qwebs.inject("$app", "./applicationservice");
 qwebs.get('/', "$app", "getHelloWorld");
-qwebs.get('/:test', "$app", "getHelloWorld2");
-qwebs.get('/:test/info/:value', "$app", "getHelloWorld3"); 
 
 qwebs.load().then(function() {
     http.createServer(function (request, response) {

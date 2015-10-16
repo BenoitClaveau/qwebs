@@ -1,17 +1,16 @@
 # Qwebs
 > Qwebs is a Web Server build with [Promises](https://www.npmjs.com/package/q).
-> 
 > Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
 
 ## Features
 
   * [Promises](https://www.npmjs.com/package/q)
   * Dependency injection
-  * Http Routing
+  * Http routing
+  * Response
   * Optimize memory usage
   * Bundle
   * Css, Sass
-  * Optimise response size
   * Html, css and javascript minification
   * No temporary image
   
@@ -24,27 +23,52 @@
 ### Dependency injection
 
 > Just declare the service name in your constructor.
-> 
 > Qwebs will create your service with its dependencies.
 
 ```js
 Ex: function UserService($config) {
 ```
 
-### Http Routing
+### Http routing
 
-Declare your routes
+> Our goal is to find the final route as fast as possible.
+> We use a tree data structure to represent all routes.
+
+#### API
+
+  * get(route, service, method)
+  * post(route, service, method)
+  * put(route, service, method)
+  * delete(route, service, method)
 
 ```js
 qwebs.get("/user/:id", "$users", "get"); 
 qwebs.post("/user", "$users", "save");
 ```
 
+### Response
+
+> Your response is automatically compressed with Gzip or Deflate.
+
+#### API
+
+  * response.send(data)
+  
+    > request: Node request object
+    
+    > [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
+    
+    > [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
+    
+    > content: Json, Html
+
+  * qwebs.invoke(request, response, overridenUrl)
+  
+    > Usefull to route to an asset 
+
 ### Optimize memory usage
 
-> All assets are loaded in memory at startup.
-> 
-> We do not want read file during runtime.
+> All assets are loaded in memory at startup because we do not want read file during runtime.
 
 ### Bundle (bundle.json)
 
@@ -86,37 +110,12 @@ Create your own CSS or JS bundle.
 
 ### Css, Sass
 
-> Qwebs included a Sass preprocessor.
-> 
-> No need to compile your sass via an external program.
-
-### Optimize response size
-
-> Your response is automatically compressed with Gzip or Deflate.
+> We included a Sass preprocessor.
+> You don't need to compile your sass via an external program.
 
 ### No temporary image
 
-> Images are not saved in temporary files.
-> 
-> We prefer data stream.
-
-## Create your server
-
-```js
-var Qwebs = require('qwebs');
-
-var qwebs = new Qwebs();
-qwebs.inject("$app", "./applicationservice");
-qwebs.get('/helloworld', "$app", "getHelloworld"); 
-
-qwebs.load().then(function() {
-    http.createServer(function (request, response) {
-        return qwebs.invoke(request, response).catch(function(error) {
-            console.log(error);
-        });
-    }).listen(1337, "127.0.0.1");
-});
-```
+> When an image is uploaded we do not saved it in temporary files. We prefer use data stream.
 
 ## Define your service
 
@@ -139,22 +138,59 @@ ApplicationService.prototype.getHelloworld = function (request, response, promis
 exports = module.exports = ApplicationService;
 ```
 
+## Create your server
+
 ### API
 
-  * get(route, service, method)
-  * post(route, service, method)
-  * put(route, service, method)
-  * delete(route, service, method)
-  * invoke(request, response)
-  * invoke(request, response, overridenUrl)
+  * inject(service, location)
   
-### Services
+    > Inject your service, define a service name and the location of your package.
+    
+  * load()
+  
+    > Resolve all services.
+    
+  * invoke(request, response)
+  
+    > Delegate the response to Qwebs.
+
+```js
+var Qwebs = require('qwebs');
+
+var qwebs = new Qwebs();
+qwebs.inject("$app", "./applicationservice");
+qwebs.get('/', "$app", "getHelloworld"); 
+
+qwebs.load().then(function() {
+    http.createServer(function (request, response) {
+        return qwebs.invoke(request, response).catch(function(error) {
+            console.log(error);
+        });
+    }).listen(1337, "127.0.0.1");
+});
+```
+  
+## Services
 
   * $config
+  
+    > You can access your configuration.
+    
   * $qwebs
+  
+    > Retrieve your qwebs instance.
+    
   * $injector
+  
+    > Use injector service to resolve services at runtime.
+    
   * $qjimp
-  * $repository 
+  
+    > Convert and manipulate uploaded images.
+    
+  * $repository
+  
+    > Load and retrieve files store in a folder.
   
 ## Installation
 
