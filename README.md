@@ -5,12 +5,12 @@
 ## Features
 
   * [Promises](https://www.npmjs.com/package/q)
-  * Dependency injection
   * Http routing
   * Response
+  * Dependency injection
   * Optimize memory usage
-  * Bundle
   * Css, Sass
+  * Bundle
   * Html, css and javascript minification
   * No temporary image
   
@@ -20,21 +20,10 @@
   * Easier to maintain in the future
   * Easier error handling
 
-### Dependency injection
-
-> Just declare the service name in your constructor.
-> Qwebs will create your service with its dependencies.
-
-```js
-Ex: function UserService($config) {
-```
-
 ### Http routing
 
 > Our goal is to find the final route as fast as possible.
 > We use a tree data structure to represent all routes.
-
-#### API
 
   * get(route, service, method)
   * post(route, service, method)
@@ -50,8 +39,6 @@ qwebs.post("/user", "$users", "save");
 
 > Your response is automatically compressed with Gzip or Deflate.
 
-#### API
-
   * response.send(data)
   
     > request: Node request object
@@ -61,14 +48,28 @@ qwebs.post("/user", "$users", "save");
     > [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
     
     > content: Json, Html
-
+  
   * qwebs.invoke(request, response, overridenUrl)
   
     > Usefull to route to an asset 
 
+### Dependency injection
+
+> Just declare the service name in your constructor.
+> Qwebs will create your service with its dependencies.
+
+```js
+Ex: function UserService($config) {
+```
+
 ### Optimize memory usage
 
 > All assets are loaded in memory at startup because we do not want read file during runtime.
+
+### Css, Sass
+
+> We included a Sass preprocessor.
+> You don't need to compile your sass via an external program.
 
 ### Bundle (bundle.json)
 
@@ -108,14 +109,9 @@ Create your own CSS or JS bundle.
 </html>
 ```
 
-### Css, Sass
-
-> We included a Sass preprocessor.
-> You don't need to compile your sass via an external program.
-
 ### No temporary image
 
-> When an image is uploaded we do not saved it in temporary files. We prefer use data stream.
+> When an image is uploaded we do not saved it in temporary files. We prefer use data stream. See our exemple in exemples/angular/applicationservice.js.
 
 ## Define your service
 
@@ -139,8 +135,6 @@ exports = module.exports = ApplicationService;
 ```
 
 ## Create your server
-
-### API
 
   * inject(service, location)
   

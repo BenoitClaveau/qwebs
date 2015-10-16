@@ -8,6 +8,7 @@ qwebs.inject("$app", "./applicationservice");
 qwebs.get("/", "$app", "index");
 qwebs.get("/cities", "$app", "cities"); 
 qwebs.post("/city", "$app", "city"); 
+qwebs.post("/image", "$app", "toJpeg"); 
 
 qwebs.load().then(function() {
     http.createServer(function (request, response) {
