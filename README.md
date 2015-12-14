@@ -1,6 +1,6 @@
 # Qwebs
-> Qwebs is a Web Server build with [Promises](https://www.npmjs.com/package/q).
-> Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
+Qwebs is a Web Server build with [Promises](https://www.npmjs.com/package/q).
+Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
 
 ## Features
 
@@ -22,8 +22,8 @@
 
 ### Http routing
 
-> Our goal is to find the final route as fast as possible.
-> We use a tree data structure to represent all routes.
+Our goal is to find the final route as fast as possible.
+We use a tree data structure to represent all routes.
 
   * get(route, service, method)
   * post(route, service, method)
@@ -37,26 +37,26 @@ qwebs.post("/user", "$users", "save");
 
 ### Response
 
-> Your response is automatically compressed with Gzip or Deflate.
+Your response is automatically compressed with Gzip or Deflate.
 
   * response.send(data)
   
-    > request: Node request object
+    request: Node request object
     
-    > [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
+    [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
     
-    > [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
+    [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
     
-    > content: Json, Html
+    content: Json, Html
   
   * qwebs.invoke(request, response, overridenUrl)
   
-    > Usefull to route to an asset 
+    Usefull to route to an asset 
 
 ### Dependency injection
 
-> Just declare the service name in your constructor.
-> Qwebs will create your service with its dependencies.
+Just declare the service name in your constructor.
+Qwebs will create your service with its dependencies.
 
 ```js
 Ex: function UserService($config) {
@@ -64,12 +64,12 @@ Ex: function UserService($config) {
 
 ### Optimize memory usage
 
-> All assets are loaded in memory at startup because we do not want read file during runtime.
+All assets are loaded in memory at startup because we do not want read file during runtime.
 
 ### Css, Sass
 
-> We included a Sass preprocessor.
-> You don't need to compile your sass via an external program.
+We included a Sass preprocessor.
+You don't need to compile your sass via an external program.
 
 ### Bundle (bundle.json)
 
@@ -111,7 +111,7 @@ Create your own CSS or JS bundle.
 
 ### No temporary image
 
-> When an image is uploaded we do not saved it in temporary files. We prefer use data stream. See our exemple in exemples/angular/applicationservice.js.
+When an image is uploaded we do not saved it in temporary files. We prefer use data stream. See our exemple in exemples/angular/applicationservice.js.
 
 ## Define your service
 
@@ -138,15 +138,15 @@ exports = module.exports = ApplicationService;
 
   * inject(service, location)
   
-    > Inject your service, define a service name and the location of your package.
+    Inject your service, define a service name and the location of your package.
     
   * load()
   
-    > Resolve all services.
+    Resolve all services.
     
   * invoke(request, response)
   
-    > Delegate the response to Qwebs.
+    Delegate the response to Qwebs.
 
 ```js
 var Qwebs = require('qwebs');
@@ -168,24 +168,39 @@ qwebs.load().then(function() {
 
   * $config
   
-    > You can access your configuration.
+    You can access your configuration.
     
   * $qwebs
   
-    > Retrieve your qwebs instance.
+    Retrieve your qwebs instance.
     
   * $injector
   
-    > Use injector service to resolve services at runtime.
+    Use injector service to resolve services at runtime.
+    
+  * $responseProxy
+  
+    Extand http.ServerResponse and call $response service.
+    
+  * $response
+  
+    Default response extension.
     
   * $qjimp
   
-    > Convert and manipulate uploaded images.
+    Convert and manipulate uploaded images.
     
   * $repository
   
-    > Load and retrieve files store in a folder.
+    Load and retrieve files store in a folder.
   
+## Others Services
+
+  * [mongo](https://www.npmjs.com/package/qwebs-mongo)
+  * [authentication](https://www.npmjs.com/package/qwebs-auth-jwt)
+  * [https](https://www.npmjs.com/package/qwebs-https)
+  * [nodemailer](https://www.npmjs.com/package/qwebs-nodemailer)
+
 ## Installation
 
 ```bash
@@ -194,7 +209,7 @@ $ npm install qwebs
 
 ## Examples
 
-> To run our examples, clone the Qwebs repo and install the dependencies.
+To run our examples, clone the Qwebs repo and install the dependencies.
 
 ```bash
 $ git clone https://github.com/beny78/qwebs --depth 1
@@ -206,7 +221,7 @@ $ node server.js
 
 ## Test
 
-> To run our tests, clone the Qwebs repo and install the dependencies.
+To run our tests, clone the Qwebs repo and install the dependencies.
 
 ```bash
 $ git clone https://github.com/beny78/qwebs --depth 1
