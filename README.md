@@ -166,40 +166,20 @@ qwebs.load().then(function() {
   
 ## Services
 
-  * $config
-  
-    You can access your configuration.
-    
-  * $qwebs
-  
-    Retrieve your qwebs instance.
-    
-  * $injector
-  
-    Use injector service to resolve services at runtime.
-    
-  * $responseProxy
-  
-    Extand http.ServerResponse and call $response service.
-    
-  * $response
-  
-    Default response extension.
-    
-  * $qjimp
-  
-    Convert and manipulate uploaded images.
-    
-  * $repository
-  
-    Load and retrieve files store in a folder.
+  * $config: your configuration.
+  * $qwebs: qwebs instance.
+  * $injector: resolve services at runtime.
+  * $responseProxy: extand http.ServerResponse.
+  * $response: default response extension.
+  * $qjimp: convert and manipulate images.
+  * $repository: load and retrieve files store in a folder.
   
 ## Others Services
 
-  * [mongo](https://www.npmjs.com/package/qwebs-mongo)
-  * [authentication](https://www.npmjs.com/package/qwebs-auth-jwt)
-  * [https](https://www.npmjs.com/package/qwebs-https)
-  * [nodemailer](https://www.npmjs.com/package/qwebs-nodemailer)
+  * [$mongo](https://www.npmjs.com/package/qwebs-mongo)
+  * [$authentication](https://www.npmjs.com/package/qwebs-auth-jwt)
+  * [$https](https://www.npmjs.com/package/qwebs-https)
+  * [$nodemailer](https://www.npmjs.com/package/qwebs-nodemailer)
 
 ## Installation
 
