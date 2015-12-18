@@ -39,19 +39,14 @@ qwebs.post("/user", "$users", "save");
 
 Your response is automatically compressed with Gzip or Deflate.
 
-  * response.send(data)
-  
-    request: Node request object
-    
-    [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
-    
-    [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
-    
-    content: Json, Html
+  * response.send({request, statusCode, header, content})
+    - request: Node request object
+    - [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
+    - [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
+    -content: Json, Html
   
   * qwebs.invoke(request, response, overridenUrl)
-  
-    Usefull to route to an asset 
+    - Usefull to route to an asset 
 
 ### Dependency injection
 
@@ -137,16 +132,13 @@ exports = module.exports = ApplicationService;
 ## Create your server
 
   * inject(service, location)
-  
-    Inject your service, define a service name and the location of your package.
+    - Inject your service, define a service name and the location of your package.
     
   * load()
-  
-    Resolve all services.
+    - Resolve all services.
     
   * invoke(request, response)
-  
-    Delegate the response to Qwebs.
+    - Delegate the response to Qwebs.
 
 ```js
 var Qwebs = require('qwebs');
