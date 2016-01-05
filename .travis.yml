@@ -6,6 +6,5 @@ node_js:
   - "2.5"
   - "3.3"
   - "4.2"
-sudo: false
-before_install:
-  - "npm install --save-dev jasmine-node"
+script: "npm run-script test"
+after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
