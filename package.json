@@ -15,10 +15,12 @@
   "devDependencies": {
     "jasmine-node": "^2.0.0",
     "request": "^2.67.0",
-    "coveralls": "2.10.0"
+    "coveralls": "2.10.0",
+    "istanbul": "0.4.0"
   },
   "scripts": {
     "test": "node_modules/jasmine-node/bin/jasmine-node tests/*.spec.js"
+    "test-cover": "node_modules/istanbul/bin/istanbul cover node_modules/jasmine-node/bin/jasmine-node --captureExceptions tests/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
