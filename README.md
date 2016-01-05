@@ -1,23 +1,21 @@
 # Qwebs
- Light, optimized [promise](https://www.npmjs.com/package/q) web server.
+ Light and optimized [promise](https://www.npmjs.com/package/q) web server.
 
  [![NPM][npm-image]][npm-url]
  [![Build Status][travis-image]][travis-url]
  [![Coverage Status][coveralls-image]][coveralls-url]
 
- Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
+ Qwebs is designed to be used with Single Page Application framework like [Angular](https://angularjs.org/), [React](https://facebook.github.io/react/) or [Backbone](http://backbonejs.org/).
 
 ## Features
 
   * [Promises](https://www.npmjs.com/package/q)
-  * Http routing
-  * Response
+  * Routing
   * Dependency injection
-  * Optimize memory usage
-  * Css, Sass
-  * Bundle
+  * Compress response
+  * Avoid disk access at runtime
   * Html, css and javascript minification
-  * No temporary image
+  * Bundle css, sass
   
 ### Promises
 
@@ -25,7 +23,7 @@
   * Easier to maintain in the future
   * Easier error handling
 
-### Http routing
+### Routing
 
 Our goal is to find the final route as fast as possible.
 We use a tree data structure to represent all routes.
@@ -39,19 +37,6 @@ We use a tree data structure to represent all routes.
 qwebs.get("/user/:id", "$users", "get"); 
 qwebs.post("/user", "$users", "save");
 ```
-
-### Response
-
-Your response is automatically compressed with Gzip or Deflate.
-
-  * response.send({request, statusCode, header, content})
-    - [request](https://nodejs.org/api/http.html#http_class_http_clientrequest)
-    - [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
-    - [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
-    - content: json, jtml, ...
-  
-  * qwebs.invoke(request, response, overridenUrl)
-    - Usefull to route to an asset 
 
 ### Dependency injection
 
@@ -69,21 +54,59 @@ Qwebs will create your service with its dependencies.
 qwebs.inject("$user", "./services/user");
 ```
 
-### Optimize memory usage
+### Response
 
-All assets are loaded in memory at startup because we do not want read file during runtime.
+Your response is automatically compressed with Gzip or Deflate.
 
-### Css, Sass
+  * response.send({request, statusCode, header, content})
+    - [request](https://nodejs.org/api/http.html#http_class_http_clientrequest)
+    - [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
+    - [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
+    - content: json, jtml, ...
+  
+  * qwebs.invoke(request, response, overridenUrl)
+    - Usefull to route to an asset
+   
+$response sevice could be overridden
 
-We included a Sass preprocessor.
-You don't need to compile your sass via an external program.
+```js
+//services/myresponse.js
+var Q = require("q"),
+    ResponseService = require("qwebs/lib/services/response"),
+    DataError = require("qwebs/lib/dataerror");
+
+function MyResponseService() {
+};
+
+MyResponseService.prototype = Object.create(ResponseService.prototype);
+MyResponseService.prototype.constructor = MyResponseService;
+
+MyResponseService.prototype.send = function (response, data) {
+    var self = this;
+    return Q.try(function () {
+        //YOUR CODE
+        return ResponseService.prototype.send.call(self, response, data);
+    });
+};
+
+exports = module.exports = MyResponseService;
+```
+
+Replace $response service in $injector before load Qwebs.
+
+```js
+qwebs.inject("$response", "./services/myresponse");
+```
+
+### Avoid disk access at runtime
+
+All assets are loaded in memory at startup.
+Uploaded images are not saved in temporary files. $qjimp service is designed to read, manipulate image stream.
 
 ### Bundle (bundle.json)
 
 Create your own css or js bundle.
-
- * js
- * css, scss
+Qwebs includes a Sass preprocessor. You don't need to compile your sass via an external program.
 
 ```json
 {
@@ -115,10 +138,6 @@ Create your own css or js bundle.
     </body>
 </html>
 ```
-
-### No temporary image
-
-Uploaded images are not saved in temporary files. We prefer use data stream. $qjimp service is designed to read, manipulate image stream.
 
 ## Define your service
 
