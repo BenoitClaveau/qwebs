@@ -1,6 +1,11 @@
 # Qwebs
-Qwebs is a Web Server build with [Promises](https://www.npmjs.com/package/q).
-Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
+ Light, optimized [promise](https://www.npmjs.com/package/q) web server.
+
+ [![NPM][npm-image]][npm-url]
+ [![Build Status][travis-image]][travis-url]
+ [![Coverage Status][coveralls-image]][coveralls-url]
+
+ Qwebs is designed to be used with Single Page Application framework like Angular, React or Backbone.
 
 ## Features
 
@@ -40,10 +45,10 @@ qwebs.post("/user", "$users", "save");
 Your response is automatically compressed with Gzip or Deflate.
 
   * response.send({request, statusCode, header, content})
-    - request: Node request object
+    - [request](https://nodejs.org/api/http.html#http_class_http_clientrequest)
     - [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
     - [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
-    -content: Json, Html
+    - content: json, jtml, ...
   
   * qwebs.invoke(request, response, overridenUrl)
     - Usefull to route to an asset 
@@ -51,10 +56,17 @@ Your response is automatically compressed with Gzip or Deflate.
 ### Dependency injection
 
 Just declare the service name in your constructor.
+
+```js
+//services/user.js
+function UserService($config) {
+```
+
 Qwebs will create your service with its dependencies.
 
 ```js
-Ex: function UserService($config) {
+//server.js
+qwebs.inject("$user", "./services/user");
 ```
 
 ### Optimize memory usage
@@ -68,10 +80,10 @@ You don't need to compile your sass via an external program.
 
 ### Bundle (bundle.json)
 
-Create your own CSS or JS bundle.
+Create your own css or js bundle.
 
- * JS
- * CSS, SCSS
+ * js
+ * css, scss
 
 ```json
 {
@@ -106,7 +118,7 @@ Create your own CSS or JS bundle.
 
 ### No temporary image
 
-When an image is uploaded we do not saved it in temporary files. We prefer use data stream. See our exemple in exemples/angular/applicationservice.js.
+Uploaded images are not saved in temporary files. We prefer use data stream. $qjimp service is designed to read, manipulate image stream.
 
 ## Define your service
 
@@ -131,14 +143,9 @@ exports = module.exports = ApplicationService;
 
 ## Create your server
 
-  * inject(service, location)
-    - Inject your service, define a service name and the location of your package.
-    
-  * load()
-    - Resolve all services.
-    
-  * invoke(request, response)
-    - Delegate the response to Qwebs.
+  * inject(service, location): inject your service, define a service name and the location of your package.
+  * load(): resolve all services.
+  * invoke(request, response): delegate the response to Qwebs.
 
 ```js
 var Qwebs = require('qwebs');
@@ -202,3 +209,10 @@ $ npm install
 $ cd tests
 $ node.exe "..\node_modules\jasmine-node\bin\jasmine-node" --verbose .
 ```
+
+[npm-image]: https://img.shields.io/npm/v/qwebs.svg
+[npm-url]: https://npmjs.org/package/qwebs
+[travis-image]: https://travis-ci.org/beny78/qwebs.svg?branch=master
+[travis-url]: https://travis-ci.org/beny78/qwebs
+[coveralls-image]: https://coveralls.io/repos/beny78/qwebs/badge.svg?branch=master&service=github
+[coveralls-url]: https://coveralls.io/github/beny78/qwebs?branch=master
