@@ -1,56 +1,56 @@
 {
-  "name": "qwebs",
-  "version": "0.0.31",
-  "description": "Back-end web server",
-  "main": "index.js",
-  "dependencies": {
-    "q": "^1.4.1",
-    "html-compress": "^0.0.4",
-    "clean-css": "^3.4.8",
-    "multiparty": "^4.1.2",
-    "uglify-js": "^2.6.1",
-    "sass.js": "^0.6.3",
-    "jimp": "^0.2.20"
-  },
-  "devDependencies": {
-    "jasmine-node": "^2.0.0",
-    "request": "^2.67.0",
-    "coveralls": "2.10.0",
-    "istanbul": "0.4.0"
-  },
-  "scripts": {
-    "test": "node_modules/jasmine-node/bin/jasmine-node tests/*.spec.js",
-    "test-cover": "istanbul cover node_modules/jasmine-node/bin/jasmine-node --captureExceptions tests/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/beny78/qwebs.git"
-  },
-  "keywords": [
-    "webserver",
-    "promise",
-    "backend",
-    "back-end",
-    "back",
-    "end",
-    "web",
-    "server",
-    "q",
-    "http",
-    "router",
-    "routing",
-    "route",
-    "backbone",
-    "angular",
-    "react"
-  ],
-  "author": {
-    "name": "Benoît Claveau",
-    "email": "beny78@gmail.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/beny78/qwebs/issues"
-  },
-  "homepage": "https://github.com/beny78/qwebs"
+    "name": "qwebs",
+    "version": "0.0.32",
+    "description": "Back-end web server",
+    "main": "index.js",
+    "dependencies": {
+        "q": "^1.4.1",
+        "html-compress": "^0.0.4",
+        "clean-css": "^3.4.8",
+        "multiparty": "^4.1.2",
+        "uglify-js": "^2.6.1",
+        "sass.js": "^0.6.3",
+        "jimp": "^0.2.20"
+    },
+    "devDependencies": {
+        "jasmine-node": "^2.0.0",
+        "request": "^2.67.0",
+        "coveralls": "2.10.0",
+        "istanbul": "0.4.0"
+    },
+    "scripts": {
+        "test": "node_modules/jasmine-node/bin/jasmine-node tests/*.spec.js",
+        "test-cover": "istanbul cover node_modules/jasmine-node/bin/jasmine-node --captureExceptions tests/*.spec.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/beny78/qwebs.git"
+    },
+    "keywords": [
+        "webserver",
+        "promise",
+        "backend",
+        "back-end",
+        "back",
+        "end",
+        "web",
+        "server",
+        "q",
+        "http",
+        "router",
+        "routing",
+        "route",
+        "backbone",
+        "angular",
+        "react"
+    ],
+    "author": {
+        "name": "Benoît Claveau",
+        "email": "beny78@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/beny78/qwebs/issues"
+    },
+    "homepage": "https://github.com/beny78/qwebs"
 }

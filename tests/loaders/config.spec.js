@@ -29,7 +29,7 @@ describe("configLoader", function () {
         };
         
         return Q.try(function() {
-            var config = configLoader.create(mockQwebs, "./myconfig.json");
+            var config = configLoader.create(mockQwebs, "./config.json");
             
             expect(config.folder).toEqual("public2");
         }).catch(function (error) {
