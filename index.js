@@ -8,6 +8,6 @@
 
 module.exports = require('./lib/qwebs');
 module.exports.DataError = require('./lib/dataerror');
-module.exports.ReadableBufferStream = require('./lib/dataerror/utils/stream/readablebufferstream');
-module.exports.WritableBufferStream = require('./lib/dataerror/utils/stream/writablebufferstream');
-module.exports.MergeStream = require('./lib/dataerror/utils/stream/mergestream');
+module.exports.ReadableBufferStream = require('./lib/utils/stream/readablebufferstream');
+module.exports.WritableBufferStream = require('./lib/utils/stream/writablebufferstream');
+module.exports.MergeStream = require('./lib/utils/stream/mergestream');
