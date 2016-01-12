@@ -15,7 +15,7 @@
   * Compress response
   * Avoid disk access at runtime
   * Html, css and javascript minification
-  * Bundle css, sass
+  * Bundle css, [sass](https://www.npmjs.com/package/node-sass)
   
 ### Promises
 
@@ -58,11 +58,13 @@ qwebs.inject("$user", "./services/user");
 
 Your response is automatically compressed with Gzip or Deflate.
 
-  * response.send({request, statusCode, header, content})
+  * response.send({request, statusCode, header, content, stream})
     - [request](https://nodejs.org/api/http.html#http_class_http_clientrequest)
     - [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
     - [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
-    - content: json, jtml, ...
+    - content: js, html, json, ... *(call response.write(content))*
+    - or
+    - [stream](https://nodejs.org/api/stream.html) *(call stream.pipe(response))*
   
   * qwebs.invoke(request, response, overridenUrl)
     - Usefull to route to an asset
@@ -106,7 +108,7 @@ Uploaded images are not saved in temporary files. $qjimp service is designed to 
 ### Bundle (bundle.json)
 
 Create your own css or js bundle.
-Qwebs includes a Sass preprocessor. You don't need to compile your sass via an external program.
+Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. You don't need to compile your sass via an external program.
 
 ```json
 {
