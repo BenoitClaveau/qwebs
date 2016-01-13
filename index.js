@@ -6,7 +6,7 @@
 
 'use strict';
 
-module.exports = require('./lib/qwebs');
+module.exports.createQwebs = require('./lib/qwebs');
 module.exports.DataError = require('./lib/dataerror');
 module.exports.createWritableBuffer = require('./lib/utils/stream/createwritablebuffer');
 module.exports.mergeStream = require('./lib/utils/stream/mergestream');
