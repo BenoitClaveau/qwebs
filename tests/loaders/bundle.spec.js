@@ -6,15 +6,21 @@ var Qwebs = require("../../lib/qwebs"),
 describe("bundleLoader", function () {
     
     it("load", function (done) {
-        var cfg = {
-            bundle: "./bundle.json"
-        };
-        new Qwebs({ dirname: __dirname, config: cfg }).then(function(qwebs) {
-            return bundleLoader.load(qwebs).then(function(assets) {
+        
+        return Q.try(function() {
+            
+            var cfg = {
+                bundle: "./bundle.json"
+            };
+        
+            var $qwebs = new Qwebs({ dirname: __dirname, config: cfg });
+        
+            return bundleLoader.load($qwebs).then(function(assets) {
                 expect(assets.length).toEqual(1);
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");
             });
+            
         }).catch(function (error) {
             expect(error.stack).toBeNull();
         }).finally(done);

@@ -11,12 +11,14 @@ describe("configLoader", function () {
         };
         
         return Q.try(function() {
+            
             var cfg = {
                 folder: "public1"
             };
             var config = configLoader.create(mockQwebs, cfg);
             
             expect(config.folder).toEqual("public1");
+            
         }).catch(function (error) {
             expect(error.stack).toBeNull();
         }).finally(done);

@@ -5,13 +5,16 @@ var Qwebs = require("../../lib/qwebs"),
 describe("assetsLoader", function () {
 
     it("load", function (done) {
-        var cfg = {
-            folder: "public"
-        };
         
-        new Qwebs({ dirname: __dirname, config: cfg }).then(function(qwebs) {
+        return Q.try(function() {
+            
+            var cfg = {
+                folder: "public"
+            };
+            
+            var $qwebs = new Qwebs({ dirname: __dirname, config: cfg });
         
-            return assetsLoader.load(qwebs).then(function(assets) {
+            return assetsLoader.load($qwebs).then(function(assets) {
                 expect(assets.length).toEqual(2);            
                 expect(assets[0].route).toEqual("/assets/user.svg");
                 expect(assets[1].route).toEqual("/main.html");
