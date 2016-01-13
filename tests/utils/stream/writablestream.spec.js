@@ -1,25 +1,26 @@
-var QStream = require('../../../lib/utils/stream/qstream'),
+var WritableStream = require("../../../lib/utils/stream/writablestream"),
     fs = require("fs"),
+    stream = require("stream"),
     path = require("path"),
     Q = require('q');
 
-describe("QStream", function () {
+describe("Stream", function () {
 
     it("merge", function (done) {
         
         return Q.try(function() { 
             
-            var qstream = new QStream('');
+            var output = new WritableStream();
             
             ["data/page1.html", "data/page2.html"].forEach(function(file) {
                 var filepath = path.join(__dirname, file);
-                qstream = fs.createReadStream(filepath).pipe(qstream);
+                output = fs.createReadStream(filepath).pipe(output);
             });
             
-            return qstream;
+            return output;
         })
-        .then(function(content) {
-            expect(content.length).toEqual(152);
+        .then(function(buffer) {
+            expect(buffer.length).toEqual(152);
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
