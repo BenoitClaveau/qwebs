@@ -1,5 +1,5 @@
 {
-	"services": [
+    "services": [
         { "name": "$info", "location": "../services/info"}
     ],
     "locators": [
