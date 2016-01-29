@@ -10,3 +10,4 @@ module.exports = require('./lib/qwebs');
 module.exports.DataError = require('./lib/dataerror');
 module.exports.WritableStream = require('./lib/utils/stream/writablestream');
 module.exports.MergeStream = require('./lib/utils/stream/mergestream');
+module.exports.walk = require('./lib/utils/walk');
