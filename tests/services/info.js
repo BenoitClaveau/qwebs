@@ -13,4 +13,12 @@ InfoService.prototype.getInfo = function(request, response, promise) {
 	});
 };
 
+InfoService.prototype.getMessage = function(request, response, promise) {
+	return promise.then(function(self) {
+		return {
+			text: "hello world"
+		};
+	});
+};
+
 exports = module.exports = InfoService;
