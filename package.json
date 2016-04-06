@@ -1,22 +1,22 @@
 {
     "name": "qwebs",
-    "version": "0.0.56",
+    "version": "0.0.57",
     "description": "Back-end web server",
     "main": "index.js",
     "dependencies": {
-        "q": "^1.4.1",
-        "html-compress": "^0.0.4",
-        "clean-css": "^3.4.8",
-        "multiparty": "^4.1.2",
-        "uglify-js": "^2.6.1",
-        "sass.js": "^0.6.3",
-        "jimp": "^0.2.20"
+        "q": "latest",
+        "html-compress": "latest",
+        "clean-css": "latest",
+        "multiparty": "latest",
+        "uglify-js": "latest",
+        "sass.js": "latest",
+        "jimp": "latest"
     },
     "devDependencies": {
-        "jasmine-node": "^2.0.0",
-        "request": "^2.67.0",
-        "coveralls": "2.10.0",
-        "istanbul": "0.4.0"
+        "jasmine-node": "latest",
+        "request": "latest",
+        "coveralls": "latest",
+        "istanbul": "latest"
     },
     "scripts": {
         "test": "node_modules/jasmine-node/bin/jasmine-node tests/*.spec.js",
