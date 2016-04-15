@@ -107,5 +107,44 @@ describe("qjimp", function () {
             expect(error.stack).toBeNull();
         }).finally(done);
     });
+    
+    it("isLight", function (done) {
+        
+        return Q.try(function() {
+            var $qjimp = new QJimp();
+            
+            var input = path.join(__dirname, "./images/world.png");
+			
+            return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
+                return $qjimp.toImage(buffer);
+            }).then(function(image) {
+                return $qjimp.isLight(image);
+            }).then(function(result) {
+                expect(result).toBe(true);
+            });
 
+        }).catch(function (error) {
+            expect(error.stack).toBeNull();
+        }).finally(done);
+    });
+    
+    it("isLight", function (done) {
+        
+        return Q.try(function() {
+            var $qjimp = new QJimp();
+            
+            var input = path.join(__dirname, "./images/world.dark.png");
+			
+            return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
+                return $qjimp.toImage(buffer);
+            }).then(function(image) {
+                return $qjimp.isLight(image);
+            }).then(function(result) {
+                expect(result).toBe(false);
+            });
+
+        }).catch(function (error) {
+            expect(error.stack).toBeNull();
+        }).finally(done);
+    });
 });
