@@ -108,7 +108,7 @@ describe("qjimp", function () {
         }).finally(done);
     });
     
-    it("isLight", function (done) {
+    it("lightness", function (done) {
         
         return Q.try(function() {
             var $qjimp = new QJimp();
@@ -118,9 +118,9 @@ describe("qjimp", function () {
             return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
                 return $qjimp.toImage(buffer);
             }).then(function(image) {
-                return $qjimp.isLight(image);
+                return $qjimp.lightness(image);
             }).then(function(result) {
-                expect(result).toBe(true);
+                expect(result).toBe(1);
             });
 
         }).catch(function (error) {
@@ -128,7 +128,7 @@ describe("qjimp", function () {
         }).finally(done);
     });
     
-    it("isLight", function (done) {
+    it("lightness", function (done) {
         
         return Q.try(function() {
             var $qjimp = new QJimp();
@@ -138,9 +138,9 @@ describe("qjimp", function () {
             return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
                 return $qjimp.toImage(buffer);
             }).then(function(image) {
-                return $qjimp.isLight(image);
+                return $qjimp.lightness(image);
             }).then(function(result) {
-                expect(result).toBe(false);
+                expect(result).toBe(0.75);
             });
 
         }).catch(function (error) {
