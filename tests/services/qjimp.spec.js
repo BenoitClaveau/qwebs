@@ -1,7 +1,7 @@
-var QJimp = require('../../lib/services/qjimp'),
-	fs = require("fs"),
-    path = require('path'),
-    Q = require('q');
+const QJimp = require('../../lib/services/qjimp');
+const fs = require("fs");
+const path = require('path');
+const Q = require('q');
 
 describe("qjimp", function () {
 

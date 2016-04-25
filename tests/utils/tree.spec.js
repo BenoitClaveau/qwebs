@@ -1,41 +1,56 @@
-var Tree = require('../../lib/utils/tree'),
-    Q = require('q');
+/*!
+ * qwebs
+ * Copyright(c) 2016 Benoît Claveau
+ * MIT Licensed
+ */
+
+"use strict";
+
+const Tree = require('../../lib/utils/tree');
 
 describe("tree", function () {
 
     it("root", function (done) {
-        
-        return Q.try(function() {
-            var tree = new Tree();
+        return Promise.resolve().then(() => {
+            let tree = new Tree();
             
             tree.push({ id: 1, route: "/" });
             expect(tree.findOne("").router.id).toEqual(1);
-        })
-        .catch(function (error) {
-            expect(error.stack).toBeNull();
-        }).finally(done);
-    });
-    
-    it("root /", function (done) {
-        
-        return Q.try(function() {
-            var tree = new Tree();
-            
-            tree.push({ id: 1, route: "/" });
             expect(tree.findOne("/").router.id).toEqual(1);
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done)
     });
     
     it("parameters priority", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var tree = new Tree();
             
-            tree.push({ id: 1, route: ":test/:value" });
+            
             tree.push({ id: 2, route: "api/:test/info" });
+            tree.push({ id: 3, route: "api/:test" });
+            tree.push({ id: 1, route: ":test/:value" });
+            
+            var item = tree.findOne("api/alert");
+            expect(item.router.id).toEqual(3);
+            expect(item.params.test).toEqual("alert");
+            
+        })
+        .catch(function (error) {
+            expect(error.message).toBeNull();
+            //expect(error.stack).toBeNull();
+        }).then(done);
+    });
+    
+    it("parameters priority", function (done) {
+        
+        return Promise.resolve().then(() => {
+            var tree = new Tree();
+            
+            tree.push({ id: 2, route: "api/:test/info" });
+            tree.push({ id: 1, route: ":test/:value" });
             tree.push({ id: 3, route: "api/:test" });
 
             var item = tree.findOne("api/alert");
@@ -45,31 +60,12 @@ describe("tree", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("parameters priority", function (done) {
         
-        return Q.try(function() {
-            var tree = new Tree();
-            
-            tree.push({ id: 2, route: "api/:test/info" });
-            tree.push({ id: 1, route: ":test/:value" });
-            tree.push({ id: 3, route: "api/:test" });
-
-            var item = tree.findOne("api/alert");
-            expect(item.router.id).toEqual(3);
-            expect(item.params.test).toEqual("alert");
-            
-        })
-        .catch(function (error) {
-            expect(error.stack).toBeNull();
-        }).finally(done);
-    });
-    
-    it("parameters priority", function (done) {
-        
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var tree = new Tree();
             
             tree.push({ id: 3, route: "api/:test" });
@@ -83,12 +79,12 @@ describe("tree", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("multiple parameters", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var tree = new Tree();
             
             tree.push({ id: 1, route: ":route/info/:value" });
@@ -102,6 +98,6 @@ describe("tree", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

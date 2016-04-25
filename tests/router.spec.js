@@ -157,13 +157,16 @@ describe("route", function () {
             item.register("$info", "getInfo");
             item.load(mock.injector.resolve("$qwebs"));
             
-            mock.request.url = "/info";
+            mock.request.url = "/test/3";
             
-            return mock.router.invoke(mock.request, mock.response, "/test/3").then(function(res) {
+            mock.router.getTree.trace();
+            
+            return mock.router.invoke(mock.request, mock.response).then(function(res) {
                 expect(res.whoiam).toBe("I'm Info service.");
             });
             
         }).catch(function (error) {
+            //expect(error).toBeNull();
             expect(error.stack).toBeNull();
         }).finally(done);
     });
