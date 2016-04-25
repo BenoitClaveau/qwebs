@@ -15,18 +15,18 @@ class Repository {
     constructor(folder) {
         if (!folder) throw new DataError({ message: "Folder is not defined.", data: { folder: folder }});
         
-        let files = walk.get(folder);
-        for (let i in files) {
-            let filepath = files[i];
+        var files = walk.get(folder);
+        for (var i in files) {
+            var filepath = files[i];
             
-            let route = filepath.substring(folder.length);
-            let ext = path.extname(route).substr(1); //get extension without .
+            var route = filepath.substring(folder.length);
+            var ext = path.extname(route).substr(1); //get extension without .
             route = route.slice(0, -(ext.length + 1)); //get file name withous extension and .
-            let routes = route.split("/");
+            var routes = route.split("/");
             
-            let data = this;
-            for (let j in routes) {
-                let token = routes[j];
+            var data = this;
+            for (var j in routes) {
+                var token = routes[j];
                 if(!token) continue; //if filepath start with /
                 data[token] = data[token] || {};
                 data = data[token];

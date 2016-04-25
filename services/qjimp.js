@@ -11,11 +11,9 @@ const Jimp = require("jimp");
 const DataError = require("./../dataerror");
 
 class QJimp {
-    constructor() {
-    };
-    
+        
     toImage(buffer) {
-        let deferred = Q.defer();
+        var deferred = Q.defer();
         new Jimp(buffer, function() {
             deferred.resolve(this);
         });
@@ -38,7 +36,7 @@ class QJimp {
         if (!image) throw new DataError({ message: "image is not defined." });
 
         return Q.try(function() {
-            let size = { width: image.bitmap.width, height: image.bitmap.height };
+            var size = { width: image.bitmap.width, height: image.bitmap.height };
             return size;
         });
     };
@@ -69,25 +67,25 @@ class QJimp {
         var self = this;
 
         return Q.try(function() {
-            let cropRatio = width / height;
-            let imageRatio = size.width / size.height;
+            var cropRatio = width / height;
+            var imageRatio = size.width / size.height;
             if (cropRatio == imageRatio) {
                 return self.resize(image, width, height);
             }
             if (cropRatio < imageRatio) {
-                let resizedWidth = height * imageRatio;
+                var resizedWidth = height * imageRatio;
                 return self.resize(image, resizedWidth, height).then(function(resizedImage) {
                     return self.size(resizedImage).then(function(resized) {
-                        let left = (resized.width - width) / 2;
+                        var left = (resized.width - width) / 2;
                         return self.crop(resizedImage, left, 0, width, height);  
                     });
                 });
             }
             else {
-                let resizedHeight = width / imageRatio;         
+                var resizedHeight = width / imageRatio;         
                 return self.resize(image, width, resizedHeight).then(function(resizedImage) {
                     return self.size(resizedImage).then(function(resized) {
-                        let top = (resized.height - height) / 2;
+                        var top = (resized.height - height) / 2;
                         return self.crop(resizedImage, 0, top, width, height);  
                     });
                 });
@@ -103,8 +101,8 @@ class QJimp {
         var self = this;
 
         return Q.try(function() {
-            let cropRatio = width / height;
-            let imageRatio = size.width / size.height;
+            var cropRatio = width / height;
+            var imageRatio = size.width / size.height;
 
             console.log("cropRatio", cropRatio, width, height)
             console.log("imageRatio", imageRatio, size.width, size.height)
@@ -113,13 +111,13 @@ class QJimp {
             }
 
             if (cropRatio < imageRatio) {
-                let resizedWidth = width / imageRatio;
-                let left = (size.width - resizedWidth) / 2;
+                var resizedWidth = width / imageRatio;
+                var left = (size.width - resizedWidth) / 2;
                 return self.crop(image, left, 0, resizedWidth, size.height);  
             }
             else {
-                let resizedWidth = size.height * imageRatio;
-                let left = (size.width - resizedWidth) / 2;
+                var resizedWidth = size.height * imageRatio;
+                var left = (size.width - resizedWidth) / 2;
 
                 console.log("crop", left, 0, resizedWidth, size.height)
                 return self.crop(image, left, 0, resizedWidth, size.height); 
@@ -139,11 +137,11 @@ class QJimp {
 
                 return self.clone(cropped).then(function(background) {
 
-                    let ratio = size.width / size.height;
-                    let bgWidth = Math.min(size.width / 2, 200);
-                    let bgHeight = bgWidth / ratio;
-                    let bgLeft = Math.max(size.width - bgWidth, 0) / 2;
-                    let bgTop = Math.max(size.height - bgHeight, 0) / 2;
+                    var ratio = size.width / size.height;
+                    var bgWidth = Math.min(size.width / 2, 200);
+                    var bgHeight = bgWidth / ratio;
+                    var bgLeft = Math.max(size.width - bgWidth, 0) / 2;
+                    var bgTop = Math.max(size.height - bgHeight, 0) / 2;
 
                     return self.crop(background, bgLeft, bgTop, bgWidth, bgHeight).then(function(background) {                    
                         return self.resize(background, width, height).then(function(background) {
@@ -156,8 +154,8 @@ class QJimp {
                         return self.scale(cropped, 0.75).then(function(cropped) {
 
                             return self.size(cropped).then(function(thSize) {
-                                let x = (width - thSize.width) / 2;
-                                let y = (height - thSize.height) / 2;
+                                var x = (width - thSize.width) / 2;
+                                var y = (height - thSize.height) / 2;
 
                                 return self.blit(background, cropped, x, y);
                             });
@@ -225,14 +223,14 @@ class QJimp {
         if (!image) throw new DataError({ message: "image is not defined." });
         
         return Q.try(function() {
-            let fuzzy = 0.1;
-            let bitmap = image.bitmap;
-            let data = bitmap.data;
-            let r,g,b, max_rgb;
-            let light = 0;
-            let len = data.length;
+            var fuzzy = 0.1;
+            var bitmap = image.bitmap;
+            var data = bitmap.data;
+            var r,g,b, max_rgb;
+            var light = 0;
+            var len = data.length;
             
-            for(let x = 0; x < len; x+=4) {
+            for(var x = 0; x < len; x+=4) {
                 r = data[x];
                 g = data[x+1];
                 b = data[x+2];
@@ -242,7 +240,7 @@ class QJimp {
                     light++;
             }
 
-            let lightness = light / (len / 4);
+            var lightness = light / (len / 4);
             
             return +lightness.toFixed(2);
         });

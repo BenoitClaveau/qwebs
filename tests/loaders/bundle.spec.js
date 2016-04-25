@@ -1,7 +1,9 @@
-var Qwebs = require("../../lib/qwebs"),
-    bundleLoader = require("../../lib/loaders/bundle"),
-    path = require("path"),
-    Q = require('q');
+"use strict";
+
+const Qwebs = require("../../lib/qwebs");
+const BundleLoader = require("../../lib/loaders/bundle");
+const path = require("path");
+const Q = require('q');
 
 describe("bundleLoader", function () {
     
@@ -9,13 +11,13 @@ describe("bundleLoader", function () {
         
         return Q.try(function() {
             
-            var cfg = {
+            let cfg = {
                 bundle: "./bundle.json"
             };
         
-            var $qwebs = new Qwebs({ dirname: __dirname, config: cfg });
+            let $qwebs = new Qwebs({ dirname: __dirname, config: cfg });
         
-            return bundleLoader.load($qwebs).then(function(assets) {
+            return new BundleLoader($qwebs, $qwebs.resolve("$config"), $qwebs.resolve("$router")).load().then(function(assets) {
                 expect(assets.length).toEqual(1);
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");

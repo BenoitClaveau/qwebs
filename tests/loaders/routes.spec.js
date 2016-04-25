@@ -1,9 +1,8 @@
-var Qwebs = require("../../lib/qwebs"),
-    routesLoader = require("../../lib/loaders/routes"),
-    path = require("path"),
-    Q = require('q');
+const Qwebs = require("../../lib/qwebs");
+const RoutesLoader = require("../../lib/loaders/routes");
+const Q = require('q');
 
-describe("bundleLoader", function () {
+describe("routesLoader", function () {
     
     it("load", function (done) {
         
@@ -12,18 +11,15 @@ describe("bundleLoader", function () {
                 routes: "./routes.json"
             };
             
-            return new Qwebs({ dirname: __dirname, config: cfg }).load().then(function($qwebs) {
-                
-                var $info = $qwebs.injector.resolve("$info");
-                expect($info).not.toBeNull();
-                
-                var $router = $qwebs.injector.resolve("$router");
-                var route = $router.getTree.findOne("/info");
-        
-                expect(route.router.route).toEqual("/info");
-                expect(route.router.serviceName).toEqual("$info");
-                expect(route.router.methodName).toEqual("getInfo");
+            var $qwebs = new Qwebs({ dirname: __dirname, config: cfg });
             
+            return new RoutesLoader($qwebs, $qwebs.resolve("$config")).load().then(function(routes) {
+                expect(routes.services.length).toEqual(1);            
+                expect(routes.services[0].name).toEqual("$info");
+                expect(routes.services[0].location).toEqual("../services/info");
+                expect(routes.locators[0].get).toEqual("/info");
+                expect(routes.locators[0].service).toEqual("$info");
+                expect(routes.locators[0].method).toEqual("getInfo");
             });
 
         }).catch(function (error) {

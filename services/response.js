@@ -4,7 +4,7 @@
  * MIT Licensed
  */
  
-"use strict";
+ "use strict";
 
 const zlib = require("zlib");
 const Q = require("q");
@@ -12,8 +12,6 @@ const crypto = require('crypto');
 const DataError = require("./../dataerror");
 
 class ResponseService {
-    constructor() {
-    };
 
     setCharset(data) {
         if (!data.header["Content-Type"].match(/charset/)) {
@@ -27,15 +25,15 @@ class ResponseService {
 
     fresh(data) {
         
-        let etagMatches = true;
-        let notModified = true;
+        var etagMatches = true;
+        var notModified = true;
         
         // fields
-        let modifiedSince = data.request['If-Modified-Since'];
-        let noneMatch = data.request['If-None-Match'];
-        let lastModified = data.request['Last-Modified'];
-        let etag = data.header["Etag"];
-        let cc = data.request['Cache-Control'];
+        var modifiedSince = data.request['If-Modified-Since'];
+        var noneMatch = data.request['If-None-Match'];
+        var lastModified = data.request['Last-Modified'];
+        var etag = data.header["Etag"];
+        var cc = data.request['Cache-Control'];
         
         // unconditional request
         if (!modifiedSince && !noneMatch) return false;
@@ -92,11 +90,11 @@ class ResponseService {
                 
             else if (data.stream) { // stream
                 
-                let onerror = function(error) {
+                var onerror = function(error) {
                     throw new DataError({ message: "Failed to gzip content.", stack: error.stack });
                 };
                 
-                let stream = data.stream
+                var stream = data.stream
                                 .on("error", onerror)
                                 .pipe(zlib.createGzip())
                                 .on("error", onerror);
@@ -121,11 +119,11 @@ class ResponseService {
                 
             else if (data.stream) { //stream
             
-                let onerror = function(error) {
+                var onerror = function(error) {
                     throw new DataError({ message: "Failed to defalte content.", stack: error.stack });
                 };
                 
-                let stream = data.stream
+                var stream = data.stream
                                 .on("error", onerror)
                                 .pipe(zlib.createDeflate())
                                 .on("error", onerror);
@@ -155,7 +153,7 @@ class ResponseService {
             if (data.header == undefined) data.header = {};
             if (data.statusCode == undefined) data.statusCode = 200;
             
-            let atime = new Date(Date.now());
+            var atime = new Date(Date.now());
             data.header["Content-Type"] = data.header["Content-Type"] || "application/json";
             data.header["Date"] = data.header["Date"] || atime.toUTCString();
             data.header["Expires"] = data.header["Expires"] || atime.toUTCString();
@@ -187,7 +185,7 @@ class ResponseService {
             data.fresh = self.fresh(data);
             if (!data.fresh) data.header["Last-Modified"] = data.header["Last-Modified"] || atime.toUTCString();
             
-            let acceptEncoding = data.request.headers["accept-encoding"] || "";
+            var acceptEncoding = data.request.headers["accept-encoding"] || "";
             if (acceptEncoding.match(/\bgzip\b/)) data.header["Content-Encoding"] = "gzip";
             else if (acceptEncoding.match(/\bdeflate\b/)) data.header["Content-Encoding"] = "deflate";
 
@@ -209,7 +207,7 @@ class ResponseService {
                         
                     if (resp.stream) {
                         
-                        let onerror = function(error) {
+                        var onerror = function(error) {
                             throw new DataError({ message: "Failed to stream response.", stack: error.stack });
                         };
                         

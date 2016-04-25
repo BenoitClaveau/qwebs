@@ -1,46 +1,53 @@
-var Injector = require('../lib/injector'),
-    Q = require('q');
+/*!
+ * qwebs
+ * Copyright(c) 2016 Benoît Claveau
+ * MIT Licensed
+ */
+"use strict";
+
+const Injector = require('../lib/injector');
+const Q = require('q');
 
 describe("injector", function () {
 
     it("inject & resolve", function (done) {
         
         return Q.try(function() {
-            var mockQwebs = {
+            let $qwebs = {
                 root: __dirname
             };
              
-            var injector = new Injector();
-            injector.inject("$qwebs", mockQwebs);
+            let injector = new Injector();
+            injector.inject("$qwebs", $qwebs);
             injector.inject("$info", "./services/info");
             
-            var $info = injector.resolve("$info");
+            let $info = injector.resolve("$info");
             expect($info).not.toBeNull();
             expect($info.whoiam()).toBe("I'm Info service.");
         }).catch(function (error) {
-            expect(error.stack).toBeNull();
+            expect(error.message).toBeNull();
         }).finally(done);
     });
     
     it("inject & load", function (done) {
         
         return Q.try(function() {
-            var mockQwebs = {
+            let $qwebs = {
                 root: __dirname
             };
             
-            var injector = new Injector();
-            injector.inject("$qwebs", mockQwebs);
+            let injector = new Injector();
+            injector.inject("$qwebs", $qwebs);
             injector.inject("$info", "./services/info");
             
             injector.load();
             
-            var $info = injector.resolve("$info");
+            let $info = injector.resolve("$info");
             expect($info).not.toBeNull();
             expect($info.whoiam()).toBe("I'm Info service.");
             
         }).catch(function (error) {
-            expect(error.stack).toBeNull();
+            expect(error.message).toBeNull();
         }).finally(done);
     });
    

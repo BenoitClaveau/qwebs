@@ -1,13 +1,20 @@
-var Router = require('../lib/router'),
-    Injector = require("../lib/injector"),
-    Q = require('q');
+/*!
+ * qwebs
+ * Copyright(c) 2016 Benoît Claveau
+ * MIT Licensed
+ */
+"use strict";
+
+const Router = require('../lib/router');
+const Injector = require("../lib/injector");
+const Q = require('q');
 
 describe("route", function () {
     
-    var init = function() {
+    let init = function() {
         return Q.try(function() {
-            var injector = new Injector();
-            var mockQwebs = {
+            let injector = new Injector();
+            let mockQwebs = {
                 root: __dirname,
                 loaded: true,
                 injector: injector,
@@ -16,7 +23,7 @@ describe("route", function () {
                 }
             };
 
-            var router = new Router(mockQwebs);
+            let router = new Router(mockQwebs);
             
             injector.inject("$qwebs", mockQwebs);
             injector.inject("$injector", injector);
@@ -38,7 +45,7 @@ describe("route", function () {
         return init().then(function(mock) {
             mock.injector.inject("$info", "./services/info.js");
             
-            var item = mock.router.get("/info");
+            let item = mock.router.get("/info");
             item.register("$info", "getInfo");
             
             item.load(mock.injector.resolve("$qwebs"));
@@ -57,7 +64,7 @@ describe("route", function () {
         return init().then(function(mock) {
             mock.injector.inject("$info", "./services/info.js");
             
-            item = mock.router.get("/*");
+            let item = mock.router.get("/*");
             item.register("$info", "getInfo");
             item.load(mock.injector.resolve("$qwebs"));
             
@@ -80,7 +87,7 @@ describe("route", function () {
         return init().then(function(mock) {
             mock.injector.inject("$info", "./services/info.js");
             
-            var item = mock.router.get("/info");
+            let item = mock.router.get("/info");
             item.register("$info", "getInfo");
             item.load(mock.injector.resolve("$qwebs"));
             
@@ -103,7 +110,7 @@ describe("route", function () {
         return init().then(function(mock) {
             mock.injector.inject("$info", "./services/info.js");
             
-            var item = mock.router.get("/*");
+            let item = mock.router.get("/*");
             item.register("$info", "getMessage");
             item.load(mock.injector.resolve("$qwebs"));
             
@@ -126,7 +133,7 @@ describe("route", function () {
         return init().then(function(mock) {
             mock.injector.inject("$info", "./services/info.js");
             
-            var item = mock.router.get("/*");
+            let item = mock.router.get("/*");
             item.register("$info", "getMessage");
             item.load(mock.injector.resolve("$qwebs"));
             
@@ -149,7 +156,7 @@ describe("route", function () {
         return init().then(function(mock) {
             mock.injector.inject("$info", "./services/info.js");
             
-            var item = mock.router.get("/*");
+            let item = mock.router.get("/*");
             item.register("$info", "getMessage");
             item.load(mock.injector.resolve("$qwebs"));
             
@@ -159,7 +166,7 @@ describe("route", function () {
             
             mock.request.url = "/test/3";
             
-            mock.router.getTree.trace();
+            //mock.router.getTree.trace();
             
             return mock.router.invoke(mock.request, mock.response).then(function(res) {
                 expect(res.whoiam).toBe("I'm Info service.");

@@ -1,4 +1,4 @@
-var configLoader = require("../../lib/loaders/config"),
+var ConfigLoader = require("../../lib/loaders/config"),
     path = require("path"),
     Q = require('q');
 
@@ -6,7 +6,7 @@ describe("configLoader", function () {
 
     it("create from object", function (done) {
         
-        var mockQwebs = {
+        var $qwebs = {
             root: __dirname
         };
         
@@ -15,7 +15,7 @@ describe("configLoader", function () {
             var cfg = {
                 folder: "public1"
             };
-            var config = configLoader.create(mockQwebs, cfg);
+            var config = new ConfigLoader($qwebs).create(cfg);
             
             expect(config.folder).toEqual("public1");
             
@@ -26,12 +26,12 @@ describe("configLoader", function () {
     
     it("create from file", function (done) {
        
-        var mockQwebs = {
+        var $qwebs = {
             root: __dirname
         };
         
         return Q.try(function() {
-            var config = configLoader.create(mockQwebs, "./config.json");
+            var config = new ConfigLoader($qwebs).create("./config.json");
             
             expect(config.folder).toEqual("public2");
         }).catch(function (error) {
