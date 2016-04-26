@@ -8,7 +8,7 @@
 const DataError = require('../lib/dataerror');
 const Q = require('q');
 
-describe("injector", function () {
+describe("dataerror", function () {
 
     it("message", function (done) {
         return Q.try(function() {

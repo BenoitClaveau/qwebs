@@ -9,7 +9,7 @@ const Qwebs = require("../../lib/qwebs");
 const Asset = require('../../lib/routes/asset');
 const Q = require('q');
 
-describe("injector", function () {
+describe("asset", function () {
 
     it("create", function (done) {
         return Q.try(function() {

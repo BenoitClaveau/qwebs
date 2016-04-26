@@ -9,7 +9,7 @@ const Router = require('../lib/router');
 const Injector = require("../lib/injector");
 const Q = require('q');
 
-describe("route", function () {
+describe("router", function () {
     
     let init = function() {
         return Q.try(function() {
