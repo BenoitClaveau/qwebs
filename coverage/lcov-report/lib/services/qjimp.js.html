@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib\services\qjimp.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">lib/services/</a> qjimp.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.63% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>41/160</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.25% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>13/80</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">26.32% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">32.54% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>41/126</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">880000×</span>
+<span class="cline-any cline-yes">880000×</span>
+<span class="cline-any cline-yes">880000×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">880000×</span>
+<span class="cline-any cline-yes">880000×</span>
+<span class="cline-any cline-yes">771198×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * qwebs
+ * Copyright(c) 2015 Benoît Claveau
+ * MIT Licensed
+ */
+&nbsp;
+"use strict";
+&nbsp;
+const Q = require("q");
+const Jimp = require("jimp");
+const DataError = require("./../dataerror");
+&nbsp;
+class QJimp {
+    constructor() {
+    };
+    
+    toImage(buffer) {
+        let deferred = Q.defer();
+        new Jimp(buffer, function() {
+            deferred.resolve(this);
+        });
+        return deferred.promise;
+    };
+&nbsp;
+    clone<span class="fstat-no" title="function not covered" >(image) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(image, "clone");</span>
+    };
+&nbsp;
+    toBuffer(image, contentType) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!contentType) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "contentType is not defined." });</span>
+&nbsp;
+        return Q.ninvoke(image, "getBuffer", contentType);
+    };
+&nbsp;
+    size(image) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span>
+&nbsp;
+        return Q.try(function() {
+            let size = { width: image.bitmap.width, height: image.bitmap.height };
+            return size;
+        });
+    };
+&nbsp;
+    resize(image, width, height) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!width) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "width is not defined." });</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!height) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "height is not defined." });</span>
+&nbsp;
+        return Q.ninvoke(image, "resize", width, height);
+    };
+&nbsp;
+    crop(image, left, top, width, height) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (left == null) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "left is not defined." });</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (top == null) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "top is not defined." });</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (width == null) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "width is not defined." });</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (height == null) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "height is not defined." });</span>
+&nbsp;
+        return Q.ninvoke(image, "crop", left, top, width, height);
+    };
+&nbsp;
+    cropAndResize<span class="fstat-no" title="function not covered" >(image, size, width, height) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!size) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "size is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!width) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "width is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!height) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "height is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.try(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            let cropRatio = width / height;</span>
+<span class="cstat-no" title="statement not covered" >            let imageRatio = size.width / size.height;</span>
+<span class="cstat-no" title="statement not covered" >            if (cropRatio == imageRatio) {</span>
+<span class="cstat-no" title="statement not covered" >                return self.resize(image, width, height);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (cropRatio &lt; imageRatio) {</span>
+<span class="cstat-no" title="statement not covered" >                let resizedWidth = height * imageRatio;</span>
+<span class="cstat-no" title="statement not covered" >                return self.resize(image, resizedWidth, height).then(<span class="fstat-no" title="function not covered" >function(resizedImage) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return self.size(resizedImage).then(<span class="fstat-no" title="function not covered" >function(resized) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        let left = (resized.width - width) / 2;</span>
+<span class="cstat-no" title="statement not covered" >                        return self.crop(resizedImage, left, 0, width, height);  </span>
+                    });
+                });
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                let resizedHeight = width / imageRatio;         </span>
+<span class="cstat-no" title="statement not covered" >                return self.resize(image, width, resizedHeight).then(<span class="fstat-no" title="function not covered" >function(resizedImage) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return self.size(resizedImage).then(<span class="fstat-no" title="function not covered" >function(resized) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        let top = (resized.height - height) / 2;</span>
+<span class="cstat-no" title="statement not covered" >                        return self.crop(resizedImage, 0, top, width, height);  </span>
+                    });
+                });
+            }
+        });
+    };
+&nbsp;
+    cropIfNeeded<span class="fstat-no" title="function not covered" >(image, size, width, height) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!size) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "size is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!width) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "width is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!height) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "height is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.try(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            let cropRatio = width / height;</span>
+<span class="cstat-no" title="statement not covered" >            let imageRatio = size.width / size.height;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log("cropRatio", cropRatio, width, height)</span>
+<span class="cstat-no" title="statement not covered" >            console.log("imageRatio", imageRatio, size.width, size.height)</span>
+<span class="cstat-no" title="statement not covered" >            if (cropRatio == imageRatio) {</span>
+<span class="cstat-no" title="statement not covered" >                return image; </span>//no crop needed
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (cropRatio &lt; imageRatio) {</span>
+<span class="cstat-no" title="statement not covered" >                let resizedWidth = width / imageRatio;</span>
+<span class="cstat-no" title="statement not covered" >                let left = (size.width - resizedWidth) / 2;</span>
+<span class="cstat-no" title="statement not covered" >                return self.crop(image, left, 0, resizedWidth, size.height);  </span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                let resizedWidth = size.height * imageRatio;</span>
+<span class="cstat-no" title="statement not covered" >                let left = (size.width - resizedWidth) / 2;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                console.log("crop", left, 0, resizedWidth, size.height)</span>
+<span class="cstat-no" title="statement not covered" >                return self.crop(image, left, 0, resizedWidth, size.height); </span>
+            }
+        });
+    };
+&nbsp;
+    cropAndAddBackground<span class="fstat-no" title="function not covered" >(image, size, width, height) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!size) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "size is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!width) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "width is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!height) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "height is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return self.cropIfNeeded(image, size, width, height).then(<span class="fstat-no" title="function not covered" >function(cropped) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return self.size(cropped).then(<span class="fstat-no" title="function not covered" >function(size) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return self.clone(cropped).then(<span class="fstat-no" title="function not covered" >function(background) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    let ratio = size.width / size.height;</span>
+<span class="cstat-no" title="statement not covered" >                    let bgWidth = Math.min(size.width / 2, 200);</span>
+<span class="cstat-no" title="statement not covered" >                    let bgHeight = bgWidth / ratio;</span>
+<span class="cstat-no" title="statement not covered" >                    let bgLeft = Math.max(size.width - bgWidth, 0) / 2;</span>
+<span class="cstat-no" title="statement not covered" >                    let bgTop = Math.max(size.height - bgHeight, 0) / 2;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    return self.crop(background, bgLeft, bgTop, bgWidth, bgHeight).then(<span class="fstat-no" title="function not covered" >function(background) {                    </span></span>
+<span class="cstat-no" title="statement not covered" >                        return self.resize(background, width, height).then(<span class="fstat-no" title="function not covered" >function(background) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            return self.blur(background, 100).then(<span class="fstat-no" title="function not covered" >function(background) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                return self.opacity(background, 0.3);</span>
+                            });
+                        });
+                    }).then(<span class="fstat-no" title="function not covered" >function(background) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        return self.scale(cropped, 0.75).then(<span class="fstat-no" title="function not covered" >function(cropped) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            return self.size(cropped).then(<span class="fstat-no" title="function not covered" >function(thSize) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                let x = (width - thSize.width) / 2;</span>
+<span class="cstat-no" title="statement not covered" >                                let y = (height - thSize.height) / 2;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                return self.blit(background, cropped, x, y);</span>
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    };
+&nbsp;
+&nbsp;
+    smartResize<span class="fstat-no" title="function not covered" >(image, width, height) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!width) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "width is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!height) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "height is not defined." });</span></span>
+<span class="cstat-no" title="statement not covered" >        var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return self.size(image).then(<span class="fstat-no" title="function not covered" >function(size) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (size.height &lt; height &amp;&amp; size.width &lt; width) <span class="cstat-no" title="statement not covered" >return self.cropAndAddBackground(image, size, width, height);</span></span>
+            else <span class="cstat-no" title="statement not covered" >return self.cropAndResize(image, size, width, height);</span>
+        });
+    };
+&nbsp;
+    transform<span class="fstat-no" title="function not covered" >(image, size) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.smartResize(image, size.width, size.height);</span>
+    };
+&nbsp;
+    greyscale<span class="fstat-no" title="function not covered" >(image) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(image, "greyscale");</span>
+    };
+&nbsp;
+    contrast<span class="fstat-no" title="function not covered" >(image, val) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(image, "contrast", val);</span>
+    };
+&nbsp;
+    blur<span class="fstat-no" title="function not covered" >(image, r) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(image, "blur", r);</span>
+    };
+&nbsp;
+    opacity<span class="fstat-no" title="function not covered" >(image, f) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(image, "opacity", f);</span>
+    };
+&nbsp;
+    scale<span class="fstat-no" title="function not covered" >(image, f) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(image, "scale", f);</span>
+    };
+&nbsp;
+    blit<span class="fstat-no" title="function not covered" >(background, image, x, y, srcx, srcy, srcw, srch) {</span>
+<span class="cstat-no" title="statement not covered" >        if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Q.ninvoke(background, "blit", image, x, y, srcx, srcy, srcw, srch);</span>
+    };
+&nbsp;
+    lightness(image) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!image) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "image is not defined." });</span>
+        
+        return Q.try(function() {
+            let fuzzy = 0.1;
+            let bitmap = image.bitmap;
+            let data = bitmap.data;
+            let r,g,b, max_rgb;
+            let light = 0;
+            let len = data.length;
+            
+            for(let x = 0; x &lt; len; x+=4) {
+                r = data[x];
+                g = data[x+1];
+                b = data[x+2];
+&nbsp;
+                max_rgb = Math.max(Math.max(r, g), b);
+                if (max_rgb &gt;= 128)
+                    light++;
+            }
+&nbsp;
+            let lightness = light / (len / 4);
+            
+            return +lightness.toFixed(2);
+        });
+    };
+};
+&nbsp;
+exports = module.exports = QJimp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Apr 26 2016 17:57:14 GMT+0200 (Paris, Madrid (heure d’été))
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

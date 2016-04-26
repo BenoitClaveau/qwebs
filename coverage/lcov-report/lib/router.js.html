@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib\router.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">lib/</a> router.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">64.18% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>43/67</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.06% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">54.55% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65.63% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>42/64</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * qwebs
+ * Copyright(c) 2015 Benoît Claveau
+ * MIT Licensed
+ */
+&nbsp;
+"use strict";
+&nbsp;
+const url = require("url");
+const querystring = require("querystring");
+const Get = require("./routes/get");
+const Post = require("./routes/post");
+const Delete = require("./routes/delete");
+const Put = require("./routes/put");
+const Asset = require("./routes/asset");
+const DataError = require("./dataerror");
+const Tree = require("./utils/tree");
+const Q = require("q"); 
+&nbsp;
+class Router {
+    constructor($qwebs) {
+        this.$qwebs = $qwebs;
+        this.getTree = new Tree();
+        this.postTree = new Tree();
+        this.deleteTree = new Tree();
+        this.putTree = new Tree();
+        this.assetTree = new Tree();
+    };
+&nbsp;
+    load<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >        this.getTree.load();</span>
+<span class="cstat-no" title="statement not covered" >        this.postTree.load();</span>
+<span class="cstat-no" title="statement not covered" >        this.putTree.load();</span>
+<span class="cstat-no" title="statement not covered" >        this.deleteTree.load();</span>
+    };
+&nbsp;
+    get(route) {
+        let item = new Get(this.$qwebs, route);
+        this.getTree.push(item);
+        return item;
+    };
+&nbsp;
+    post<span class="fstat-no" title="function not covered" >(route) {</span>
+<span class="cstat-no" title="statement not covered" >        let item = new Post(this.$qwebs, route);</span>
+<span class="cstat-no" title="statement not covered" >        this.postTree.push(item);</span>
+<span class="cstat-no" title="statement not covered" >        return item;</span>
+    };
+&nbsp;
+    delete<span class="fstat-no" title="function not covered" >(route) {</span>
+<span class="cstat-no" title="statement not covered" >        let item = new Delete(this.$qwebs, route);</span>
+<span class="cstat-no" title="statement not covered" >        this.deleteTree.push(item);</span>
+<span class="cstat-no" title="statement not covered" >        return item;</span>
+    };
+&nbsp;
+    put<span class="fstat-no" title="function not covered" >(route) {</span>
+<span class="cstat-no" title="statement not covered" >        let item = new Put(this.$qwebs, route);</span>
+<span class="cstat-no" title="statement not covered" >        this.putTree.push(item);</span>
+<span class="cstat-no" title="statement not covered" >        return item;</span>
+    };
+&nbsp;
+    asset<span class="fstat-no" title="function not covered" >(asset) {</span>
+<span class="cstat-no" title="statement not covered" >        this.assetTree.push(asset);</span>
+<span class="cstat-no" title="statement not covered" >        return asset;</span>
+    };
+&nbsp;
+    assets(assets) {
+        let count = assets.length;
+        for (let i = 0; i &lt; count; i++) {
+            let asset = assets[i];
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!asset) <span class="cstat-no" title="statement not covered" >throw new DataError({ message: "Asset is not defined." });</span>
+            this.assetTree.push(asset);
+        }
+        return assets;
+    };
+&nbsp;
+    leaf(request) {
+        let self = this;
+        switch(request.method) {
+            case "GET":
+                let asset = self.assetTree.findOne(request.pathname);
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (asset) <span class="cstat-no" title="statement not covered" >return asset;       </span>
+                return self.getTree.findOne(request.pathname);
+<span class="branch-1 cbranch-no" title="branch not covered" >            case "POST":</span>
+<span class="cstat-no" title="statement not covered" >                return self.postTree.findOne(request.pathname);</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >            case "PUT":</span>
+<span class="cstat-no" title="statement not covered" >                return self.putTree.findOne(request.pathname);</span>
+<span class="branch-3 cbranch-no" title="branch not covered" >            case "DELETE":</span>
+<span class="cstat-no" title="statement not covered" >                return self.deleteTree.findOne(request.pathname);</span>
+<span class="branch-4 cbranch-no" title="branch not covered" >            default:</span>
+<span class="cstat-no" title="statement not covered" >                throw new DataError({ message: "Method is unknown." });</span>
+        };
+    };
+&nbsp;
+    invoke(request, response, overridenUrl) {
+        let self = this;
+        
+        return Q.try(function () {
+&nbsp;
+            if(overridenUrl) request.url = overridenUrl;
+            let part = url.parse(request.url);
+            
+            request.pathname = part.pathname;
+            request.query = querystring.parse(part.query) || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+            
+            let leaf = self.leaf(request);
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (leaf) {
+                
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (!self.$qwebs.loaded) {
+<span class="cstat-no" title="statement not covered" >                    let header = { </span>
+                        "Content-Type": "text/html",
+                        "Retry-After": 30
+                    };
+<span class="cstat-no" title="statement not covered" >                    throw new DataError({ statusCode: 503, message: "Server is loading.", data: { url: request.url }, header: header });</span>
+                }
+                
+                request.params = leaf.params;
+                return leaf.router.invoke(request, response);
+            }
+            else <span class="cstat-no" title="statement not covered" >throw new DataError({ statusCode: 404, data: { url: request.url }});</span>
+        });
+    };
+};
+&nbsp;
+exports = module.exports = Router;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Apr 26 2016 17:57:14 GMT+0200 (Paris, Madrid (heure d’été))
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
