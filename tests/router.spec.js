@@ -166,15 +166,28 @@ describe("router", function () {
             
             mock.request.url = "/test/3";
             
-            //mock.router.getTree.trace();
-            
             return mock.router.invoke(mock.request, mock.response).then(function(res) {
                 expect(res.whoiam).toBe("I'm Info service.");
             });
             
         }).catch(function (error) {
-            //expect(error).toBeNull();
             expect(error.stack).toBeNull();
+        }).finally(done);
+    });
+    
+    it("multiple end route", function (done) {
+        return init().then(function(mock) {
+            mock.injector.inject("$info", "./services/info.js");
+            
+            let item = mock.router.get("/info");
+            item.register("$info", "getMessage");
+
+            item = mock.router.get("/info");
+            item.register("$info", "getInfo");
+            
+            fail();
+        }).catch(function (error) {
+            expect(error.message).toEqual("Multiple end route.");
         }).finally(done);
     });
 });
