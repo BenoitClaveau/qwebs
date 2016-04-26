@@ -14,20 +14,16 @@ class InfoService {
 		return "I'm Info service.";
 	};
 
-	getInfo(request, response, promise) {
-		return promise.then(function(self) {
-			return {
-				whoiam: self.whoiam()
-			};
-		});
+	getInfo(request, response) {
+		return {
+			whoiam: this.whoiam()
+		};
 	};
 
-	getMessage(request, response, promise) {
-		return promise.then(function(self) {
-			return {
-				text: "hello world"
-			};
-		});
+	getMessage(request, response) {
+		return {
+			text: "hello world"
+		};
 	};
 };
 

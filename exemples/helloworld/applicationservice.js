@@ -10,11 +10,9 @@ function ApplicationService() {
 
 ApplicationService.prototype.constructor = ApplicationService;
 
-ApplicationService.prototype.getHelloWorld = function (request, response, promise) {
-    return promise.then(function (self) {
-        var content = { message: "Hello World" };
-        return response.send({ request: request, content: content });
-    });
+ApplicationService.prototype.getHelloWorld = function (request, response) {
+    var content = { message: "Hello World" };
+    return response.send({ request: request, content: content });
 };
 
 exports = module.exports = ApplicationService;

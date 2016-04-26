@@ -73,22 +73,26 @@ $response sevice could be overridden
 
 ```js
 //services/myresponse.js
-var Q = require("q"),
-    ResponseService = require("qwebs/lib/services/response"),
-    DataError = require("qwebs/lib/dataerror");
+"use strict";
 
-function MyResponseService() {
-};
+const DataError = require("qwebs").DataError;
+const ResponseService = require("qwebs/lib/services/response");
 
-MyResponseService.prototype = Object.create(ResponseService.prototype);
-MyResponseService.prototype.constructor = MyResponseService;
+class MyResponseService extends ResponseService {
+    constructor() {
+        super();
+    };
 
-MyResponseService.prototype.send = function (response, data) {
-    var self = this;
-    return Q.try(function () {
-        //YOUR CODE
-        return ResponseService.prototype.send.call(self, response, data);
-    });
+    send(response, data) {
+        return Promise.resolve().then(() => {
+            if (data == undefined) throw new DataError({ message: "No data." });
+            if (data.header == undefined) data.header = {};
+            
+            data.header["Cache-Control"] = data.header["Cache-Control"] || "private";
+            data.header["Expires"] = data.header["Expires"] || new Date(Date.now() + 3000).toUTCString(); /* 1000 * 3 (3 secondes)*/
+            return super.send(response, data);
+        });
+    };
 };
 
 exports = module.exports = MyResponseService;
@@ -152,11 +156,9 @@ function ApplicationService($config) {
 
 ApplicationService.prototype.constructor = ApplicationService;
 
-ApplicationService.prototype.getHelloworld = function (request, response, promise) {
-    return promise.then(function (self) {
-        var content = { message: "Hello World" };
-        return response.send({ request: request, content: content });
-    });
+ApplicationService.prototype.getHelloworld = function (request, response) {
+    var content = { message: "Hello World" };
+    return response.send({ request: request, content: content });
 };
 
 exports = module.exports = ApplicationService;

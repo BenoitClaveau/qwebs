@@ -8,46 +8,43 @@
 const QJimp = require('../../lib/services/qjimp');
 const fs = require("fs");
 const path = require('path');
-const Q = require('q');
 
 describe("qjimp", function () {
 
     it("toImage & toBuffer", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
             
             var input = path.join(__dirname, "./images/world.png");
 			var output = path.join(__dirname, "./images/world.out.png");
 			
-			return Q.try(function() {
-                if(fs.existsSync(output)) return Q.ninvoke(fs, "unlink", output);
+			return Promise.resolve().then(() => {
+                if(fs.existsSync(output)) return fs.unlinkSync(output);
             }).then(function() {
-                return Q.ninvoke(fs, "readFile", input);
+                return fs.readFileSync(input);
             }).then(function(buffer) {
                 return $qjimp.toImage(buffer);
             }).then(function(image) {
                 return $qjimp.toBuffer(image, "image/png");
             }).then(function(buffer) {
-                return Q.ninvoke(fs, "writeFile", output, buffer).then(function() {
-                    expect(fs.existsSync(output)).toBe(true);
-                });
+                return fs.writeFileSync(output, buffer);
+            }).then(function() {
+                expect(fs.existsSync(output)).toBe(true);
 			});
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("size", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
             
             var input = path.join(__dirname, "./images/world.png");
-			
-            return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
-                return $qjimp.toImage(buffer);
-            }).then(function(image) {
+            let buffer = fs.readFileSync(input);
+            return $qjimp.toImage(buffer).then(function(image) {
                 return $qjimp.size(image);
             }).then(function(size) {
                 expect(size.width).toBe(800);
@@ -56,19 +53,18 @@ describe("qjimp", function () {
 
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("crop", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
             
             var input = path.join(__dirname, "./images/world.png");
 			
-            return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
-                return $qjimp.toImage(buffer);
-            }).then(function(image) {
+            let buffer = fs.readFileSync(input);
+            return $qjimp.toImage(buffer).then(function(image) {
                 return $qjimp.size(image).then(function(size) {
                     expect(size.width).toBe(800);
                     expect(size.height).toBe(550);
@@ -84,19 +80,18 @@ describe("qjimp", function () {
             });
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("resize", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
             
             var input = path.join(__dirname, "./images/world.png");
 			
-            return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
-                return $qjimp.toImage(buffer);
-            }).then(function(image) {
+            let buffer = fs.readFileSync(input);
+            return $qjimp.toImage(buffer).then(function(image) {
                 return $qjimp.size(image).then(function(size) {
                     expect(size.width).toBe(800);
                     expect(size.height).toBe(550);
@@ -112,19 +107,18 @@ describe("qjimp", function () {
             });
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("lightness", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
             
             var input = path.join(__dirname, "./images/world.png");
 			
-            return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
-                return $qjimp.toImage(buffer);
-            }).then(function(image) {
+            let buffer = fs.readFileSync(input);
+            return $qjimp.toImage(buffer).then(function(image) {
                 return $qjimp.lightness(image);
             }).then(function(result) {
                 expect(result).toBe(1);
@@ -132,19 +126,18 @@ describe("qjimp", function () {
 
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("lightness", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
             
             var input = path.join(__dirname, "./images/world.dark.png");
 			
-            return Q.ninvoke(fs, "readFile", input).then(function(buffer) {
-                return $qjimp.toImage(buffer);
-            }).then(function(image) {
+            let buffer = fs.readFileSync(input);
+            return $qjimp.toImage(buffer).then(function(image) {
                 return $qjimp.lightness(image);
             }).then(function(result) {
                 expect(result).toBe(0.75);
@@ -152,6 +145,6 @@ describe("qjimp", function () {
 
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

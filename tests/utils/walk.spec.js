@@ -6,13 +6,12 @@
 "use strict";
 
 const walk = require('../../lib/utils/walk');
-const Q = require('q');
 
 describe("walk", function () {
 
     it("get", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             
             var files = walk.get(__dirname);
             expect(files.length).toEqual(6);
@@ -25,6 +24,6 @@ describe("walk", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

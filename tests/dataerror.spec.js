@@ -6,62 +6,61 @@
 "use strict";
 
 const DataError = require('../lib/dataerror');
-const Q = require('q');
 
 describe("dataerror", function () {
 
     it("message", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             throw new DataError({ message: "Mon erreur."});
         }).catch(function (error) {
             expect(error.message).toEqual("Mon erreur.");
             expect(error.header["Content-Type"]).toEqual("application/json");
             expect(error.statusCode).toEqual(500);
-        }).finally(done);
+        }).then(done);
     });
     
     it("statusCode 503", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             throw new DataError({ statusCode: 503 });
         }).catch(function (error) {
             expect(error.statusCode).toEqual(503);
-        }).finally(done);
+        }).then(done);
     });
     
     it("ContentType image/png", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             let header = {
                 "Content-Type": "image/png"
             };
             throw new DataError({ header: header });
         }).catch(function (error) {
             expect(error.statusCode).toEqual(500);
-        }).finally(done);
+        }).then(done);
     });
     
     it("data", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             throw new DataError({ data: { value: "33" }});
         }).catch(function (error) {
             expect(error.data[0].value).toEqual("33");
-        }).finally(done);
+        }).then(done);
     });
     
     it("data array", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             throw new DataError({ data: [1,2] });
         }).catch(function (error) {
             expect(error.data.length).toEqual(2);
-        }).finally(done);
+        }).then(done);
     });
     
     it("with stack", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             throw new Error();
         }).catch(function (error) {
             throw new DataError({ stack: error.stack });
         }).catch(function (error) {
             expect(error.stack).not.toBeUndefined();
-        }).finally(done);
+        }).then(done);
     });
 });

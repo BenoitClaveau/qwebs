@@ -6,13 +6,12 @@
 "use strict";
 
 const PathRegex = require('../../lib/utils/pathRegex');
-const Q = require('q');
 
 describe("pathRegex", function () {
 
     it("match static", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api", false, false);
             expect(pathRegex.match("/api").match).toEqual(true);
             expect(pathRegex.match("/api/2").match).toEqual(false);
@@ -22,12 +21,12 @@ describe("pathRegex", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("match dynamic", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api/:id", false, false);
             expect(pathRegex.match("/api/1").match).toEqual(true);
             expect(pathRegex.match("/api/2").match).toEqual(true);
@@ -37,12 +36,12 @@ describe("pathRegex", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("match generic", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api/*", false, false);
             expect(pathRegex.match("/api/1").match).toEqual(true);
             expect(pathRegex.match("/api/2").match).toEqual(true);
@@ -52,17 +51,17 @@ describe("pathRegex", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("params", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api/:id", false, false);
             expect(pathRegex.match("/api/1").params.id).toEqual("1");
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

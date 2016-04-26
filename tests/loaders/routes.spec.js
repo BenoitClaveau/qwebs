@@ -7,15 +7,14 @@
 
 const Qwebs = require("../../lib/qwebs");
 const RoutesLoader = require("../../lib/loaders/routes");
-const Q = require('q');
 
 describe("routesLoader", function () {
     
     it("load", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
 
-            var $qwebs = new Qwebs({ dirname: __dirname, config: { routes: "./routes.json" }});
+            var $qwebs = new Qwebs({ dirname: __dirname, config: { routes: "routes.json" }});
             let $config = $qwebs.resolve("$config");
             
             return new RoutesLoader($qwebs, $config).load().then(function(routes) {
@@ -29,6 +28,6 @@ describe("routesLoader", function () {
 
         }).catch(function (error) {
             expect(error).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

@@ -7,14 +7,11 @@
 
 const Qwebs = require("../../lib/qwebs");
 const AssetsLoader = require("../../lib/loaders/assets");
-const Q = require('q');
 
 describe("assetsLoader", function () {
 
     it("load", function (done) {
-        
-        return Q.try(function() {
-
+        return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
@@ -25,8 +22,8 @@ describe("assetsLoader", function () {
                 expect(assets[1].route).toEqual("/main.html");
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

@@ -8,15 +8,14 @@
 const Qwebs = require("../../lib/qwebs");
 const BundleLoader = require("../../lib/loaders/bundle");
 const path = require("path");
-const Q = require('q');
 
 describe("bundleLoader", function () {
     
     it("load", function (done) {
         
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             
-            let $qwebs = new Qwebs({ dirname: __dirname, config: { bundle: "./bundle.json" }});
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { bundle: "bundle.json" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
 
@@ -28,6 +27,6 @@ describe("bundleLoader", function () {
             
         }).catch(function (error) {
             expect(error).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

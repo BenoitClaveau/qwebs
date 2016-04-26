@@ -6,13 +6,12 @@
 "use strict";
 
 const contentType = require('../../lib/utils/contentType');
-const Q = require('q');
 
 describe("contentType", function () {
 
     it("getFromExt", function (done) {
         
-        return Q.try(function() {     
+        return Promise.resolve().then(() => {     
             expect(contentType.getFromExt(".json")).toEqual("application/json");
             expect(contentType.getFromExt(".png")).toEqual("image/png");
             expect(contentType.getFromExt(".jpg")).toEqual("image/jpg");
@@ -29,17 +28,17 @@ describe("contentType", function () {
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("getFromExt exception", function (done) {
         
-        return Q.try(function() {            
+        return Promise.resolve().then(() => {            
             expect(contentType.getFromExt(".mp3")).toEqual("audio/mpeg");
             fail();
         })
         .catch(function (error) {
             expect(error.stack).not.toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

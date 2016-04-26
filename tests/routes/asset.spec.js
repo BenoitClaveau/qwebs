@@ -7,12 +7,11 @@
 
 const Qwebs = require("../../lib/qwebs");
 const Asset = require('../../lib/routes/asset');
-const Q = require('q');
 
 describe("asset", function () {
 
     it("create", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
@@ -20,11 +19,11 @@ describe("asset", function () {
             let asset = new Asset($qwebs, $config, "/api");
         }).catch(function (error) {
             expect(error).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("create empty route", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
@@ -32,11 +31,11 @@ describe("asset", function () {
             let asset = new Asset($qwebs, $config, null);
         }).catch(function (error) {
             expect(error.message).toEqual("Route is not defined.");
-        }).finally(done);
+        }).then(done);
     });
     
     it("invoke", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
@@ -55,11 +54,11 @@ describe("asset", function () {
             
         }).catch(function (error) {
             expect(error.message).toEqual("Content is empty"); //TODO
-        }).finally(done);
+        }).then(done);
     });
     
     it("bundle css", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
@@ -74,11 +73,11 @@ describe("asset", function () {
             expect(asset.contentGzip).not.toBeNull();
         }).catch(function (error) {
             expect(error).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("bundle js", function (done) {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
@@ -93,6 +92,6 @@ describe("asset", function () {
             expect(asset.contentGzip).not.toBeNull();
         }).catch(function (error) {
             expect(error).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
 });

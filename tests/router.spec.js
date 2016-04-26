@@ -7,12 +7,11 @@
 
 const Router = require('../lib/router');
 const Injector = require("../lib/injector");
-const Q = require('q');
 
 describe("router", function () {
     
     let init = function() {
-        return Q.try(function() {
+        return Promise.resolve().then(() => {
             let injector = new Injector();
             let mockQwebs = {
                 root: __dirname,
@@ -57,7 +56,7 @@ describe("router", function () {
             
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("route *", function (done) {
@@ -80,7 +79,7 @@ describe("router", function () {
             
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("multiple", function (done) {
@@ -103,7 +102,7 @@ describe("router", function () {
             
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("multiple invert declaration", function (done) {
@@ -126,7 +125,7 @@ describe("router", function () {
             
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("multiple redirection", function (done) {
@@ -149,7 +148,7 @@ describe("router", function () {
             
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("multiple token", function (done) {
@@ -172,7 +171,7 @@ describe("router", function () {
             
         }).catch(function (error) {
             expect(error.stack).toBeNull();
-        }).finally(done);
+        }).then(done);
     });
     
     it("multiple end route", function (done) {
@@ -188,6 +187,6 @@ describe("router", function () {
             fail();
         }).catch(function (error) {
             expect(error.message).toEqual("Multiple end route.");
-        }).finally(done);
+        }).then(done);
     });
 });
