@@ -19,7 +19,7 @@ describe("asset", function () {
             
             let asset = new Asset($qwebs, $config, "/api");
         }).catch(function (error) {
-            expect(error.message).toBeNull();
+            expect(error).toBeNull();
         }).finally(done);
     });
     

@@ -28,7 +28,7 @@ describe("routesLoader", function () {
             });
 
         }).catch(function (error) {
-            expect(error.stack).toBeNull();
+            expect(error).toBeNull();
         }).finally(done);
     });
 });
