@@ -3,7 +3,7 @@
  * Copyright(c) 2016 Benoît Claveau
  * MIT Licensed
  */
- 
+
 "use strict";
 
 class InfoService {

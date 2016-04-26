@@ -1,3 +1,8 @@
+/*!
+ * qwebs
+ * Copyright(c) 2016 Benoît Claveau
+ * MIT Licensed
+ */
 "use strict";
 
 const Qwebs = require("../../lib/qwebs");
@@ -11,13 +16,11 @@ describe("bundleLoader", function () {
         
         return Q.try(function() {
             
-            let cfg = {
-                bundle: "./bundle.json"
-            };
-        
-            let $qwebs = new Qwebs({ dirname: __dirname, config: cfg });
-        
-            return new BundleLoader($qwebs, $qwebs.resolve("$config"), $qwebs.resolve("$router")).load().then(function(assets) {
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { bundle: "./bundle.json" }});
+            let $config = $qwebs.resolve("$config");
+            let $router = $qwebs.resolve("$router");
+
+            return new BundleLoader($qwebs, $config, $router).load().then(function(assets) {
                 expect(assets.length).toEqual(1);
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");

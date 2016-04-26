@@ -1,5 +1,12 @@
-var walk = require('../../lib/utils/walk'),
-    Q = require('q');
+/*!
+ * qwebs
+ * Copyright(c) 2016 Benoît Claveau
+ * MIT Licensed
+ */
+"use strict";
+
+const walk = require('../../lib/utils/walk');
+const Q = require('q');
 
 describe("walk", function () {
 

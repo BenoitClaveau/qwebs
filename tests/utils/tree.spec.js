@@ -3,7 +3,6 @@
  * Copyright(c) 2016 Benoît Claveau
  * MIT Licensed
  */
-
 "use strict";
 
 const Tree = require('../../lib/utils/tree');

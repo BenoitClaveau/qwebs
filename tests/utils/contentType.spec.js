@@ -1,14 +1,31 @@
-var contentType = require('../../lib/utils/contentType'),
-    Q = require('q');
+/*!
+ * qwebs
+ * Copyright(c) 2016 Benoît Claveau
+ * MIT Licensed
+ */
+"use strict";
+
+const contentType = require('../../lib/utils/contentType');
+const Q = require('q');
 
 describe("contentType", function () {
 
     it("getFromExt", function (done) {
         
-        return Q.try(function() {            
-            expect(contentType.getFromExt(".js")).toEqual("application/javascript");
+        return Q.try(function() {     
             expect(contentType.getFromExt(".json")).toEqual("application/json");
             expect(contentType.getFromExt(".png")).toEqual("image/png");
+            expect(contentType.getFromExt(".jpg")).toEqual("image/jpg");
+            expect(contentType.getFromExt(".gif")).toEqual("image/gif");
+            expect(contentType.getFromExt(".svg")).toEqual("image/svg+xml");
+            expect(contentType.getFromExt(".js")).toEqual("application/javascript");
+            expect(contentType.getFromExt(".html")).toEqual("text/html");
+            expect(contentType.getFromExt(".css")).toEqual("text/css");
+            expect(contentType.getFromExt(".ico")).toEqual("image/x-icon");
+            expect(contentType.getFromExt(".ttf")).toEqual("application/x-font-ttf");
+            expect(contentType.getFromExt(".eot")).toEqual("application/vnd.ms-fontobject");
+            expect(contentType.getFromExt(".woff")).toEqual("application/font-woff");
+            expect(contentType.getFromExt(".appcache")).toEqual("text/cache-manifest");
         })
         .catch(function (error) {
             expect(error.stack).toBeNull();

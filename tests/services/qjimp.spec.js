@@ -1,3 +1,10 @@
+/*!
+ * qwebs
+ * Copyright(c) 2016 Benoît Claveau
+ * MIT Licensed
+ */
+"use strict";
+
 const QJimp = require('../../lib/services/qjimp');
 const fs = require("fs");
 const path = require('path');
