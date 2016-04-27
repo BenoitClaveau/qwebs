@@ -14,7 +14,7 @@ describe("routesLoader", () => {
         
         return Promise.resolve().then(() => {
 
-            var $qwebs = new Qwebs({ dirname: __dirname, config: { routes: "routes.json" }});
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { routes: "routes.json" }});
             let $config = $qwebs.resolve("$config");
             
             return new RoutesLoader($qwebs, $config).load().then(routes => {

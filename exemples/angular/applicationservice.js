@@ -29,17 +29,17 @@ class ApplicationService {
     };
 
     toJpeg(request, response) {
-        var match = /data:(\S*);(\S*),(.+)/.exec(request.body.datauri);
+        let match = /data:(\S*);(\S*),(.+)/.exec(request.body.datauri);
         
         if (!match) throw new Error("Bad format.");
         
-        var contentType = match[1];
-        var data64 = match[3];
+        let contentType = match[1];
+        let data64 = match[3];
         
-        var buffer = new Buffer(data64, "base64");
+        let buffer = new Buffer(data64, "base64");
         return this.$qjimp.toImage(buffer).then(image => {
             return this.$qjimp.toBuffer(image, "image/jpeg").then(newBuffer => {
-                var header = { 
+                let header = { 
                     "Content-Type": "image/jpeg",
                     "Expires": new Date(Date.now() + 604800000).toString(), /* 1000 * 60 * 60 * 24 * 7 (7 days)*/
                     "Etag": '"0.0.1"'

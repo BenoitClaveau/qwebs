@@ -14,10 +14,10 @@ describe("qjimp", () => {
     it("toImage & toBuffer", done => {
         
         return Promise.resolve().then(() => {
-            var $qjimp = new QJimp();
+            let $qjimp = new QJimp();
             
-            var input = path.join(__dirname, "./images/world.png");
-			var output = path.join(__dirname, "./images/world.out.png");
+            let input = path.join(__dirname, "./images/world.png");
+			let output = path.join(__dirname, "./images/world.out.png");
 			
 			return Promise.resolve().then(() => {
                 if(fs.existsSync(output)) return fs.unlinkSync(output);
@@ -40,9 +40,9 @@ describe("qjimp", () => {
     it("size", done => {
         
         return Promise.resolve().then(() => {
-            var $qjimp = new QJimp();
+            let $qjimp = new QJimp();
             
-            var input = path.join(__dirname, "./images/world.png");
+            let input = path.join(__dirname, "./images/world.png");
             let buffer = fs.readFileSync(input);
             return $qjimp.toImage(buffer).then(image => {
                 return $qjimp.size(image);
@@ -59,9 +59,9 @@ describe("qjimp", () => {
     it("crop", done => {
         
         return Promise.resolve().then(() => {
-            var $qjimp = new QJimp();
+            let $qjimp = new QJimp();
             
-            var input = path.join(__dirname, "./images/world.png");
+            let input = path.join(__dirname, "./images/world.png");
 			
             let buffer = fs.readFileSync(input);
             return $qjimp.toImage(buffer).then(image => {
@@ -86,9 +86,9 @@ describe("qjimp", () => {
     it("resize", done => {
         
         return Promise.resolve().then(() => {
-            var $qjimp = new QJimp();
+            let $qjimp = new QJimp();
             
-            var input = path.join(__dirname, "./images/world.png");
+            let input = path.join(__dirname, "./images/world.png");
 			
             let buffer = fs.readFileSync(input);
             return $qjimp.toImage(buffer).then(image => {
@@ -113,9 +113,9 @@ describe("qjimp", () => {
     it("lightness", done => {
         
         return Promise.resolve().then(() => {
-            var $qjimp = new QJimp();
+            let $qjimp = new QJimp();
             
-            var input = path.join(__dirname, "./images/world.png");
+            let input = path.join(__dirname, "./images/world.png");
 			
             let buffer = fs.readFileSync(input);
             return $qjimp.toImage(buffer).then(image => {
@@ -132,9 +132,9 @@ describe("qjimp", () => {
     it("lightness", done => {
         
         return Promise.resolve().then(() => {
-            var $qjimp = new QJimp();
+            let $qjimp = new QJimp();
             
-            var input = path.join(__dirname, "./images/world.dark.png");
+            let input = path.join(__dirname, "./images/world.dark.png");
 			
             let buffer = fs.readFileSync(input);
             return $qjimp.toImage(buffer).then(image => {

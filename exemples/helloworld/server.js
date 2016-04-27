@@ -1,9 +1,9 @@
 "use strict";
 
-var http = require("http"),
-    Qwebs = require('../../lib/qwebs');
+const http = require("http");
+const Qwebs = require('../../lib/qwebs');
 
-var qwebs = new Qwebs({});
+let qwebs = new Qwebs({});
 qwebs.inject("$app", "./applicationservice");
 qwebs.get('/', "$app", "getHelloWorld");
 

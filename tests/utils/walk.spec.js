@@ -13,7 +13,7 @@ describe("walk", () => {
         
         return Promise.resolve().then(() => {
             
-            var files = walk.get(__dirname);
+            let files = walk.get(__dirname);
             expect(files.length).toEqual(6);
             expect(files[0].slice(__dirname.length)).toEqual("/contentType.spec.js");
             expect(files[1].slice(__dirname.length)).toEqual("/pathRegex.spec.js");

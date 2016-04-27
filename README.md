@@ -44,7 +44,8 @@ Just declare the service name in your constructor.
 
 ```js
 //services/user.js
-function UserService($config) {
+class UserService {
+    constructor($config)
 ```
 
 Qwebs will create your service with its dependencies.
@@ -148,7 +149,6 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
 ## Define your service
 
 ```js
-var Q = require('q');
 
 class ApplicationService {
     constructor($config) {
@@ -156,7 +156,7 @@ class ApplicationService {
     };
 
     getHelloworld(request, response) {
-        var content = { message: "Hello World" };
+        let content = { message: "Hello World" };
         return response.send({ request: request, content: content });
     };
 };
@@ -171,9 +171,9 @@ exports = module.exports = ApplicationService;
   * invoke(request, response): delegate the response to Qwebs.
 
 ```js
-var Qwebs = require('qwebs');
+const Qwebs = require('qwebs');
 
-var qwebs = new Qwebs();
+let qwebs = new Qwebs();
 qwebs.inject("$app", "./applicationservice");
 qwebs.get('/', "$app", "getHelloworld"); 
 

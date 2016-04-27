@@ -25,14 +25,14 @@ describe("tree", () => {
     it("parameters priority", done => {
         
         return Promise.resolve().then(() => {
-            var tree = new Tree();
+            let tree = new Tree();
             
             
             tree.push({ id: 2, route: "api/:test/info" });
             tree.push({ id: 3, route: "api/:test" });
             tree.push({ id: 1, route: ":test/:value" });
             
-            var item = tree.findOne("api/alert");
+            let item = tree.findOne("api/alert");
             expect(item.router.id).toEqual(3);
             expect(item.params.test).toEqual("alert");
             
@@ -46,13 +46,13 @@ describe("tree", () => {
     it("parameters priority", done => {
         
         return Promise.resolve().then(() => {
-            var tree = new Tree();
+            let tree = new Tree();
             
             tree.push({ id: 2, route: "api/:test/info" });
             tree.push({ id: 1, route: ":test/:value" });
             tree.push({ id: 3, route: "api/:test" });
 
-            var item = tree.findOne("api/alert");
+            let item = tree.findOne("api/alert");
             expect(item.router.id).toEqual(3);
             expect(item.params.test).toEqual("alert");
             
@@ -65,13 +65,13 @@ describe("tree", () => {
     it("parameters priority", done => {
         
         return Promise.resolve().then(() => {
-            var tree = new Tree();
+            let tree = new Tree();
             
             tree.push({ id: 3, route: "api/:test" });
             tree.push({ id: 2, route: "api/:test/info" });
             tree.push({ id: 1, route: ":test/:value" });
             
-            var item = tree.findOne("api/alert");
+            let item = tree.findOne("api/alert");
             expect(item.router.id).toEqual(3);
             expect(item.params.test).toEqual("alert");
             
@@ -84,12 +84,12 @@ describe("tree", () => {
     it("multiple parameters", done => {
         
         return Promise.resolve().then(() => {
-            var tree = new Tree();
+            let tree = new Tree();
             
             tree.push({ id: 1, route: ":route/info/:value" });
             tree.push({ id: 2, route: "api/info/:value" });
 
-            var item = tree.findOne("data/info/1");
+            let item = tree.findOne("data/info/1");
             expect(item.router.id).toEqual(1);
             expect(item.params.route).toEqual("data");
             expect(item.params.value).toEqual("1");

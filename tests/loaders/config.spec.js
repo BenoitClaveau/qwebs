@@ -11,10 +11,10 @@ describe("configLoader", () => {
 
     it("create from object", done => {
         return Promise.resolve().then(() => {
-            var $qwebs = {
+            let $qwebs = {
                 root: __dirname
             };
-            var config = new ConfigLoader($qwebs).create({ folder: "public1" });
+            let config = new ConfigLoader($qwebs).create({ folder: "public1" });
             expect(config.folder).toEqual("public1");
         }).catch(error => {
             expect(error.stack).toBeNull();
@@ -23,10 +23,10 @@ describe("configLoader", () => {
     
     it("create from file", done => {
         return Promise.resolve().then(() => {
-             var $qwebs = {
+             let $qwebs = {
                 root: __dirname
             };
-            var config = new ConfigLoader($qwebs).create("config.json");
+            let config = new ConfigLoader($qwebs).create("config.json");
             expect(config.folder).toEqual("public2");
         }).catch(error => {
             expect(error.stack).toBeNull();
