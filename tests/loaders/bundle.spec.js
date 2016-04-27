@@ -9,9 +9,9 @@ const Qwebs = require("../../lib/qwebs");
 const BundleLoader = require("../../lib/loaders/bundle");
 const path = require("path");
 
-describe("bundleLoader", function () {
+describe("bundleLoader", () => {
     
-    it("load", function (done) {
+    it("load", done => {
         
         return Promise.resolve().then(() => {
             
@@ -19,13 +19,13 @@ describe("bundleLoader", function () {
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
 
-            return new BundleLoader($qwebs, $config, $router).load().then(function(assets) {
+            return new BundleLoader($qwebs, $config, $router).load().then(assets => {
                 expect(assets.length).toEqual(1);
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error).toBeNull();
         }).then(done);
     });

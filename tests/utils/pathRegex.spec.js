@@ -7,9 +7,9 @@
 
 const PathRegex = require('../../lib/utils/pathRegex');
 
-describe("pathRegex", function () {
+describe("pathRegex", () => {
 
-    it("match static", function (done) {
+    it("match static", done => {
         
         return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api", false, false);
@@ -19,12 +19,12 @@ describe("pathRegex", function () {
             expect(pathRegex.match("/api/").match).toEqual(true);
             expect(pathRegex.match("/api-1").match).toEqual(false);
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("match dynamic", function (done) {
+    it("match dynamic", done => {
         
         return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api/:id", false, false);
@@ -34,12 +34,12 @@ describe("pathRegex", function () {
             expect(pathRegex.match("/api/").match).toEqual(false);
             expect(pathRegex.match("/api/1/2").match).toEqual(false);
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("match generic", function (done) {
+    it("match generic", done => {
         
         return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api/*", false, false);
@@ -49,18 +49,18 @@ describe("pathRegex", function () {
             expect(pathRegex.match("/api/").match).toEqual(true);
             expect(pathRegex.match("/api/1/2").match).toEqual(true);
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("params", function (done) {
+    it("params", done => {
         
         return Promise.resolve().then(() => {
             var pathRegex = new PathRegex("/api/:id", false, false);
             expect(pathRegex.match("/api/1").params.id).toEqual("1");
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });

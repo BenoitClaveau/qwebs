@@ -7,9 +7,9 @@
 
 const contentType = require('../../lib/utils/contentType');
 
-describe("contentType", function () {
+describe("contentType", () => {
 
-    it("getFromExt", function (done) {
+    it("getFromExt", done => {
         
         return Promise.resolve().then(() => {     
             expect(contentType.getFromExt(".json")).toEqual("application/json");
@@ -26,18 +26,18 @@ describe("contentType", function () {
             expect(contentType.getFromExt(".woff")).toEqual("application/font-woff");
             expect(contentType.getFromExt(".appcache")).toEqual("text/cache-manifest");
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("getFromExt exception", function (done) {
+    it("getFromExt exception", done => {
         
         return Promise.resolve().then(() => {            
             expect(contentType.getFromExt(".mp3")).toEqual("audio/mpeg");
             fail();
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).not.toBeNull();
         }).then(done);
     });

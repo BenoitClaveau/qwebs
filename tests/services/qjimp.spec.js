@@ -9,9 +9,9 @@ const QJimp = require('../../lib/services/qjimp');
 const fs = require("fs");
 const path = require('path');
 
-describe("qjimp", function () {
+describe("qjimp", () => {
 
-    it("toImage & toBuffer", function (done) {
+    it("toImage & toBuffer", done => {
         
         return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
@@ -21,42 +21,42 @@ describe("qjimp", function () {
 			
 			return Promise.resolve().then(() => {
                 if(fs.existsSync(output)) return fs.unlinkSync(output);
-            }).then(function() {
+            }).then(() => {
                 return fs.readFileSync(input);
-            }).then(function(buffer) {
+            }).then(buffer => {
                 return $qjimp.toImage(buffer);
-            }).then(function(image) {
+            }).then(image => {
                 return $qjimp.toBuffer(image, "image/png");
-            }).then(function(buffer) {
+            }).then(buffer => {
                 return fs.writeFileSync(output, buffer);
-            }).then(function() {
+            }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("size", function (done) {
+    it("size", done => {
         
         return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
             
             var input = path.join(__dirname, "./images/world.png");
             let buffer = fs.readFileSync(input);
-            return $qjimp.toImage(buffer).then(function(image) {
+            return $qjimp.toImage(buffer).then(image => {
                 return $qjimp.size(image);
-            }).then(function(size) {
+            }).then(size => {
                 expect(size.width).toBe(800);
                 expect(size.height).toBe(550);
             });
 
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("crop", function (done) {
+    it("crop", done => {
         
         return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
@@ -64,26 +64,26 @@ describe("qjimp", function () {
             var input = path.join(__dirname, "./images/world.png");
 			
             let buffer = fs.readFileSync(input);
-            return $qjimp.toImage(buffer).then(function(image) {
-                return $qjimp.size(image).then(function(size) {
+            return $qjimp.toImage(buffer).then(image => {
+                return $qjimp.size(image).then(size => {
                     expect(size.width).toBe(800);
                     expect(size.height).toBe(550);
                     return image;
                 });
-            }).then(function(image) {
+            }).then(image => {
                 return $qjimp.crop(image, 0, 0, 400, 400);
-            }).then(function(croppedImage) {
+            }).then(croppedImage => {
                 return $qjimp.size(croppedImage)
-            }).then(function(size) {
+            }).then(size => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(400);
             });
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("resize", function (done) {
+    it("resize", done => {
         
         return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
@@ -91,26 +91,26 @@ describe("qjimp", function () {
             var input = path.join(__dirname, "./images/world.png");
 			
             let buffer = fs.readFileSync(input);
-            return $qjimp.toImage(buffer).then(function(image) {
-                return $qjimp.size(image).then(function(size) {
+            return $qjimp.toImage(buffer).then(image => {
+                return $qjimp.size(image).then(size => {
                     expect(size.width).toBe(800);
                     expect(size.height).toBe(550);
                     return image;
                 });
-            }).then(function(image) {
+            }).then(image => {
                 return $qjimp.resize(image, 400, 225);
-            }).then(function(resizedImage) {
+            }).then(resizedImage => {
                 return $qjimp.size(resizedImage)
-            }).then(function(size) {
+            }).then(size => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(225);
             });
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("lightness", function (done) {
+    it("lightness", done => {
         
         return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
@@ -118,18 +118,18 @@ describe("qjimp", function () {
             var input = path.join(__dirname, "./images/world.png");
 			
             let buffer = fs.readFileSync(input);
-            return $qjimp.toImage(buffer).then(function(image) {
+            return $qjimp.toImage(buffer).then(image => {
                 return $qjimp.lightness(image);
-            }).then(function(result) {
+            }).then(result => {
                 expect(result).toBe(1);
             });
 
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("lightness", function (done) {
+    it("lightness", done => {
         
         return Promise.resolve().then(() => {
             var $qjimp = new QJimp();
@@ -137,13 +137,13 @@ describe("qjimp", function () {
             var input = path.join(__dirname, "./images/world.dark.png");
 			
             let buffer = fs.readFileSync(input);
-            return $qjimp.toImage(buffer).then(function(image) {
+            return $qjimp.toImage(buffer).then(image => {
                 return $qjimp.lightness(image);
-            }).then(function(result) {
+            }).then(result => {
                 expect(result).toBe(0.75);
             });
 
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });

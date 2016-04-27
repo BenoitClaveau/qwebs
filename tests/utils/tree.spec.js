@@ -7,9 +7,9 @@
 
 const Tree = require('../../lib/utils/tree');
 
-describe("tree", function () {
+describe("tree", () => {
 
-    it("root", function (done) {
+    it("root", done => {
         return Promise.resolve().then(() => {
             let tree = new Tree();
             
@@ -17,12 +17,12 @@ describe("tree", function () {
             expect(tree.findOne("").router.id).toEqual(1);
             expect(tree.findOne("/").router.id).toEqual(1);
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done)
     });
     
-    it("parameters priority", function (done) {
+    it("parameters priority", done => {
         
         return Promise.resolve().then(() => {
             var tree = new Tree();
@@ -37,13 +37,13 @@ describe("tree", function () {
             expect(item.params.test).toEqual("alert");
             
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.message).toBeNull();
             //expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("parameters priority", function (done) {
+    it("parameters priority", done => {
         
         return Promise.resolve().then(() => {
             var tree = new Tree();
@@ -57,12 +57,12 @@ describe("tree", function () {
             expect(item.params.test).toEqual("alert");
             
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("parameters priority", function (done) {
+    it("parameters priority", done => {
         
         return Promise.resolve().then(() => {
             var tree = new Tree();
@@ -76,12 +76,12 @@ describe("tree", function () {
             expect(item.params.test).toEqual("alert");
             
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("multiple parameters", function (done) {
+    it("multiple parameters", done => {
         
         return Promise.resolve().then(() => {
             var tree = new Tree();
@@ -95,7 +95,7 @@ describe("tree", function () {
             expect(item.params.value).toEqual("1");
             
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });

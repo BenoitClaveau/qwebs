@@ -7,9 +7,9 @@
 
 const walk = require('../../lib/utils/walk');
 
-describe("walk", function () {
+describe("walk", () => {
 
-    it("get", function (done) {
+    it("get", done => {
         
         return Promise.resolve().then(() => {
             
@@ -22,7 +22,7 @@ describe("walk", function () {
             expect(files[4].slice(__dirname.length)).toEqual("/tree.spec.js");
             expect(files[5].slice(__dirname.length)).toEqual("/walk.spec.js");
         })
-        .catch(function (error) {
+        .catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });

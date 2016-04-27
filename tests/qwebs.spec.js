@@ -7,15 +7,15 @@
 
 const Qwebs = require("../lib/qwebs");
 
-describe("routesLoader", function () {
+describe("routesLoader", () => {
     
-    it("load", function (done) {
+    it("load", done => {
         return Promise.resolve().then(() => {
             
             var $qwebs = new Qwebs({ dirname: __dirname, config: "config.json"});
             //return $qwebs.load(); //bug with bundle path
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error).toBeNull();
         }).then(done);
     });

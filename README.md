@@ -150,15 +150,15 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
 ```js
 var Q = require('q');
 
-function ApplicationService($config) {
-    if ($config.verbose) console.log("ApplicationService created.");
-};
+class ApplicationService {
+    constructor($config) {
+        if ($config.verbose) console.log("ApplicationService created.");
+    };
 
-ApplicationService.prototype.constructor = ApplicationService;
-
-ApplicationService.prototype.getHelloworld = function (request, response) {
-    var content = { message: "Hello World" };
-    return response.send({ request: request, content: content });
+    getHelloworld(request, response) {
+        var content = { message: "Hello World" };
+        return response.send({ request: request, content: content });
+    };
 };
 
 exports = module.exports = ApplicationService;
@@ -177,9 +177,9 @@ var qwebs = new Qwebs();
 qwebs.inject("$app", "./applicationservice");
 qwebs.get('/', "$app", "getHelloworld"); 
 
-qwebs.load().then(function() {
-    http.createServer(function (request, response) {
-        return qwebs.invoke(request, response).catch(function(error) {
+qwebs.load().then(() => {
+    http.createServer((request, response) => {
+        return qwebs.invoke(request, response).catch(error => {
             console.log(error);
         });
     }).listen(1337, "127.0.0.1");

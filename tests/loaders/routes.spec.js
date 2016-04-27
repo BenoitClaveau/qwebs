@@ -8,16 +8,16 @@
 const Qwebs = require("../../lib/qwebs");
 const RoutesLoader = require("../../lib/loaders/routes");
 
-describe("routesLoader", function () {
+describe("routesLoader", () => {
     
-    it("load", function (done) {
+    it("load", done => {
         
         return Promise.resolve().then(() => {
 
             var $qwebs = new Qwebs({ dirname: __dirname, config: { routes: "routes.json" }});
             let $config = $qwebs.resolve("$config");
             
-            return new RoutesLoader($qwebs, $config).load().then(function(routes) {
+            return new RoutesLoader($qwebs, $config).load().then(routes => {
                 expect(routes.services.length).toEqual(1);            
                 expect(routes.services[0].name).toEqual("$info");
                 expect(routes.services[0].location).toEqual("../services/info");
@@ -26,7 +26,7 @@ describe("routesLoader", function () {
                 expect(routes.locators[0].method).toEqual("getInfo");
             });
 
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error).toBeNull();
         }).then(done);
     });

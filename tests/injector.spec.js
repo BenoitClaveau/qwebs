@@ -7,9 +7,9 @@
 
 const Injector = require('../lib/injector');
 
-describe("injector", function () {
+describe("injector", () => {
 
-    it("inject & resolve", function (done) {
+    it("inject & resolve", done => {
         
         return Promise.resolve().then(() => {
             let $qwebs = {
@@ -22,12 +22,12 @@ describe("injector", function () {
             let $info = injector.resolve("$info");
             expect($info).not.toBeNull();
             expect($info.whoiam()).toBe("I'm Info service.");
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.message).toBeNull();
         }).then(done);
     });
     
-    it("inject & load", function (done) {
+    it("inject & load", done => {
         
         return Promise.resolve().then(() => {
             let $qwebs = {
@@ -44,12 +44,12 @@ describe("injector", function () {
             expect($info).not.toBeNull();
             expect($info.whoiam()).toBe("I'm Info service.");
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.message).toBeNull();
         }).then(done);
     });
     
-    it("try to inject es5", function (done) {
+    it("try to inject es5", done => {
         
         return Promise.resolve().then(() => {
             let $qwebs = {
@@ -64,12 +64,12 @@ describe("injector", function () {
             
             let $info = injector.resolve("$info");
             fail();
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.message).toEqual("No constructor found.");
         }).then(done);
     });
     
-    it("try to inject cyclic reference", function (done) {
+    it("try to inject cyclic reference", done => {
         
         return Promise.resolve().then(() => {
             let $qwebs = {
@@ -85,7 +85,7 @@ describe("injector", function () {
             
             let $info = injector.resolve("$info1");
             fail();
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.message).toEqual("Cyclic reference.");
         }).then(done);
     });

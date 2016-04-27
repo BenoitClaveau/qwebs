@@ -8,16 +8,16 @@
 const Router = require('../lib/router');
 const Injector = require("../lib/injector");
 
-describe("router", function () {
+describe("router", () => {
     
-    let init = function() {
+    let init = () => {
         return Promise.resolve().then(() => {
             let injector = new Injector();
             let mockQwebs = {
                 root: __dirname,
                 loaded: true,
                 injector: injector,
-                resolve: function(name) {
+                resolve: name => {
                     return injector.resolve(name);
                 }
             };
@@ -40,8 +40,8 @@ describe("router", function () {
         });
     };
 
-    it("single route", function (done) {
-        return init().then(function(mock) {
+    it("single route", done => {
+        return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
@@ -50,17 +50,17 @@ describe("router", function () {
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/info";
-            return mock.router.invoke(mock.request, mock.response, "/info").then(function(res) {
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
                expect(res.whoiam).toBe("I'm Info service.");
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("route *", function (done) {
-        return init().then(function(mock) {
+    it("route *", done => {
+        return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
@@ -69,21 +69,21 @@ describe("router", function () {
             
             mock.request.url = "/info";
             
-            return mock.router.invoke(mock.request, mock.response, "/info").then(function(res) {
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
                 expect(res.whoiam).toBe("I'm Info service.");
                 
-                return mock.router.invoke(mock.request, mock.response, "/test").then(function(res) {
+                return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
                     expect(res.whoiam).toBe("I'm Info service.");
                 });
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("multiple", function (done) {
-        return init().then(function(mock) {
+    it("multiple", done => {
+        return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
@@ -96,17 +96,17 @@ describe("router", function () {
             
             mock.request.url = "/info";
             
-            return mock.router.invoke(mock.request, mock.response, "/info").then(function(res) {
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
                 expect(res.whoiam).toBe("I'm Info service.");
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("multiple invert declaration", function (done) {
-        return init().then(function(mock) {
+    it("multiple invert declaration", done => {
+        return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
@@ -119,17 +119,17 @@ describe("router", function () {
             
             mock.request.url = "/info";
             
-            return mock.router.invoke(mock.request, mock.response, "/info").then(function(res) {
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
                 expect(res.whoiam).toBe("I'm Info service.");
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("multiple redirection", function (done) {
-        return init().then(function(mock) {
+    it("multiple redirection", done => {
+        return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
@@ -142,17 +142,17 @@ describe("router", function () {
             
             mock.request.url = "/info";
             
-            return mock.router.invoke(mock.request, mock.response, "/test").then(function(res) {
+            return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
                 expect(res.text).toBe("hello world");
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("multiple token", function (done) {
-        return init().then(function(mock) {
+    it("multiple token", done => {
+        return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
@@ -165,17 +165,17 @@ describe("router", function () {
             
             mock.request.url = "/test/3";
             
-            return mock.router.invoke(mock.request, mock.response).then(function(res) {
+            return mock.router.invoke(mock.request, mock.response).then(res => {
                 expect(res.whoiam).toBe("I'm Info service.");
             });
             
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(done);
     });
     
-    it("multiple end route", function (done) {
-        return init().then(function(mock) {
+    it("multiple end route", done => {
+        return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
@@ -185,7 +185,7 @@ describe("router", function () {
             item.register("$info", "getInfo");
             
             fail();
-        }).catch(function (error) {
+        }).catch(error => {
             expect(error.message).toEqual("Multiple end route.");
         }).then(done);
     });
