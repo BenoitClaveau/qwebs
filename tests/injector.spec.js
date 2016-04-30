@@ -24,7 +24,9 @@ describe("injector", () => {
             expect($info.whoiam()).toBe("I'm Info service.");
         }).catch(error => {
             expect(error.message).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("inject & load", done => {
@@ -46,7 +48,9 @@ describe("injector", () => {
             
         }).catch(error => {
             expect(error.message).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("try to inject es5", done => {
@@ -66,7 +70,9 @@ describe("injector", () => {
             fail();
         }).catch(error => {
             expect(error.message).toEqual("No constructor found.");
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("try to inject cyclic reference", done => {
@@ -87,6 +93,8 @@ describe("injector", () => {
             fail();
         }).catch(error => {
             expect(error.message).toEqual("Cyclic reference.");
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

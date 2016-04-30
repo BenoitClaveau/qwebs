@@ -34,7 +34,9 @@ describe("qjimp", () => {
 			});
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("size", done => {
@@ -53,7 +55,9 @@ describe("qjimp", () => {
 
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("crop", done => {
@@ -80,7 +84,9 @@ describe("qjimp", () => {
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("resize", done => {
@@ -107,7 +113,9 @@ describe("qjimp", () => {
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("lightness", done => {
@@ -126,7 +134,9 @@ describe("qjimp", () => {
 
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("lightness", done => {
@@ -145,6 +155,8 @@ describe("qjimp", () => {
 
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

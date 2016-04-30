@@ -39,8 +39,9 @@ describe("tree", () => {
         })
         .catch(error => {
             expect(error.message).toBeNull();
-            //expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("parameters priority", done => {
@@ -59,7 +60,9 @@ describe("tree", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("parameters priority", done => {
@@ -78,7 +81,9 @@ describe("tree", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("multiple parameters", done => {
@@ -97,6 +102,8 @@ describe("tree", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

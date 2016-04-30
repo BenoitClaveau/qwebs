@@ -18,7 +18,9 @@ describe("configLoader", () => {
             expect(config.folder).toEqual("public1");
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("create from file", done => {
@@ -30,6 +32,8 @@ describe("configLoader", () => {
             expect(config.folder).toEqual("public2");
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

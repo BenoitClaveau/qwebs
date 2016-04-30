@@ -28,7 +28,9 @@ describe("contentType", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("getFromExt exception", done => {
@@ -39,6 +41,8 @@ describe("contentType", () => {
         })
         .catch(error => {
             expect(error.stack).not.toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

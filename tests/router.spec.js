@@ -56,7 +56,9 @@ describe("router", () => {
             
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("route *", done => {
@@ -79,7 +81,9 @@ describe("router", () => {
             
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("multiple", done => {
@@ -102,7 +106,9 @@ describe("router", () => {
             
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("multiple invert declaration", done => {
@@ -125,7 +131,9 @@ describe("router", () => {
             
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("multiple redirection", done => {
@@ -148,7 +156,9 @@ describe("router", () => {
             
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("multiple token", done => {
@@ -171,7 +181,9 @@ describe("router", () => {
             
         }).catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("multiple end route", done => {
@@ -187,6 +199,8 @@ describe("router", () => {
             fail();
         }).catch(error => {
             expect(error.message).toEqual("Multiple end route.");
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

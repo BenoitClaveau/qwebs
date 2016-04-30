@@ -24,6 +24,8 @@ describe("walk", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

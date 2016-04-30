@@ -27,7 +27,9 @@ describe("bundleLoader", () => {
             
         }).catch(error => {
             expect(error).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("load css", done => {
@@ -46,7 +48,9 @@ describe("bundleLoader", () => {
             
         }).catch(error => {
             expect(error).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("load scss", done => {
@@ -66,6 +70,8 @@ describe("bundleLoader", () => {
             
         }).catch(error => {
             expect(error).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

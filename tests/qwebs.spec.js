@@ -17,6 +17,8 @@ describe("routesLoader", () => {
             
         }).catch(error => {
             expect(error).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });

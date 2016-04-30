@@ -21,7 +21,9 @@ describe("pathRegex", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("match dynamic", done => {
@@ -36,7 +38,9 @@ describe("pathRegex", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("match generic", done => {
@@ -51,7 +55,9 @@ describe("pathRegex", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
     
     it("params", done => {
@@ -62,6 +68,8 @@ describe("pathRegex", () => {
         })
         .catch(error => {
             expect(error.stack).toBeNull();
-        }).then(done);
+        }).then(() => {
+            done();
+        });
     });
 });
