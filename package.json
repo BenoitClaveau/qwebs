@@ -8,7 +8,7 @@
         "clean-css": "latest",
         "multiparty": "latest",
         "uglify-js": "latest",
-        "node-sass": "latest",
+        "sass.js": "latest",
         "jimp": "latest"
     },
     "devDependencies": {
