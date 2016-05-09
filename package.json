@@ -1,6 +1,6 @@
 {
     "name": "qwebs",
-    "version": "0.1.23",
+    "version": "0.1.24",
     "description": "Back-end web server",
     "main": "index.js",
     "dependencies": {
