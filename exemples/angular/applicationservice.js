@@ -36,7 +36,7 @@ class ApplicationService {
         let contentType = match[1];
         let data64 = match[3];
         
-        let buffer = new Buffer(data64, "base64");
+        let buffer = Buffer.from(data64, "base64");
         return this.$qjimp.toImage(buffer).then(image => {
             return this.$qjimp.toBuffer(image, "image/jpeg").then(newBuffer => {
                 let header = { 
