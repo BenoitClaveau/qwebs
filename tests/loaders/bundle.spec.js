@@ -63,7 +63,6 @@ describe("bundleLoader", () => {
 
             return new BundleLoader($qwebs, $config, $router).load().then(assets => {
                 expect(assets.length).toEqual(1);
-                console.log(assets[0].content)
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");
             });
