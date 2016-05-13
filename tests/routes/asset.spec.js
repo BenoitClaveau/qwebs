@@ -7,16 +7,19 @@
 
 const Qwebs = require("../../lib/qwebs");
 const Asset = require('../../lib/routes/asset');
+const http = require("http");
 
 describe("asset", () => {
 
     it("create", done => {
         return Promise.resolve().then(() => {
-            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
-            let $config = $qwebs.resolve("$config");
-            let $router = $qwebs.resolve("$router");
-            
-            let asset = new Asset($qwebs, $config, "/api");
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: false }});
+            return $qwebs.load().then(() => {
+                let $config = $qwebs.resolve("$config");
+                let $router = $qwebs.resolve("$router");
+                
+                let asset = new Asset($qwebs, $config, "/api");
+            });
         }).catch(error => {
             expect(error).toBeNull();
         }).then(() => {
@@ -26,11 +29,13 @@ describe("asset", () => {
     
     it("create empty route", done => {
         return Promise.resolve().then(() => {
-            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
-            let $config = $qwebs.resolve("$config");
-            let $router = $qwebs.resolve("$router");
-            
-            let asset = new Asset($qwebs, $config, null);
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: false }});
+            return $qwebs.load().then(() => {
+                let $config = $qwebs.resolve("$config");
+                let $router = $qwebs.resolve("$router");
+                
+                let asset = new Asset($qwebs, $config, null);
+            });
         }).catch(error => {
             expect(error.message).toEqual("Route is not defined.");
         }).then(() => {
@@ -40,22 +45,23 @@ describe("asset", () => {
     
     it("invoke", done => {
         return Promise.resolve().then(() => {
-            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
-            let $config = $qwebs.resolve("$config");
-            let $router = $qwebs.resolve("$router");
-            
-            let asset = new Asset($qwebs, $config, "/api");
-            let request = {
-                url: "/api"
-            };
-            let response = {
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: false }});
+            return $qwebs.load().then(() => {
+                let $config = $qwebs.resolve("$config");
+                let $router = $qwebs.resolve("$router");
                 
-            };
-            return asset.invoke(request, response);
-            
+                let asset = new Asset($qwebs, $config, "/api");
+                
+                let request = new http.IncomingMessage();
+                request.url = "/api";
+                request.pathname = "/api";
+                request.method = "GET";
+                let response = new http.ServerResponse(request);
+                
+                return asset.invoke(request, response);
+            });
         }).then(data => {
-            expect(data).not.toBeNull();
-            
+            expect(data).not.toBeNull(); 
         }).catch(error => {
             expect(error.message).toEqual("Content is empty"); //TODO
         }).then(() => {

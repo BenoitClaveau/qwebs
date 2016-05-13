@@ -9,11 +9,11 @@
         "multiparty": "latest",
         "uglify-js": "latest",
         "sass.js": "latest",
-        "jimp": "latest"
+        "jimp": "latest",
+        "request": "latest"
     },
     "devDependencies": {
         "jasmine-node": "latest",
-        "request": "latest",
         "coveralls": "latest",
         "istanbul": "latest"
     },

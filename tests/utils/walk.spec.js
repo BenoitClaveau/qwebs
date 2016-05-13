@@ -14,13 +14,12 @@ describe("walk", () => {
         return Promise.resolve().then(() => {
             
             let files = walk.get(__dirname);
-            expect(files.length).toEqual(6);
+            expect(files.length).toEqual(5);
             expect(files[0].slice(__dirname.length)).toEqual("/contentType.spec.js");
             expect(files[1].slice(__dirname.length)).toEqual("/pathRegex.spec.js");
             expect(files[2].slice(__dirname.length)).toEqual("/stream/data/page1.html");
             expect(files[3].slice(__dirname.length)).toEqual("/stream/data/page2.html");
-            expect(files[4].slice(__dirname.length)).toEqual("/tree.spec.js");
-            expect(files[5].slice(__dirname.length)).toEqual("/walk.spec.js");
+            expect(files[4].slice(__dirname.length)).toEqual("/walk.spec.js");
         })
         .catch(error => {
             expect(error.stack).toBeNull();
