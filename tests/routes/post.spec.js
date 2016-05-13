@@ -13,6 +13,7 @@ const request = require('request');
 describe("post", () => {
 
     it("create", done => {
+        let server = null;
         return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
             
@@ -20,7 +21,7 @@ describe("post", () => {
             $qwebs.post("/save", "$info", "save");
 
             return $qwebs.load().then(() => {
-                http.createServer((request, response) => {
+                server = http.createServer((request, response) => {
                     return $qwebs.invoke(request, response).then(res => {
                         expect(res.status).toBe("saved");
                     }).catch(error => {
@@ -31,11 +32,12 @@ describe("post", () => {
                 }).listen(1337);
                 
                 let $client = $qwebs.resolve("$client");
-                return $client.post("http://localhost:1337/save", { login: "test" });
+                $client.post("http://localhost:1337/save", { login: "test" });
             });
         }).catch(error => {
             expect(error.message).toBeNull();
         }).then(() => {
+            if (server) server.close();
             done();
         });
     });
