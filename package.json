@@ -10,7 +10,8 @@
         "uglify-js": "latest",
         "sass.js": "latest",
         "jimp": "latest",
-        "request": "latest"
+        "request": "latest",
+        "JSONStream": "latest"
     },
     "devDependencies": {
         "jasmine-node": "latest",
@@ -28,6 +29,8 @@
     "keywords": [
         "webserver",
         "promise",
+        "api",
+        "stream",
         "backend",
         "back-end",
         "back",
