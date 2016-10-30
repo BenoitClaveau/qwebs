@@ -214,7 +214,7 @@ $ npm install qwebs
 To run our examples, clone the Qwebs repo and install the dependencies.
 
 ```bash
-$ git clone https://github.com/beny78/qwebs --depth 1
+$ git clone https://github.com/BenoitClaveau/qwebs --depth 1
 $ cd qwebs
 $ npm install
 $ cd exemples/helloworld
@@ -226,7 +226,7 @@ $ node server.js
 To run our tests, clone the Qwebs repo and install the dependencies.
 
 ```bash
-$ git clone https://github.com/beny78/qwebs --depth 1
+$ git clone https://github.com/BenoitClaveau/qwebs --depth 1
 $ cd qwebs
 $ npm install
 $ cd tests
@@ -235,7 +235,7 @@ $ node.exe "..\node_modules\jasmine-node\bin\jasmine-node" --verbose .
 
 [npm-image]: https://img.shields.io/npm/v/qwebs.svg
 [npm-url]: https://npmjs.org/package/qwebs
-[travis-image]: https://travis-ci.org/beny78/qwebs.svg?branch=master
-[travis-url]: https://travis-ci.org/beny78/qwebs
-[coveralls-image]: https://coveralls.io/repos/beny78/qwebs/badge.svg?branch=master&service=github
-[coveralls-url]: https://coveralls.io/github/beny78/qwebs?branch=master
+[travis-image]: https://travis-ci.org/BenoitClaveau/qwebs.svg?branch=master
+[travis-url]: https://travis-ci.org/BenoitClaveau/qwebs
+[coveralls-image]: https://coveralls.io/repos/BenoitClaveau/qwebs/badge.svg?branch=master&service=github
+[coveralls-url]: https://coveralls.io/github/BenoitClaveau/qwebs?branch=master

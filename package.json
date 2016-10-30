@@ -1,6 +1,6 @@
 {
     "name": "qwebs",
-    "version": "0.1.39",
+    "version": "0.1.40",
     "description": "Back-end web server",
     "main": "index.js",
     "dependencies": {
@@ -24,7 +24,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/beny78/qwebs.git"
+        "url": "https://github.com/BenoitClaveau/qwebs.git"
     },
     "keywords": [
         "webserver",
@@ -48,11 +48,11 @@
     ],
     "author": {
         "name": "Benoît Claveau",
-        "email": "beny78@gmail.com"
+        "email": "benoit.claveau@gmail.com"
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/beny78/qwebs/issues"
+        "url": "https://github.com/BenoitClaveau/qwebs/issues"
     },
-    "homepage": "https://github.com/beny78/qwebs"
+    "homepage": "https://github.com/BenoitClaveau/qwebs"
 }
