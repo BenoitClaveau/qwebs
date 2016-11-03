@@ -6,34 +6,37 @@
 "use strict";
 
 const Qwebs = require("../../lib/qwebs");
-const Put = require('../../lib/routes/put');
+const http = require("http");
+const request = require('request');
 
 describe("put", () => {
 
     it("create", done => {
+        let server = null;
         return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
-            $qwebs.inject("$info", "../services/info");            
+            
+            $qwebs.inject("$info", "../services/info");
+            $qwebs.put("/save", "$info", "save");
 
             return $qwebs.load().then(() => {
-                let put = new Put($qwebs, "/update");
-                put.register("$info", "update");
-                put.load();
+                server = http.createServer((request, response) => {
+                    return $qwebs.invoke(request, response).then(res => {
+                        expect(res.status).toBe("saved");
+                    }).catch(error => {
+                        expect(error).toBeNull();
+                    }).then(() => {
+                        done();
+                    });
+                }).listen(1337);
                 
-                let request = {
-                    url: "/update",
-                    headers: {
-                    }
-                };
-                
-                let response = {
-                };
-
-                //return post.invoke(request, response);
+                let $client = $qwebs.resolve("$client");
+                $client.put("http://localhost:1337/save", { login: "test" });
             });
         }).catch(error => {
             expect(error.message).toBeNull();
         }).then(() => {
+            if (server) server.close();
             done();
         });
     });
