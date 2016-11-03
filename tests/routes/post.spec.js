@@ -6,7 +6,6 @@
 "use strict";
 
 const Qwebs = require("../../lib/qwebs");
-const Post = require('../../lib/routes/post');
 const http = require("http");
 const request = require('request');
 
