@@ -17,12 +17,12 @@ describe("put", () => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
             
             $qwebs.inject("$info", "../services/info");
-            $qwebs.put("/save", "$info", "save");
+            $qwebs.put("/save", "$info", "updated");
 
             return $qwebs.load().then(() => {
                 server = http.createServer((request, response) => {
                     return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("saved");
+                        expect(res.status).toBe("updated");
                     }).catch(error => {
                         expect(error).toBeNull();
                     }).then(() => {
@@ -31,7 +31,7 @@ describe("put", () => {
                 }).listen(1337);
                 
                 let $client = $qwebs.resolve("$client");
-                $client.put("http://localhost:1337/save", { login: "test" });
+                $client.put("http://localhost:1337/updated", { login: "test" });
             });
         }).catch(error => {
             expect(error.message).toBeNull();
