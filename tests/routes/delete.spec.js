@@ -22,7 +22,7 @@ describe("post", () => {
             return $qwebs.load().then(() => {
                 server = http.createServer((request, response) => {
                     return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("saved");
+                        expect(res.status).toBe("deleted");
                     }).catch(error => {
                         expect(error).toBeNull();
                     }).then(() => {
