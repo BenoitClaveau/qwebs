@@ -23,7 +23,7 @@ describe("injector", () => {
             expect($info).not.toBeNull();
             expect($info.whoiam()).toBe("I'm Info service.");
         }).catch(error => {
-            expect(error.message).toBeNull();
+            expect(error.stack).toBeNull();
         }).then(() => {
             done();
         });
@@ -47,7 +47,7 @@ describe("injector", () => {
             expect($info.whoiam()).toBe("I'm Info service.");
             
         }).catch(error => {
-            expect(error.message).toBeNull();
+            expect(error.stack).toBeNull();
         }).then(() => {
             done();
         });

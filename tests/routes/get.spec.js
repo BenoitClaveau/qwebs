@@ -9,32 +9,31 @@ const Qwebs = require("../../lib/qwebs");
 const http = require("http");
 const request = require('request');
 
-describe("post", () => {
+describe("get", () => {
 
-    it("post", done => {
+    it("get", done => {
         let server = null;
         return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
             
             $qwebs.inject("$info", "../services/info");
-            $qwebs.delete("/delete", "$info", "delete");
+            $qwebs.get("/get", "$info", "getInfo");
 
             return $qwebs.load().then(() => {
                 server = http.createServer((request, response) => {
                     return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("deleted");
+                        expect(res.whoiam).toBe("I'm Info service.");
                     }).catch(error => {
                         expect(error).toBeNull();
                     }).then(() => {
                         done();
                     });
-                }).listen(1338);
-                
+                }).listen(1337);
                 let $client = $qwebs.resolve("$client");
-                return $client.delete("http://localhost:1338/delete", { login: "test" });
+                return $client.get("http://localhost:1337/get");
             });
         }).catch(error => {
-            expect(error.stack).toBeNull();
+            expect(error.stack + JSON.stringify(error.data)).toBeNull();
         }).then(() => {
             if (server) server.close();
             done();

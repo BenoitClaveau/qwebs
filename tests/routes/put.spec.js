@@ -11,13 +11,13 @@ const request = require('request');
 
 describe("put", () => {
 
-    it("create", done => {
+    it("put", done => {
         let server = null;
         return Promise.resolve().then(() => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
             
             $qwebs.inject("$info", "../services/info");
-            $qwebs.put("/save", "$info", "updated");
+            $qwebs.put("/update", "$info", "update");
 
             return $qwebs.load().then(() => {
                 server = http.createServer((request, response) => {
@@ -28,13 +28,12 @@ describe("put", () => {
                     }).then(() => {
                         done();
                     });
-                }).listen(1337);
-                
+                }).listen(1340);
                 let $client = $qwebs.resolve("$client");
-                $client.put("http://localhost:1337/updated", { login: "test" });
+                return $client.put("http://localhost:1340/update", { login: "test" });
             });
         }).catch(error => {
-            expect(error.message).toBeNull();
+            expect(error.stack + JSON.stringify(error.data)).toBeNull();
         }).then(() => {
             if (server) server.close();
             done();

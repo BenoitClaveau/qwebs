@@ -38,7 +38,7 @@ describe("tree", () => {
             
         })
         .catch(error => {
-            expect(error.message).toBeNull();
+            expect(error.stack).toBeNull();
         }).then(() => {
             done();
         });
