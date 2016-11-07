@@ -30,7 +30,7 @@ describe("put", () => {
                     });
                 }).listen(1340);
                 let $client = $qwebs.resolve("$client");
-                return $client.put("http://localhost:1340/update", { login: "test" });
+                return $client.put({ url: "http://localhost:1340/update", json: { login: "test" }});
             });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();

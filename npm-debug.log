@@ -1,0 +1,40 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'test' ]
+2 info using npm@3.10.8
+3 info using node@v7.0.0
+4 verbose run-script [ 'pretest', 'test', 'posttest' ]
+5 info lifecycle qwebs@0.1.41~pretest: qwebs@0.1.41
+6 silly lifecycle qwebs@0.1.41~pretest: no script for pretest, continuing
+7 info lifecycle qwebs@0.1.41~test: qwebs@0.1.41
+8 verbose lifecycle qwebs@0.1.41~test: unsafe-perm in lifecycle true
+9 verbose lifecycle qwebs@0.1.41~test: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Dev\qwebs\qwebs\node_modules\.bin;C:\Python27\;C:\Python27\Scripts;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files\Git\cmd;C:\Program Files\MongoDB\Server\3.2\bin;C:\Program Files\nodejs\;C:\Program Files\TortoiseGit\bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\Ben\AppData\Local\Microsoft\WindowsApps;C:\Users\Ben\AppData\Roaming\npm
+10 verbose lifecycle qwebs@0.1.41~test: CWD: C:\Dev\qwebs\qwebs
+11 silly lifecycle qwebs@0.1.41~test: Args: [ '/d /s /c',
+11 silly lifecycle   'node node_modules/jasmine-node/bin/jasmine-node tests' ]
+12 silly lifecycle qwebs@0.1.41~test: Returned: code: 3221225786  signal: null
+13 info lifecycle qwebs@0.1.41~test: Failed to exec test script
+14 error Test failed.  See above for more details.
+15 verbose exit [ 1, true ]
+16 verbose stack Error: kill ENOSYS
+16 verbose stack     at exports._errnoException (util.js:1026:11)
+16 verbose stack     at process.kill (internal/process.js:173:13)
+16 verbose stack     at process.listener (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+16 verbose stack     at emitNone (events.js:91:20)
+16 verbose stack     at process.emit (events.js:185:7)
+16 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+16 verbose stack     at processEmit (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+16 verbose stack     at Signal.wrap.onsignal (internal/process.js:200:44)
+17 verbose cwd C:\Dev\qwebs\qwebs
+18 error Windows_NT 10.0.14393
+19 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "test"
+20 error node v7.0.0
+21 error npm  v3.10.8
+22 error code ENOSYS
+23 error errno ENOSYS
+24 error syscall kill
+25 error kill ENOSYS
+26 error If you need help, you may report this error at:
+26 error     <https://github.com/npm/npm/issues>
+27 verbose exit [ 1, true ]

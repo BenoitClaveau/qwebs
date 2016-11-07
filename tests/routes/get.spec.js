@@ -30,7 +30,7 @@ describe("get", () => {
                     });
                 }).listen(1337);
                 let $client = $qwebs.resolve("$client");
-                return $client.get("http://localhost:1337/get");
+                return $client.get({ url: "http://localhost:1337/get" });
             });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();

@@ -31,7 +31,7 @@ describe("post", () => {
                 }).listen(1338);
                 
                 let $client = $qwebs.resolve("$client");
-                return $client.delete("http://localhost:1338/delete", { login: "test" });
+                return $client.delete({ url: "http://localhost:1338/delete", json: { login: "test" }});
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
