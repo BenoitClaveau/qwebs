@@ -20,18 +20,20 @@ describe("post", () => {
             $qwebs.delete("/delete", "$info", "delete");
 
             return $qwebs.load().then(() => {
-                server = http.createServer((request, response) => {
-                    return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("deleted");
-                    }).catch(error => {
-                        expect(error).toBeNull();
-                    }).then(() => {
-                        done();
-                    });
-                }).listen(1338);
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(res => {
+                            expect(res.status).toBe("deleted");
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
+                    }).listen(1337);
+                });
                 
                 let $client = $qwebs.resolve("$client");
-                return $client.delete({ url: "http://localhost:1338/delete", json: { login: "test" }});
+                $client.delete({ url: "http://localhost:1337/delete", json: { login: "test" }});
+                return promise;
             });
         }).catch(error => {
             expect(error.stack).toBeNull();

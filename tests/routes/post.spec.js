@@ -21,18 +21,19 @@ describe("post", () => {
             $qwebs.post("/save", "$info", "save");
 
             return $qwebs.load().then(() => {
-                server = http.createServer((request, response) => {
-                    return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("saved");
-                    }).catch(error => {
-                        expect(error).toBeNull();
-                    }).then(() => {
-                        done();
-                    });
-                }).listen(1339);
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(res => {
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
+                    }).listen(1337);
+                });
                 
                 let $client = $qwebs.resolve("$client");
-                return $client.post({ url: "http://localhost:1339/save", json: { login: "test" }});
+                $client.post({ url: "http://localhost:1337/save", json: { login: "test" }});
+                return promise;
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
@@ -51,22 +52,22 @@ describe("post", () => {
             $qwebs.post("/save", "$info", "save");
 
             return $qwebs.load().then(() => {
-                server = http.createServer((request, response) => {
-                    return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("saved");
-                    }).catch(error => {
-                        console.error(error)
-                        expect(error).toBeNull();
-                    }).then(() => {
-                        done();
-                    });
-                }).listen(1342);
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(res => {
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
+                    }).listen(1337);
+                });
                 
                 let $client = $qwebs.resolve("$client");
-                return $client.post({ url: "http://localhost:1342/save", formData: { 
+                $client.post({ url: "http://localhost:1337/save", formData: { 
                     login: "test",
                     file: fs.createReadStream(__dirname + '/../services/images/world.png'),
                 }});
+                return promise;
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
@@ -85,18 +86,19 @@ describe("post", () => {
             $qwebs.post("/save", "$info", "save");
 
             return $qwebs.load().then(() => {
-                server = http.createServer((request, response) => {
-                    return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("saved");
-                    }).catch(error => {
-                        expect(error).toBeNull();
-                    }).then(() => {
-                        done();
-                    });
-                }).listen(1343);
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(res => {
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
+                    }).listen(1337);
+                });
                 
                 let $client = $qwebs.resolve("$client");
-                return $client.post({ url: "http://localhost:1343/save", form: { login: "test" }});
+                $client.post({ url: "http://localhost:1337/save", form: { login: "test" }});
+                return promise;
             });
         }).catch(error => {
             expect(error.stack).toBeNull();

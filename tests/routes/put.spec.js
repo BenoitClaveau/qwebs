@@ -20,18 +20,21 @@ describe("put", () => {
             $qwebs.put("/update", "$info", "update");
 
             return $qwebs.load().then(() => {
-                server = http.createServer((request, response) => {
-                    return $qwebs.invoke(request, response).then(res => {
-                        expect(res.status).toBe("updated");
-                    }).catch(error => {
-                        expect(error).toBeNull();
-                    }).then(() => {
-                        done();
-                    });
-                }).listen(1340);
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(res => {
+                            expect(res.status).toBe("updated");
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
+                    }).listen(1337);
+                });
+
                 let $client = $qwebs.resolve("$client");
-                return $client.put({ url: "http://localhost:1340/update", json: { login: "test" }});
-            });
+                $client.put({ url: "http://localhost:1337/update", json: { login: "test" }});
+                return promise;
+        });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();
         }).then(() => {
