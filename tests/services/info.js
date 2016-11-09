@@ -15,33 +15,38 @@ class InfoService {
 	};
 
 	getInfo(request, response) {
-		return {
+		let content = {
 			whoiam: this.whoiam()
 		};
+		return response.send({ request: request, content: content });
 	};
 
 	getMessage(request, response) {
-		return {
+		let content = {
 			text: "hello world"
 		};
+		return response.send({ request: request, content: content });
 	};
 	
 	save(request, response) {
-		return {
+		let content = {
 			status: "saved"
 		};
+		return response.send({ request: request, content: content });
 	};
 	
 	update(request, response) {
-		return {
+		let content = {
 			status: "updated"
 		};
+		return response.send({ request: request, content: content });
 	};
 	
 	delete(request, response) {
-		return {
+		let content = {
 			status: "deleted"
 		};
+		return response.send({ request: request, content: content });
 	};
 };
 
