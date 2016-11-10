@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const http = require("http");
 const Qwebs = require("../lib/qwebs");
 const Router = require('../lib/router');
 const Injector = require("../lib/injector");
