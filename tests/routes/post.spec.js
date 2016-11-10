@@ -7,7 +7,6 @@
 
 const Qwebs = require("../../lib/qwebs");
 const http = require("http");
-const request = require('request');
 const fs = require('fs');
 
 describe("post", () => {
