@@ -79,8 +79,40 @@ describe("response", () => {
             done();
         });
     });
-});
 
-var headers = {
-      'Accept-Encoding': 'gzip'
-    };
+    it("deflate", done => {
+        let server = null;
+        return Promise.resolve().then(() => {
+            let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
+            
+            $qwebs.inject("$info", "./info");
+            $qwebs.get("/get", "$info", "getInfo");
+            
+            return $qwebs.load().then(() => {
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(res => {
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
+                    }).listen(1337);
+                });
+                
+                let $client = $qwebs.resolve("$client");
+                let headers = {
+                    'Accept-Encoding': 'deflate'
+                };
+                let request = $client.get({ url: "http://localhost:1337/get", headers: headers }).then(res => {
+                    expect(res.body.whoiam).toBe("I'm Info service.");
+                });
+                return Promise.all([promise, request]);
+            });
+        }).catch(error => {
+            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+        }).then(() => {
+            if (server) server.close();
+            done();
+        });
+    });
+});
