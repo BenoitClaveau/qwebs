@@ -22,7 +22,6 @@ describe("get", () => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
                         return $qwebs.invoke(request, response).then(res => {
-                            expect(res.whoiam).toBe("I'm Info service.");
                             resolve();
                         }).catch(error => {
                             reject(error);
@@ -31,8 +30,10 @@ describe("get", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                $client.get({ url: "http://localhost:1337/get" });
-                return promise;
+                let request = $client.get({ url: "http://localhost:1337/get" }).then(res => {
+                    expect(res.body.whoiam).toBe("I'm Info service.");
+                });
+                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();

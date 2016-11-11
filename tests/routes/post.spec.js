@@ -96,8 +96,10 @@ describe("post", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                $client.post({ url: "http://localhost:1337/save", form: { login: "test" }});
-                return promise;
+                let request = $client.post({ url: "http://localhost:1337/save" }).then(res => {
+                    expect(res.body.status).toBe("saved");
+                });
+                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack).toBeNull();

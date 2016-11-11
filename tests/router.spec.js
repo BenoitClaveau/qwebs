@@ -96,7 +96,7 @@ describe("router", () => {
                 
                 let $client = $qwebs.resolve("$client");
                 let request = $client.get({ url: "http://localhost:1337/info" }).then(res => {
-                    expect(res.data.whoiam).toBe("I'm Info service.");
+                    expect(res.body.whoiam).toBe("I'm Info service.");
                 });
                 return Promise.all([promise, request]);
             });

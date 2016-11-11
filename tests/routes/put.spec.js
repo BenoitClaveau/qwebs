@@ -22,18 +22,19 @@ describe("put", () => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
                         return $qwebs.invoke(request, response).then(res => {
-                            expect(res.status).toBe("updated");
                             resolve();
                         }).catch(error => {
                             reject(error);
                         });
                     }).listen(1337);
                 });
-
+                
                 let $client = $qwebs.resolve("$client");
-                $client.put({ url: "http://localhost:1337/update", json: { login: "test" }});
-                return promise;
-        });
+                let request = $client.put({ url: "http://localhost:1337/update" }).then(res => {
+                    expect(res.body.status).toBe("updated");
+                });
+                return Promise.all([promise, request]);
+            });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();
         }).then(() => {
