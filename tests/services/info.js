@@ -50,7 +50,7 @@ class InfoService {
 	};
 
         redirect(request, response) {
-                return response.redirect("get");
+                return response.redirect({ url: "get" });
         }
 };
 
