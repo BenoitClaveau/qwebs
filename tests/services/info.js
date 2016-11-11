@@ -48,6 +48,10 @@ class InfoService {
 		};
 		return response.send({ request: request, content: content });
 	};
+
+        redirect(request, response) {
+                return response.redirect("get");
+        }
 };
 
 exports = module.exports = InfoService;
