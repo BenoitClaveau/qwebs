@@ -64,10 +64,7 @@ describe("response", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let headers = {
-                    'Accept-Encoding': 'gzip'
-                };
-                let request = $client.get({ url: "http://localhost:1337/get", headers: headers }).then(res => {
+                let request = $client.get({ url: "http://localhost:1337/get", gzip: true }).then(res => {
                     expect(res.body.whoiam).toBe("I'm Info service.");
                 });
                 return Promise.all([promise, request]);
@@ -100,11 +97,48 @@ describe("response", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let headers = {
-                    'Accept-Encoding': 'deflate'
-                };
-                let request = $client.get({ url: "http://localhost:1337/get", headers: headers }).then(res => {
+                let request = $client.get({ url: "http://localhost:1337/get", deflate: true }).then(res => {
                     expect(res.body.whoiam).toBe("I'm Info service.");
+                });
+                return Promise.all([promise, request]);
+            });
+        }).catch(error => {
+            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+        }).then(() => {
+            if (server) server.close();
+            done();
+        });
+    });
+
+    it("etag", done => {
+        let server = null;
+        return Promise.resolve().then(() => {
+            let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
+            
+            $qwebs.inject("$info", "./info");
+            $qwebs.get("/get", "$info", "getInfo");
+            
+            return $qwebs.load().then(() => {
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(res => {
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
+                    }).listen(1337);
+                });
+                
+                let $client = $qwebs.resolve("$client");
+                let request = $client.get({ url: "http://localhost:1337/get" }).then(res1 => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => resolve(), 1000);
+                    }).then(() => {
+                        return $client.get({ url: "http://localhost:1337/get" }).then(res2 => {
+                            expect(res1.headers.date).not.toBe(res2.headers.date);
+                            expect(res1.headers.etag).toBe(res2.headers.etag);
+                        });
+                    });
                 });
                 return Promise.all([promise, request]);
             });
