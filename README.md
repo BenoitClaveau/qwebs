@@ -5,7 +5,7 @@
  [![Build Status][travis-image]][travis-url]
  [![Coverage Status][coveralls-image]][coveralls-url]
  [![NPM Download][npm-image-download]][npm-url]
-
+ [![Dependencies Status][npm-image-download]][david-dm-url]
 
  Qwebs is designed to be used with Single Page Application framework like [Angular](https://angularjs.org/), [React](https://facebook.github.io/react/) or [Backbone](http://backbonejs.org/).
 
@@ -242,3 +242,5 @@ $ node.exe "..\node_modules\jasmine-node\bin\jasmine-node" --verbose .
 [travis-url]: https://travis-ci.org/BenoitClaveau/qwebs
 [coveralls-image]: https://coveralls.io/repos/BenoitClaveau/qwebs/badge.svg?branch=master&service=github
 [coveralls-url]: https://coveralls.io/github/BenoitClaveau/qwebs?branch=master
+[david-dm-image]: https://david-dm.org/BenoitClaveau/qwebs/status.svg
+[david-dm-url]: https://david-dm.org/BenoitClaveau/qwebs
