@@ -1,4 +1,12 @@
 language: node_js
 node_js:
   - "7.0.0"
+env: 
+  global:
+    - secure: "Poao3bXP7mV5dH2xkgdMCg"
+addons:
+  coverity_scan:
+    project:
+      name: BenoitClaveau/qwebs
+    branch_pattern: coverity_scan
 script: "npm run-script test-cover"
