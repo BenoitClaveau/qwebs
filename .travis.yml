@@ -19,5 +19,5 @@ addons:
       description: "Build submitted via Travis CI"
     notification_email: benoit.claveau@gmail.com
     build_command_prepend: ""
-    build_command:   "npm run-script test-cover"
+    build_command: ""
     branch_pattern: coverity_scan
