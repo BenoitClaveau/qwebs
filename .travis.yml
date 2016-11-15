@@ -1,12 +1,23 @@
 language: node_js
+
 node_js:
   - "7.0.0"
-env: 
+
+script: "npm run-script test-cover"
+
+env:
   global:
-    - "Poao3bXP7mV5dH2xkgdMCg"
+   - secure: "ReOrSr2nl2eQ183lwso2oU0+hwfFsNAHLxauaUXNVqUPVf1qDA3fgAWc19/EKl78Im70k1J4G2cEP9xumqtDQA7UN5sVcnqdPfhzagf9g1wEuiHDlnw+4m7z9/jBa38jl1MyQiU+OUVWdcxPYAblqHf9YwPLOP59B7AfvajMDeYoNFIFJR8N0e6ANW1sOTdnfcTky59ZJlR53Xnv1zooGzW+Q1s/Cb7iTEBES81IegukOstXELU446mR55ZYyseDjO6Mjk1MEdom0ETiC7YRRFYB0p0fURkAuoVrvLhwKR60UErQmHOA6grOJ6+xmGvnxZOIM5S8RaQoess8JrPG/XKeIxrPOpUj7qOcHtUigJn+4MSqbOYvemMvc8BUzVAokaFItiFLdw/iPU7L5ietaSmkiTpFfsnkkr9rsRS5mVJIjwo5zbKh6aIerbidO0f389gLlRQtGHHE34zmLArUQBtTsJIcA+3WBPfYfG4sAOZhjObg7zZJNAXEWDnqDd3gH41Qp7FvwbakFygJOUHCJl/4zHWql/K/yhSJyfdty+nMX+QpnOxXzrB4yQcPeg9OnwQryWbDCrxHJi0qHw5dJUtyqs/dCEypdRp8JQMwgp6h07RAVGzHnAyrqrOeNOEZUibzoXQskGKAjrWVc7/+nqBLzf2e8xHZGFFldhjJMdg="
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
 addons:
   coverity_scan:
     project:
-      name: BenoitClaveau/qwebs
+      name: "BenoitClaveau/qwebs"
+      description: "Build submitted via Travis CI"
+    notification_email: benoit.claveau@gmail.com
+    build_command_prepend: ""
+    build_command:   "npm run-script test-cover"
     branch_pattern: coverity_scan
-script: "npm run-script test-cover"
