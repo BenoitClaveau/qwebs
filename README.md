@@ -5,7 +5,7 @@
  [![Build Status][travis-image]][travis-url]
  [![Coverage Status][coveralls-image]][coveralls-url]
  [![NPM Download][npm-image-download]][npm-url]
- [![Dependencies Status][npm-image-download]][david-dm-url]
+ [![Dependencies Status][david-dm-download]][david-dm-url]
 
  Qwebs is designed to be used with Single Page Application framework like [Angular](https://angularjs.org/), [React](https://facebook.github.io/react/) or [Backbone](http://backbonejs.org/).
 
