@@ -4,6 +4,8 @@
  [![NPM][npm-image]][npm-url]
  [![Build Status][travis-image]][travis-url]
  [![Coverage Status][coveralls-image]][coveralls-url]
+ [![NPM Download][npm-image-download]][npm-url]
+
 
  Qwebs is designed to be used with Single Page Application framework like [Angular](https://angularjs.org/), [React](https://facebook.github.io/react/) or [Backbone](http://backbonejs.org/).
 
@@ -234,6 +236,7 @@ $ node.exe "..\node_modules\jasmine-node\bin\jasmine-node" --verbose .
 ```
 
 [npm-image]: https://img.shields.io/npm/v/qwebs.svg
+[npm-image-download]: https://img.shields.io/npm/dm/qwebs.svg
 [npm-url]: https://npmjs.org/package/qwebs
 [travis-image]: https://travis-ci.org/BenoitClaveau/qwebs.svg?branch=master
 [travis-url]: https://travis-ci.org/BenoitClaveau/qwebs
