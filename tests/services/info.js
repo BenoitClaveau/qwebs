@@ -24,7 +24,7 @@ class InfoService {
 	};
 
 	getMessage(request, response) {
-		let source = new MyReadable();
+		let source = new Readable;
 		setTimeout(() => {
 		  source.push({ text: "hello world" });
 		  source.push(null);
