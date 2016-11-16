@@ -13,7 +13,7 @@ describe("routesLoader", () => {
         return Promise.resolve().then(() => {
             
             let $qwebs = new Qwebs({ dirname: __dirname, config: "config.json"});
-            //return $qwebs.load(); //bug with bundle path
+            return $qwebs.load();
             
         }).catch(error => {
             expect(error).toBeNull();

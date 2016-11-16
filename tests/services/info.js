@@ -61,9 +61,9 @@ class InfoService {
 		return response.send({ request: request, content: content });
 	};
 
-        redirect(request, response) {
-                return response.redirect({ url: "get" });
-        }
+	redirect(request, response) {
+			return response.redirect({ url: "get" });
+	}
 };
 
 exports = module.exports = InfoService;
