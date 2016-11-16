@@ -34,7 +34,7 @@ class InfoService {
 	getMessage(request, response) {
 		let source = new MyReadable();
 		setTimeout(() => {
-		  source.push({ text: "hello world" });
+		  source.push(JSON.stringify({ text: "hello world" }));
 		  source.push(null);
 		}, 1000);
 		return response.send({ request: request, stream: source }); //use stream instead of content		
