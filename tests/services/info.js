@@ -32,7 +32,7 @@ class InfoService {
 	};
 
 	getMessage(request, response) {
-		let source = new PassThrough;
+		let source = new MyReadable();
 		setTimeout(() => {
 		  source.push({ text: "hello world" });
 		  source.push(null);
