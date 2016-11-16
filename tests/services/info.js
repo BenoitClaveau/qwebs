@@ -6,6 +6,8 @@
 
 "use strict";
 
+const Readable = require('stream').Readable;
+
 class InfoService {
 	constructor() {	
 	};
@@ -22,10 +24,9 @@ class InfoService {
 	};
 
 	getMessage(request, response) {
-		let content = {
-			text: "hello world"
-		};
-		return response.send({ request: request, content: content });
+		let source = new Readable;
+		setTimeout(() => source.push({ text: "hello world" }), 1000);
+		return response.send({ request: request, stream: source }); //use stream instead of content		
 	};
 	
 	save(request, response) {
