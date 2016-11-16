@@ -9,8 +9,8 @@
 const Readable = require('stream').Readable;
 
 class MyReadable extends Readable {
-  constructor(options) {
-    super(options);
+  constructor() {
+    super({ objectMode: true });
   }
 
   _read() {};
