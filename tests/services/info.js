@@ -24,8 +24,11 @@ class InfoService {
 	};
 
 	getMessage(request, response) {
-		let source = new Readable;
-		setTimeout(() => source.push({ text: "hello world" }), 1000);
+		let source = new MyReadable();
+		setTimeout(() => {
+		  source.push({ text: "hello world" });
+		  source.push(null);
+		}, 1000);
 		return response.send({ request: request, stream: source }); //use stream instead of content		
 	};
 	
