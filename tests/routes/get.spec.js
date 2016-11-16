@@ -21,11 +21,7 @@ describe("get", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
                     }).listen(1337);
                 });
                 
