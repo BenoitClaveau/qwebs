@@ -97,8 +97,20 @@ describe("response", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get", deflate: true }).then(res => {
-                    expect(res.body.whoiam).toBe("I'm Info service.");
+                
+                let request = new Promise((resolve, reject) => {
+                    http.get({ host: 'localhost', path: '/get', port: 1337, headers: { 'accept-encoding': 'deflate' } })
+                      .on('response', response => {
+                          let buffer = "";
+                          response.pipe(zlib.createInflate())
+                            .on('data', data => {
+                                buffer += data.toString();
+                            }).on('end', () => {
+                                resolve(JSON.parse(buffer);
+                            }).on('error', reject);
+                      }).on('error', reject);                    
+                }).then(body => {
+                    expect(res.body.whoiam).toBe("I'm Info service.");   
                 });
                 return Promise.all([promise, request]);
             });
