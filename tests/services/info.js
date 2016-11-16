@@ -6,7 +6,7 @@
 
 "use strict";
 
-const Readable = require('stream').Readable;
+const PassThrough = require('stream').PassThrough;
 
 class InfoService {
 	constructor() {	
@@ -24,7 +24,7 @@ class InfoService {
 	};
 
 	getMessage(request, response) {
-		let source = new Readable;
+		let source = new PassThrough;
 		setTimeout(() => {
 		  source.push({ text: "hello world" });
 		  source.push(null);
