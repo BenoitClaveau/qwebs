@@ -64,7 +64,7 @@ describe("response", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get", gzip: true }).then(res => {
+                let request = $client.get({ url: "http://localhost:1337/get", headers: { 'accept-encoding': 'gzip' }}).then(res => {
                     expect(res.body.whoiam).toBe("I'm Info service.");
                 });
                 return Promise.all([promise, request]);
@@ -98,19 +98,8 @@ describe("response", () => {
                 
                 let $client = $qwebs.resolve("$client");
                 
-                let request = new Promise((resolve, reject) => {
-                    http.get({ host: 'localhost', path: '/get', port: 1337, headers: { 'accept-encoding': 'deflate' } })
-                      .on('response', response => {
-                          let buffer = "";
-                          response.pipe(zlib.createInflate())
-                            .on('data', data => {
-                                buffer += data.toString();
-                            }).on('end', () => {
-                                resolve(JSON.parse(buffer);
-                            }).on('error', reject);
-                      }).on('error', reject);                    
-                }).then(body => {
-                    expect(res.body.whoiam).toBe("I'm Info service.");   
+                let request = $client.get({ url: "http://localhost:1337/get", headers: { 'accept-encoding': 'deflate' }}).then(res => {
+                    expect(res.body.whoiam).toBe("I'm Info service.");
                 });
                 return Promise.all([promise, request]);
             });
