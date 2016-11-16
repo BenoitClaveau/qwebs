@@ -75,7 +75,7 @@ describe("response", () => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
             
             $qwebs.inject("$info", "./info");
-            $qwebs.get("/get", "$info", "getMessage");
+            $qwebs.get("/messages", "$info", "getMessages");
             
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
@@ -85,8 +85,8 @@ describe("response", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get", gzip: true, headers: { 'accept-encoding': 'gzip' }}).then(res => {
-                    expect(res.body.text).toBe("hello world");
+                let request = $client.get({ url: "http://localhost:1337/messages", gzip: true, headers: { 'accept-encoding': 'gzip' }}).then(res => {
+                    expect(res.body[0].text).toBe("hello world");
                 });
                 return Promise.all([promise, request]);
             });
@@ -97,7 +97,6 @@ describe("response", () => {
             done();
         });
     });
-
 
     it("deflate", done => {
         let server = null;
@@ -127,6 +126,36 @@ describe("response", () => {
             done();
         });
     });
+
+    it("deflate stream", done => {
+        let server = null;
+        return Promise.resolve().then(() => {
+            let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
+            
+            $qwebs.inject("$info", "./info");
+            $qwebs.get("/messages", "$info", "getMessages");
+            
+            return $qwebs.load().then(() => {
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
+                    }).listen(1337);
+                });
+                
+                let $client = $qwebs.resolve("$client");
+                let request = $client.get({ url: "http://localhost:1337/messages", gzip: true, headers: { 'accept-encoding': 'deflate' }}).then(res => {
+                    expect(res.body[0].text).toBe("hello world");
+                });
+                return Promise.all([promise, request]);
+            });
+        }).catch(error => {
+            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+        }).then(() => {
+            if (server) server.close();
+            done();
+        });
+    });
+
 
     it("etag", done => {
         let server = null;

@@ -115,7 +115,7 @@ describe("router", () => {
             
             $qwebs.inject("$info", "./services/info");
             $qwebs.get("/info", "$info", "getInfo");
-            $qwebs.get("/*", "$info", "getMessage");
+            $qwebs.get("/*", "$info", "getMessages");
 
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
@@ -148,7 +148,7 @@ describe("router", () => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
             
             $qwebs.inject("$info", "./services/info");
-            $qwebs.get("/*", "$info", "getMessage");
+            $qwebs.get("/*", "$info", "getMessages");
             $qwebs.get("/info", "$info", "getInfo");
 
             return $qwebs.load().then(() => {
@@ -206,7 +206,7 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
-            item.register("$info", "getMessage");
+            item.register("$info", "getMessages");
             item.load(mock.injector.resolve("$qwebs"));
             
             item = mock.router.get("/*/*");
@@ -231,7 +231,7 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
-            item.register("$info", "getMessage");
+            item.register("$info", "getMessages");
 
             item = mock.router.get("/info");
             item.register("$info", "getInfo");
