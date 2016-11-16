@@ -6,7 +6,15 @@
 
 "use strict";
 
-const PassThrough = require('stream').PassThrough;
+const Readable = require('stream').Readable;
+
+class MyReadable extends Readable {
+  constructor(options) {
+    super(options);
+  }
+
+  _read() {};
+}
 
 class InfoService {
 	constructor() {	
