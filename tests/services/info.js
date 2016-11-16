@@ -33,10 +33,14 @@ class InfoService {
 
 	getMessage(request, response) {
 		let source = new MyReadable();
+		console.log("getMessage readeable created");
 		setTimeout(() => {
+		  console.log("push hello world");
 		  source.push({ text: "hello world" });
+		  console.log("push null")
 		  source.push(null);
 		}, 1000);
+		console.log("response.send with stream");
 		return response.send({ request: request, stream: source }); //use stream instead of content		
 	};
 	
