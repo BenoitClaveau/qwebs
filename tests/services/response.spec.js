@@ -22,11 +22,7 @@ describe("response", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
                     }).listen(1337);
                 });
                 
@@ -55,16 +51,12 @@ describe("response", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get", headers: { 'accept-encoding': 'gzip' }}).then(res => {
+                let request = $client.get({ url: "http://localhost:1337/get", gzip: true, headers: { 'accept-encoding': 'gzip' }}).then(res => {
                     expect(res.body.whoiam).toBe("I'm Info service.");
                 });
                 return Promise.all([promise, request]);
@@ -88,17 +80,12 @@ describe("response", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                
-                let request = $client.get({ url: "http://localhost:1337/get", headers: { 'accept-encoding': 'deflate' }}).then(res => {
+                let request = $client.get({ url: "http://localhost:1337/get", gzip: true, headers: { 'accept-encoding': 'deflate' }}).then(res => {
                     expect(res.body.whoiam).toBe("I'm Info service.");
                 });
                 return Promise.all([promise, request]);
@@ -122,11 +109,7 @@ describe("response", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
                     }).listen(1337);
                 });
                 
