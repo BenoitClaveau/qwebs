@@ -18,9 +18,10 @@ describe("assetsLoader", () => {
             let $router = $qwebs.resolve("$router");
             
             return new AssetsLoader($qwebs, $config, $router).load().then(assets => {
-                expect(assets.length).toEqual(2);            
-                expect(assets[0].route).toEqual("/assets/user.svg");
-                expect(assets[1].route).toEqual("/main.html");
+                expect(assets.length).toEqual(3);
+                expect(assets[0].route).toEqual("/app.appcache");
+                expect(assets[1].route).toEqual("/assets/user.svg");
+                expect(assets[2].route).toEqual("/main.html");
             });
             
         }).catch(error => {
@@ -86,8 +87,7 @@ describe("assetsLoader", () => {
                 
                 let $client = $qwebs.resolve("$client");
                 let request = $client.get({ url: "http://localhost:1337/app.appcache"}).then(res => {
-                    console.log(res)
-                    expect(res).toBeDefined();
+                    expect(res.body.split('\n')[0]).toEqual('CACHE MANIFEST');
                 });
                 return Promise.all([promise, request]);
             });
