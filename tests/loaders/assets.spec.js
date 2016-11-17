@@ -71,4 +71,31 @@ describe("assetsLoader", () => {
             done();
         });
     });
+    
+    it("Invoke cache-manifest", done => {
+        let server = null;
+        return Promise.resolve().then(() => {
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
+            
+            return $qwebs.load().then(() => {
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
+                    }).listen(1337);
+                });
+                
+                let $client = $qwebs.resolve("$client");
+                let request = $client.get({ url: "http://localhost:1337/assets/user.svg", headers: { 'content-type': 'cache-manifest' }}).then(res => {
+                    console.log(res)
+                    expect(res).toBeDefined();
+                });
+                return Promise.all([promise, request]);
+            });
+        }).catch(error => {
+            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+        }).then(() => {
+            if (server) server.close();
+            done();
+        });
+    });
 });
