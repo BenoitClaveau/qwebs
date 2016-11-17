@@ -85,7 +85,7 @@ describe("assetsLoader", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/assets/app.appcache"}).then(res => {
+                let request = $client.get({ url: "http://localhost:1337/app.appcache"}).then(res => {
                     console.log(res)
                     expect(res).toBeDefined();
                 });
