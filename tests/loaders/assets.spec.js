@@ -85,7 +85,7 @@ describe("assetsLoader", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/assets/user.svg", headers: { 'content-type': 'cache-manifest' }}).then(res => {
+                let request = $client.get({ url: "http://localhost:1337/assets/app.appcache"}).then(res => {
                     console.log(res)
                     expect(res).toBeDefined();
                 });
