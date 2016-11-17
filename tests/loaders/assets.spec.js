@@ -7,6 +7,7 @@
 
 const Qwebs = require("../../lib/qwebs");
 const AssetsLoader = require("../../lib/loaders/assets");
+const http = require("http");
 
 describe("assetsLoader", () => {
 
@@ -41,6 +42,32 @@ describe("assetsLoader", () => {
         }).catch(error => {
             expect(error).toBeNull();
         }).then(() => {
+            done();
+        });
+    });
+    
+    it("Invoke", done => {
+        let server = null;
+        return Promise.resolve().then(() => {
+            let $qwebs = new Qwebs({ dirname: __dirname, config: { folder: "public" }});
+            
+            return $qwebs.load().then(() => {
+                let promise = new Promise((resolve, reject) => {
+                    server = http.createServer((request, response) => {
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
+                    }).listen(1337);
+                });
+                
+                let $client = $qwebs.resolve("$client");
+                let request = $client.get({ url: "http://localhost:1337/assets/user.svg" }).then(res => {
+                    expect(res).toBeDefined();
+                });
+                return Promise.all([promise, request]);
+            });
+        }).catch(error => {
+            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+        }).then(() => {
+            if (server) server.close();
             done();
         });
     });
