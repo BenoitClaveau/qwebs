@@ -186,7 +186,7 @@ const Qwebs = require('qwebs');
 
 let qwebs = new Qwebs();
 qwebs.inject("$app", "./applicationservice");
-qwebs.get('/', "$app", "getHelloworld"); 
+qwebs.get('/', "$app", "get"); 
 
 qwebs.load().then(() => {
     http.createServer((request, response) => {
