@@ -14,6 +14,7 @@
   * [Promises](https://www.npmjs.com/package/q)
   * Routing
   * Dependency injection
+  * No middleware
   * Compress response
   * Avoid disk access at runtime
   * Html, css and javascript minification
@@ -38,6 +39,7 @@ We use a tree data structure to represent all routes.
 ```js
 qwebs.get("/user/:id", "$users", "get"); 
 qwebs.post("/user", "$users", "save");
+...
 ```
 
 ### Dependency injection
@@ -151,15 +153,22 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
 ## Define your service
 
 ```js
-
 class ApplicationService {
     constructor($config) {
         if ($config.verbose) console.log("ApplicationService created.");
     };
 
-    getHelloworld(request, response) {
-        let content = { message: "Hello World" };
+    get(request, response) {
+        let content = { message: "Hello World" };   //javascript object
         return response.send({ request: request, content: content });
+    };
+
+    stream(request, response, reject) {
+        let stream = fs.createReadStream('file.txt')  //stream
+                       .on("error", reject)           //reject Promise
+                       .pipe(new ToUpperCase())       //transform
+                       .on("error", reject)           //reject Promise
+        return response.send({ request: request, stream: stream });
     };
 };
 
@@ -181,7 +190,7 @@ qwebs.get('/', "$app", "getHelloworld");
 
 qwebs.load().then(() => {
     http.createServer((request, response) => {
-        return qwebs.invoke(request, response).catch(error => {
+        qwebs.invoke(request, response).catch(error => {
             console.log(error);
         });
     }).listen(1337, "127.0.0.1");
