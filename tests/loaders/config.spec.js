@@ -38,27 +38,13 @@ describe("configLoader", () => {
         });
     });
     
-    it("failed to read file", done => {
-        return Promise.resolve().then(() => {
-             let $qwebs = {
-                root: __dirname
-            };
-            let config = new ConfigLoader($qwebs).create("config.error.json2");
-            fail();
-        }).catch(error => {
-            expect(error.stack).toEqual("Failed to read the configuration file.");
-        }).then(() => {
-            done();
-        });
-    });
-    
-    it("failed to read file", done => {
+    it("failed to parse file", done => {
         return Promise.resolve().then(() => {
              let $qwebs = {
                 root: __dirname
             };
             let config = new ConfigLoader($qwebs).create("config.error.json");
-            fail();
+            done.fail();
         }).catch(error => {
             expect(error.stack).toEqual("Failed to parse the configuration file.");
         }).then(() => {
@@ -72,7 +58,7 @@ describe("configLoader", () => {
                 root: __dirname
             };
             let config = new ConfigLoader($qwebs).create(function() { folder: "public1" });
-            fail();
+            done.fail();
         }).catch(error => {
             expect(error.message).toEqual("Configuration type is not managed.");
         }).then(() => {
