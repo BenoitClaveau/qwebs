@@ -27,4 +27,20 @@ describe("walk", () => {
             done();
         });
     });
+
+    it("exclude", done => {
+        
+        return Promise.resolve().then(() => {
+            
+            let file = walk.get(__dirname, ["stream","contentType.spec.js"]);
+            expect(files.length).toEqual(2);
+            expect(files[0].slice(__dirname.length)).toEqual("/pathRegex.spec.js");
+            expect(files[1].slice(__dirname.length)).toEqual("/walk.spec.js");
+        })
+        .catch(error => {
+            expect(error.stack).toBeNull();
+        }).then(() => {
+            done();
+        });
+    });
 });
