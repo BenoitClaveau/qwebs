@@ -31,7 +31,6 @@ describe("configLoader", () => {
             };
             let config = new ConfigLoader($qwebs).create("config.json");
             expect(config.folder).toEqual("public2");
-            let config = new ConfigLoader($qwebs).create("config.json");
         }).catch(error => {
             expect(error.stack).toBeNull();
         }).then(() => {
