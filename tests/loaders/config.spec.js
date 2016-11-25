@@ -47,8 +47,6 @@ describe("configLoader", () => {
             done.fail();
         }).catch(error => {
             expect(error.message).not.toBeUndefined();
-
-).toEqual("Failed to parse the configuration file.");
         }).then(() => {
             done();
         });
