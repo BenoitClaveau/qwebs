@@ -46,7 +46,9 @@ describe("configLoader", () => {
             let config = new ConfigLoader($qwebs).create("config.error.json");
             done.fail();
         }).catch(error => {
-            expect(error.stack).toEqual("Failed to parse the configuration file.");
+            expect(error.message).not.toBeUndefined();
+
+).toEqual("Failed to parse the configuration file.");
         }).then(() => {
             done();
         });
@@ -58,9 +60,9 @@ describe("configLoader", () => {
                 root: __dirname
             };
             let config = new ConfigLoader($qwebs).create(function() { folder: "public1" });
-            done.fail();
+            expect(true).toEqual(false);
         }).catch(error => {
-            expect(error.message).toEqual("Configuration type is not managed.");
+            expect(error.message).not.toBeUndefined();
         }).then(() => {
             done();
         });
