@@ -253,7 +253,10 @@ describe("router", () => {
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/";
-            mock.request.method = "OPTIONS"
+            mock.request.method = "OPTIONS";
+            mock.response.send = function(options) {
+                return options;
+            }
             
             return mock.router.invoke(mock.request, mock.response).then(res => {
                 console.log(res);
