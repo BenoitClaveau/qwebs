@@ -44,7 +44,7 @@ describe("configLoader", () => {
                 root: __dirname
             };
             let config = new ConfigLoader($qwebs).create("config.error.json");
-            done.fail();
+            expect(true).toEqual(false);
         }).catch(error => {
             expect(error.message).not.toBeUndefined();
         }).then(() => {
