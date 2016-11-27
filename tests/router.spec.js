@@ -243,4 +243,26 @@ describe("router", () => {
             done();
         });
     });
+    
+    it("option", done => {
+        return init().then(mock => {
+            mock.injector.inject("$info", "./services/info.js");
+            
+            let item = mock.router.get("/*");
+            item.register("$info", "getMessages");
+            item.load(mock.injector.resolve("$qwebs"));
+            
+            mock.request.url = "/";
+            mock.request.method = "OPTIONS"
+            
+            return mock.router.invoke(mock.request, mock.response).then(res => {
+                console.log(res);
+                expect(res).toBe("I'm Info service.");
+            });
+        }).catch(error => {
+            expect(error.stack).toBeNull();
+        }).then(() => {
+            done();
+        });
+    });
 });
