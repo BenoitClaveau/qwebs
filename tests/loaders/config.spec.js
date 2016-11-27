@@ -38,6 +38,20 @@ describe("configLoader", () => {
         });
     });
     
+    it("failed to read file", done => {
+        return Promise.resolve().then(() => {
+             let $qwebs = {
+                root: __dirname
+            };
+            let config = new ConfigLoader($qwebs).create("config0.json");
+            expect(true).toEqual(false);
+        }).catch(error => {
+            expect(error.message).not.toBeUndefined();
+        }).then(() => {
+            done();
+        });
+    });
+    
     it("failed to parse file", done => {
         return Promise.resolve().then(() => {
              let $qwebs = {
