@@ -259,8 +259,8 @@ describe("router", () => {
             }
             
             return mock.router.invoke(mock.request, mock.response).then(res => {
-                console.log(res);
-                expect(res).toBe("I'm Info service.");
+                expect(res.statusCode).toBe(200);
+                expect(res.header.Allow).toBe("GET");
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
