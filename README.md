@@ -11,20 +11,54 @@
 
 ## Features
 
-  * [Promises](https://www.npmjs.com/package/q)
-  * Routing
-  * Dependency injection
-  * No middleware
-  * Compress response
-  * Avoid disk access at runtime
-  * Html, css and javascript minification
+  * [Promise](#promise) 
+  * [Separate routes and services](#service) 
+  * [Dependency injection](#di) 
+  * [Compression & minification](#bundle) 
+  * 0 disk access at runtime
   * Bundle css, [sass](https://www.npmjs.com/package/node-sass)
-  
-### Promises
 
-  * Easier to read
-  * Easier to maintain in the future
-  * Easier error handling
+<a name="service"/>
+## Define your service
+
+```js
+class ApplicationService {
+    constructor($config) {
+        if ($config.verbose) console.log("ApplicationService created.");
+    };
+
+    get(request, response) {
+        let content = { message: "Hello World" };   //javascript object
+        return response.send({ request: request, content: content });
+    };
+
+    stream(request, response, reject) {
+        let stream = fs.createReadStream('file.txt')  //stream
+                       .on("error", reject)           //reject Promise
+                       .pipe(new ToUpperCase())       //transform
+                       .on("error", reject)           //reject Promise
+        return response.send({ request: request, stream: stream });
+    };
+};
+
+exports = module.exports = ApplicationService;
+```
+
+<a name="server"/>
+## Create your server
+
+```js
+const Qwebs = require('qwebs');
+
+let qwebs = new Qwebs();
+qwebs.load().then(() => {
+    http.createServer((request, response) => {
+        qwebs.invoke(request, response).catch(error => {
+            console.log(error);
+        });
+    }).listen(1337, "127.0.0.1");
+});
+```
 
 ### Routing
 
@@ -42,6 +76,7 @@ qwebs.post("/user", "$users", "save");
 ...
 ```
 
+<a name="di"/>
 ### Dependency injection
 
 Just declare the service name in your constructor.
@@ -114,6 +149,7 @@ qwebs.inject("$response", "./services/myresponse");
 All assets are loaded in memory at startup.
 Uploaded images are not saved in temporary files. $qjimp service is designed to read, manipulate image stream.
 
+<a name="bundle"/>
 ### Bundle (bundle.json)
 
 Create your own css or js bundle.
@@ -150,54 +186,13 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
 </html>
 ```
 
-<a name="service"/>
-## Define your service
+<a name="promise"/>
+## Promise
 
-```js
-class ApplicationService {
-    constructor($config) {
-        if ($config.verbose) console.log("ApplicationService created.");
-    };
+  * Easier to read
+  * Easier to maintain in the future
+  * Easier error handling
 
-    get(request, response) {
-        let content = { message: "Hello World" };   //javascript object
-        return response.send({ request: request, content: content });
-    };
-
-    stream(request, response, reject) {
-        let stream = fs.createReadStream('file.txt')  //stream
-                       .on("error", reject)           //reject Promise
-                       .pipe(new ToUpperCase())       //transform
-                       .on("error", reject)           //reject Promise
-        return response.send({ request: request, stream: stream });
-    };
-};
-
-exports = module.exports = ApplicationService;
-```
-
-## Create your server
-
-  * inject(service, location): inject your service, define a service name and the location of your package.
-  * load(): resolve all services.
-  * invoke(request, response): delegate the response to Qwebs.
-
-```js
-const Qwebs = require('qwebs');
-
-let qwebs = new Qwebs();
-qwebs.inject("$app", "./applicationservice");
-qwebs.get('/', "$app", "get"); 
-
-qwebs.load().then(() => {
-    http.createServer((request, response) => {
-        qwebs.invoke(request, response).catch(error => {
-            console.log(error);
-        });
-    }).listen(1337, "127.0.0.1");
-});
-```
-  
 ## Services
 
   * $config: your configuration.
