@@ -1,5 +1,5 @@
 # Qwebs
- Light and optimized [promise](https://www.npmjs.com/package/q) web server.
+ Light and optimized web server with Promise, DI and Bundle.
 
  [![NPM][npm-image]][npm-url]
  [![Build Status][travis-image]][travis-url]
@@ -7,7 +7,7 @@
  [![NPM Download][npm-image-download]][npm-url]
  [![Dependencies Status][david-dm-image]][david-dm-url]
 
- Qwebs is designed to be used with Single Page Application framework like [Angular](https://angularjs.org/), [React](https://facebook.github.io/react/) or [Backbone](http://backbonejs.org/).
+ Discover our [starter kit](https://www.npmjs.com/package/qwebs-starter-kit-polymer) with [Polymer](https://www.polymer-project.org/).
 
 ## Features
 
@@ -15,25 +15,28 @@
   * [Separate routes and services](#service) 
   * [Dependency injection](#di) 
   * [Compression & minification](#bundle) 
-  * 0 disk access at runtime
-  * Bundle css, [sass](https://www.npmjs.com/package/node-sass)
+  * [0 disk access at runtime](#disk) 
+  * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
 
 <a name="service"/>
 ## Define your service
 
 ```js
 class ApplicationService {
+    //$config service is automatically injected
     constructor($config) {
         if ($config.verbose) console.log("ApplicationService created.");
     };
 
+    //send javascript object
     get(request, response) {
-        let content = { message: "Hello World" };   //javascript object
+        let content = { message: "Hello World" };   
         return response.send({ request: request, content: content });
     };
 
+    //send stream
     stream(request, response, reject) {
-        let stream = fs.createReadStream('file.txt')  //stream
+        let stream = fs.createReadStream('file.txt')
                        .on("error", reject)           //reject Promise
                        .pipe(new ToUpperCase())       //transform
                        .on("error", reject)           //reject Promise
@@ -54,13 +57,14 @@ let qwebs = new Qwebs();
 qwebs.load().then(() => {
     http.createServer((request, response) => {
         qwebs.invoke(request, response).catch(error => {
-            console.log(error);
+            response.send({ statusCode: 500, content: error });
         });
     }).listen(1337, "127.0.0.1");
 });
 ```
 
-### Routing
+<a name="routing"/>
+## Routing
 
 Our goal is to find the final route as fast as possible.
 We use a tree data structure to represent all routes.
@@ -77,7 +81,7 @@ qwebs.post("/user", "$users", "save");
 ```
 
 <a name="di"/>
-### Dependency injection
+## Dependency injection
 
 Just declare the service name in your constructor.
 
@@ -94,7 +98,8 @@ Qwebs will create your service with its dependencies.
 qwebs.inject("$user", "./services/user");
 ```
 
-### Response
+<a name="response"/>
+## Response
 
 Your response is automatically compressed with Gzip or Deflate.
 
@@ -111,6 +116,7 @@ Your response is automatically compressed with Gzip or Deflate.
    
 $response sevice could be overridden
 
+##### override response.send
 ```js
 //services/myresponse.js
 "use strict";
@@ -124,13 +130,13 @@ class MyResponseService extends ResponseService {
     };
 
     send(response, data) {
-        return Promise.resolve().then(() => {
-            if (data == undefined) throw new DataError({ message: "No data." });
-            if (data.header == undefined) data.header = {};
-            
-            data.header["Cache-Control"] = data.header["Cache-Control"] || "private";
-            data.header["Expires"] = data.header["Expires"] || new Date(Date.now() + 3000).toUTCString(); /* 1000 * 3 (3 secondes)*/
-            return super.send(response, data);
+        return new Promise((resolve, reject) => {
+            if (data == undefined) reject(new DataError({ message: "No data." }));
+
+            data.header = data.header || {};
+            data.header["Cache-Control"] = "private";
+            data.header["Expires"] = new Date(Date.now() + 3000).toUTCString();
+            return super.send(response, data).then(resolve).catch(reject);
         });
     };
 };
@@ -144,13 +150,14 @@ Replace $response service in $injector before load Qwebs.
 qwebs.inject("$response", "./services/myresponse");
 ```
 
-### Avoid disk access at runtime
+<a name="disk"/>
+## Avoid disk access at runtime
 
 All assets are loaded in memory at startup.
 Uploaded images are not saved in temporary files. $qjimp service is designed to read, manipulate image stream.
 
 <a name="bundle"/>
-### Bundle (bundle.json)
+## Bundle (bundle.json)
 
 Create your own css or js bundle.
 Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. You don't need to compile your sass via an external program.
