@@ -7,6 +7,7 @@
 
 const Qwebs = require("../../lib/qwebs");
 const http = require("http");
+const request = require('request');
 
 describe("post", () => {
 
@@ -17,11 +18,12 @@ describe("post", () => {
             
             $qwebs.inject("$info", "../services/info");
             $qwebs.delete("/delete", "$info", "delete");
-            
+
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
                         return $qwebs.invoke(request, response).then(res => {
+                            expect(res.status).toBe("deleted");
                             resolve();
                         }).catch(error => {
                             reject(error);
@@ -30,10 +32,8 @@ describe("post", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.delete({ url: "http://localhost:1337/delete" }).then(res => {
-                    expect(res.body.status).toBe("deleted");
-                });
-                return Promise.all([promise, request]);
+                $client.delete({ url: "http://localhost:1337/delete", json: { login: "test" }});
+                return promise;
             });
         }).catch(error => {
             expect(error.stack).toBeNull();

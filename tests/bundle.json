@@ -1,6 +1,0 @@
-{
-	"app.css": [
-		"loaders/web/master.css",
-		"loaders/web/components.css"
-	]
-}

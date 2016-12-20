@@ -7,6 +7,7 @@
 
 const Qwebs = require("../../lib/qwebs");
 const http = require("http");
+const request = require('request');
 
 describe("get", () => {
 
@@ -21,15 +22,18 @@ describe("get", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(resolve).catch(reject);
+                        return $qwebs.invoke(request, response).then(res => {
+                            expect(res.whoiam).toBe("I'm Info service.");
+                            resolve();
+                        }).catch(error => {
+                            reject(error);
+                        });
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get" }).then(res => {
-                    expect(res.body.whoiam).toBe("I'm Info service.");
-                });
-                return Promise.all([promise, request]);
+                $client.get({ url: "http://localhost:1337/get" });
+                return promise;
             });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();

@@ -5,8 +5,6 @@
  */
 "use strict";
 
-const http = require("http");
-const Qwebs = require("../lib/qwebs");
 const Router = require('../lib/router');
 const Injector = require("../lib/injector");
 
@@ -43,145 +41,107 @@ describe("router", () => {
     };
 
     it("single route", done => {
-        let server = null;
-        return Promise.resolve().then(() => {
-            let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
+        return init().then(mock => {
+            mock.injector.inject("$info", "./services/info.js");
             
-            $qwebs.inject("$info", "./services/info");
-            $qwebs.get("/get", "$info", "getInfo");
-
-            return $qwebs.load().then(() => {
-                let promise = new Promise((resolve, reject) => {
-                    server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
-                    }).listen(1337);
-                });
-                
-                let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get" }).then(res => {
-                    expect(res.body.whoiam).toBe("I'm Info service.");
-                });
-                return Promise.all([promise, request]);
+            let item = mock.router.get("/info");
+            item.register("$info", "getInfo");
+            
+            item.load(mock.injector.resolve("$qwebs"));
+            
+            mock.request.url = "/info";
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
+               expect(res.whoiam).toBe("I'm Info service.");
             });
+            
         }).catch(error => {
-            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+            expect(error.stack).toBeNull();
         }).then(() => {
-            if (server) server.close();
             done();
         });
     });
     
     it("route *", done => {
-        let server = null;
-        return Promise.resolve().then(() => {
-            let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
+        return init().then(mock => {
+            mock.injector.inject("$info", "./services/info.js");
             
-            $qwebs.inject("$info", "./services/info");
-            $qwebs.get("/*", "$info", "getInfo");
-
-            return $qwebs.load().then(() => {
-                let promise = new Promise((resolve, reject) => {
-                    server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
-                    }).listen(1337);
-                });
+            let item = mock.router.get("/*");
+            item.register("$info", "getInfo");
+            item.load(mock.injector.resolve("$qwebs"));
+            
+            mock.request.url = "/info";
+            
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
+                expect(res.whoiam).toBe("I'm Info service.");
                 
-                let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/info" }).then(res => {
-                    expect(res.body.whoiam).toBe("I'm Info service.");
+                return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
+                    expect(res.whoiam).toBe("I'm Info service.");
                 });
-                return Promise.all([promise, request]);
             });
+            
         }).catch(error => {
-            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+            expect(error.stack).toBeNull();
         }).then(() => {
-            if (server) server.close();
             done();
         });
     });
-
+    
     it("multiple", done => {
-        let server = null;
-        return Promise.resolve().then(() => {
-            let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
+        return init().then(mock => {
+            mock.injector.inject("$info", "./services/info.js");
             
-            $qwebs.inject("$info", "./services/info");
-            $qwebs.get("/info", "$info", "getInfo");
-            $qwebs.get("/*", "$info", "getMessages");
-
-            return $qwebs.load().then(() => {
-                let promise = new Promise((resolve, reject) => {
-                    server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
-                    }).listen(1337);
-                });
-                
-                let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/info" }).then(res => {
-                    expect(res.body.whoiam).toBe("I'm Info service.");
-                });
-                return Promise.all([promise, request]);
+            let item = mock.router.get("/info");
+            item.register("$info", "getInfo");
+            item.load(mock.injector.resolve("$qwebs"));
+            
+            item = mock.router.get("/*");
+            item.register("$info", "getMessage");
+            item.load(mock.injector.resolve("$qwebs"));
+            
+            mock.request.url = "/info";
+            
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
+                expect(res.whoiam).toBe("I'm Info service.");
             });
+            
         }).catch(error => {
-            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+            expect(error.stack).toBeNull();
         }).then(() => {
-            if (server) server.close();
             done();
         });
     });
     
     it("multiple invert declaration", done => {
-        let server = null;
-        return Promise.resolve().then(() => {
-            let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
+        return init().then(mock => {
+            mock.injector.inject("$info", "./services/info.js");
             
-            $qwebs.inject("$info", "./services/info");
-            $qwebs.get("/*", "$info", "getMessages");
-            $qwebs.get("/info", "$info", "getInfo");
-
-            return $qwebs.load().then(() => {
-                let promise = new Promise((resolve, reject) => {
-                    server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        });
-                    }).listen(1337);
-                });
-                
-                let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/info" }).then(res => {
-                    expect(res.body.whoiam).toBe("I'm Info service.");
-                });
-                return Promise.all([promise, request]);
+            let item = mock.router.get("/*");
+            item.register("$info", "getMessage");
+            item.load(mock.injector.resolve("$qwebs"));
+            
+            item = mock.router.get("/info");
+            item.register("$info", "getInfo");
+            item.load(mock.injector.resolve("$qwebs"));
+            
+            mock.request.url = "/info";
+            
+            return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
+                expect(res.whoiam).toBe("I'm Info service.");
             });
+            
         }).catch(error => {
-            expect(error.stack + JSON.stringify(error.data)).toBeNull();
+            expect(error.stack).toBeNull();
         }).then(() => {
-            if (server) server.close();
             done();
         });
     });
-            
+    
     it("multiple redirection", done => {
         return init().then(mock => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
-            item.register("$info", "whoiam");
+            item.register("$info", "getMessage");
             item.load(mock.injector.resolve("$qwebs"));
             
             item = mock.router.get("/info");
@@ -191,7 +151,7 @@ describe("router", () => {
             mock.request.url = "/info";
             
             return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
-                expect(res).toBe("I'm Info service.");
+                expect(res.text).toBe("hello world");
             });
             
         }).catch(error => {
@@ -206,17 +166,17 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
-            item.register("$info", "getMessages");
+            item.register("$info", "getMessage");
             item.load(mock.injector.resolve("$qwebs"));
             
             item = mock.router.get("/*/*");
-            item.register("$info", "whoiam");
+            item.register("$info", "getInfo");
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/test/3";
             
             return mock.router.invoke(mock.request, mock.response).then(res => {
-                expect(res).toBe("I'm Info service.");
+                expect(res.whoiam).toBe("I'm Info service.");
             });
             
         }).catch(error => {
@@ -231,7 +191,7 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
-            item.register("$info", "getMessages");
+            item.register("$info", "getMessage");
 
             item = mock.router.get("/info");
             item.register("$info", "getInfo");
@@ -239,31 +199,6 @@ describe("router", () => {
             fail();
         }).catch(error => {
             expect(error.message).toEqual("Multiple end route.");
-        }).then(() => {
-            done();
-        });
-    });
-    
-    it("option", done => {
-        return init().then(mock => {
-            mock.injector.inject("$info", "./services/info.js");
-            
-            let item = mock.router.get("/*");
-            item.register("$info", "getMessages");
-            item.load(mock.injector.resolve("$qwebs"));
-            
-            mock.request.url = "/";
-            mock.request.method = "OPTIONS";
-            mock.response.send = function(options) {
-                return options;
-            }
-            
-            return mock.router.invoke(mock.request, mock.response).then(res => {
-                expect(res.statusCode).toBe(200);
-                expect(res.header.Allow).toBe("GET");
-            });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
         }).then(() => {
             done();
         });

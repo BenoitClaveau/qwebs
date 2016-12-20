@@ -7,6 +7,7 @@
 
 const Qwebs = require("../../lib/qwebs");
 const http = require("http");
+const request = require('request');
 const fs = require('fs');
 
 describe("post", () => {
@@ -96,10 +97,8 @@ describe("post", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.post({ url: "http://localhost:1337/save" }).then(res => {
-                    expect(res.body.status).toBe("saved");
-                });
-                return Promise.all([promise, request]);
+                $client.post({ url: "http://localhost:1337/save", form: { login: "test" }});
+                return promise;
             });
         }).catch(error => {
             expect(error.stack).toBeNull();

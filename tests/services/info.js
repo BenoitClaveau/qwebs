@@ -6,16 +6,6 @@
 
 "use strict";
 
-const Readable = require('stream').Readable;
-
-class MyReadable extends Readable {
-  constructor() {
-    super({ objectMode: true });
-  }
-
-  _read() {};
-}
-
 class InfoService {
 	constructor() {	
 	};
@@ -25,45 +15,34 @@ class InfoService {
 	};
 
 	getInfo(request, response) {
-		let content = {
+		return {
 			whoiam: this.whoiam()
 		};
-		return response.send({ request: request, content: content });
 	};
 
-	getMessages(request, response) {
-		let source = new MyReadable();
-		setTimeout(() => {
-		  source.push({ text: "hello world" });
-		  source.push(null);
-		}, 1000);
-		return response.send({ request: request, stream: source });	
+	getMessage(request, response) {
+		return {
+			text: "hello world"
+		};
 	};
 	
 	save(request, response) {
-		let content = {
+		return {
 			status: "saved"
 		};
-		return response.send({ request: request, content: content });
 	};
 	
 	update(request, response) {
-		let content = {
+		return {
 			status: "updated"
 		};
-		return response.send({ request: request, content: content });
 	};
 	
 	delete(request, response) {
-		let content = {
+		return {
 			status: "deleted"
 		};
-		return response.send({ request: request, content: content });
 	};
-
-	redirect(request, response) {
-			return response.redirect({ url: "get" });
-	}
 };
 
 exports = module.exports = InfoService;

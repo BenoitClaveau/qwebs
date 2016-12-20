@@ -19,4 +19,10 @@ InfoService.prototype.getInfo = function(request, response) {
 	};
 };
 
+InfoService.prototype.getMessage = function(request, response) {
+	return {
+		text: "hello world"
+	};
+};
+
 exports = module.exports = InfoService;

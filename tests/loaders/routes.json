@@ -3,9 +3,6 @@
         { "name": "$info", "location": "../services/info"}
     ],
     "locators": [
-        { "get": "/info", "service": "$info", "method": "getInfo" },
-        { "post": "/save", "service": "$info", "method": "save" },
-        { "put": "/update", "service": "$info", "method": "update" },
-        { "delete": "/delete", "service": "$info", "method": "delete" }
+        { "get": "/info", "service": "$info", "method": "getInfo" }
     ]
 }

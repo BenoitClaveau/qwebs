@@ -5,28 +5,26 @@
  */
 "use strict";
 
-const contentType = require('../../lib/utils/contentType');
+const contentTypeExtractor = require('../../lib/utils/contentType');
 
 describe("contentType", () => {
 
     it("getFromExt", done => {
         
         return Promise.resolve().then(() => {     
-            expect(contentType.getFromExt(".json")).toEqual("application/json");
-            expect(contentType.getFromExt(".png")).toEqual("image/png");
-            expect(contentType.getFromExt(".jpg")).toEqual("image/jpg");
-            expect(contentType.getFromExt(".gif")).toEqual("image/gif");
-            expect(contentType.getFromExt(".svg")).toEqual("image/svg+xml");
-            expect(contentType.getFromExt(".js")).toEqual("application/javascript");
-            expect(contentType.getFromExt(".html")).toEqual("text/html");
-            expect(contentType.getFromExt(".css")).toEqual("text/css");
-            expect(contentType.getFromExt(".ico")).toEqual("image/x-icon");
-            expect(contentType.getFromExt(".ttf")).toEqual("application/x-font-ttf");
-            expect(contentType.getFromExt(".eot")).toEqual("application/vnd.ms-fontobject");
-            expect(contentType.getFromExt(".woff")).toEqual("application/font-woff");
-            expect(contentType.getFromExt(".appcache")).toEqual("text/cache-manifest");
-            expect(contentType.getFromExt(".xml")).toEqual("application/xml");
-            expect(contentType.getFromExt(".txt")).toEqual("text/plain");
+            expect(contentTypeExtractor.getFromExt(".json")).toEqual("application/json");
+            expect(contentTypeExtractor.getFromExt(".png")).toEqual("image/png");
+            expect(contentTypeExtractor.getFromExt(".jpg")).toEqual("image/jpg");
+            expect(contentTypeExtractor.getFromExt(".gif")).toEqual("image/gif");
+            expect(contentTypeExtractor.getFromExt(".svg")).toEqual("image/svg+xml");
+            expect(contentTypeExtractor.getFromExt(".js")).toEqual("application/javascript");
+            expect(contentTypeExtractor.getFromExt(".html")).toEqual("text/html");
+            expect(contentTypeExtractor.getFromExt(".css")).toEqual("text/css");
+            expect(contentTypeExtractor.getFromExt(".ico")).toEqual("image/x-icon");
+            expect(contentTypeExtractor.getFromExt(".ttf")).toEqual("application/x-font-ttf");
+            expect(contentTypeExtractor.getFromExt(".eot")).toEqual("application/vnd.ms-fontobject");
+            expect(contentTypeExtractor.getFromExt(".woff")).toEqual("application/font-woff");
+            expect(contentTypeExtractor.getFromExt(".appcache")).toEqual("text/cache-manifest");
         })
         .catch(error => {
             expect(error.stack).toBeNull();
@@ -38,7 +36,7 @@ describe("contentType", () => {
     it("getFromExt exception", done => {
         
         return Promise.resolve().then(() => {            
-            expect(contentType.getFromExt(".mp3")).toEqual("audio/mpeg");
+            expect(contentTypeExtractor.getFromExt(".mp3")).toEqual("audio/mpeg");
             fail();
         })
         .catch(error => {
