@@ -27,6 +27,8 @@ describe("put", () => {
                             resolve();
                         }).catch(error => {
                             reject(error);
+                        }).then(() => {
+                            response.send({ request: request, statusCode: 500}); //close request
                         });
                     }).listen(1337);
                 });
