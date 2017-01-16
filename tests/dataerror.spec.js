@@ -48,7 +48,7 @@ describe("dataerror", () => {
         return Promise.resolve().then(() => {
             throw new DataError({ data: { value: "33" }});
         }).catch(error => {
-            expect(error.data[0].value).toEqual("33");
+            expect(error.data.value).toEqual("33");
         }).then(() => {
             done();
         });
