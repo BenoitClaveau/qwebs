@@ -25,6 +25,8 @@ describe("contentType", () => {
             expect(contentTypeExtractor.getFromExt(".eot")).toEqual("application/vnd.ms-fontobject");
             expect(contentTypeExtractor.getFromExt(".woff")).toEqual("application/font-woff");
             expect(contentTypeExtractor.getFromExt(".appcache")).toEqual("text/cache-manifest");
+            expect(contentTypeExtractor.getFromExt(".map")).toEqual("application/json");
+            expect(contentTypeExtractor.getFromExt(".md")).toEqual("text/x-markdown");
         })
         .catch(error => {
             expect(error.stack).toBeNull();
