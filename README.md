@@ -9,14 +9,54 @@
 
  Discover our [starter kit](https://www.npmjs.com/package/qwebs-starter-kit-polymer) with [Polymer](https://www.polymer-project.org/).
 
+<a name="server"/>
+## Create your server
+
+```js
+const Qwebs = require('qwebs');
+
+let qwebs = new Qwebs();
+qwebs.load();
+```
+
 ## Features
 
   * [Promise](#promise) 
   * [Separate routes and services](#service) 
   * [Dependency injection](#di) 
+  * [Object oriented programming (OOP)](#oop) 
   * [Compression & minification](#bundle) 
   * [0 disk access at runtime](#disk) 
   * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
+
+<a name="routing"/>
+## Routing
+
+Our goal is to find the final route as fast as possible.
+We use a tree data structure to represent all routes.
+
+  * get(route, service, method)
+  * post(route, service, method)
+  * put(route, service, method)
+  * delete(route, service, method)
+
+```routes.json
+{
+    "services": [
+        { "name": "$user", "location": "../services/info"}
+    ],
+    "locators": [
+        { "get": "/user/:id", "service": "$user", "method": "get" },
+        { "post": "/user", "service": "$user", "method": "save" }
+    ]
+}
+```
+
+```or server.js
+qwebs.get("/user/:id", "$users", "get"); 
+qwebs.post("/user", "$users", "save");
+...
+```
 
 <a name="service"/>
 ## Define your service
@@ -45,39 +85,6 @@ class ApplicationService {
 };
 
 exports = module.exports = ApplicationService;
-```
-
-<a name="server"/>
-## Create your server
-
-```js
-const Qwebs = require('qwebs');
-
-let qwebs = new Qwebs();
-qwebs.load().then(() => {
-    http.createServer((request, response) => {
-        qwebs.invoke(request, response).catch(error => {
-            response.send({ statusCode: 500, content: error });
-        });
-    }).listen(1337, "127.0.0.1");
-});
-```
-
-<a name="routing"/>
-## Routing
-
-Our goal is to find the final route as fast as possible.
-We use a tree data structure to represent all routes.
-
-  * get(route, service, method)
-  * post(route, service, method)
-  * put(route, service, method)
-  * delete(route, service, method)
-
-```js
-qwebs.get("/user/:id", "$users", "get"); 
-qwebs.post("/user", "$users", "save");
-...
 ```
 
 <a name="di"/>
@@ -116,6 +123,7 @@ Your response is automatically compressed with Gzip or Deflate.
    
 $response sevice could be overridden
 
+<a name="oop"/>
 ##### override response.send
 ```js
 //services/myresponse.js
@@ -144,9 +152,17 @@ class MyResponseService extends ResponseService {
 exports = module.exports = MyResponseService;
 ```
 
-Replace $response service in $injector before load Qwebs.
+Replace $response service in $injector.
 
-```js
+```routes.json
+{
+    "services": [
+        { "name": "$response", "location": "../services/my-response"}
+    ]
+}
+```
+
+```or server.js
 qwebs.inject("$response", "./services/myresponse");
 ```
 
@@ -211,11 +227,15 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
   * $repository: load and retrieve files store in a folder.
   
 ## Others Services
-
+  
+  * [$http](https://www.npmjs.com/package/qwebs-http)
+  * [$https](https://www.npmjs.com/package/qwebs-https)
+  * [$http-to-https](https://www.npmjs.com/package/qwebs-http-to-https)
   * [$mongo](https://www.npmjs.com/package/qwebs-mongo)
   * [$authentication](https://www.npmjs.com/package/qwebs-auth-jwt)
   * [$https](https://www.npmjs.com/package/qwebs-https)
   * [$nodemailer](https://www.npmjs.com/package/qwebs-nodemailer)
+  * [$bitbucket](https://www.npmjs.com/package/qwebs-bitbucket-deploy)
 
 ## Installation
 
