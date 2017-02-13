@@ -1,5 +1,5 @@
 # Qwebs
- Light and optimized web server with Promise, DI and Bundle.
+ Web application framework with native promise, dependency-injection and bundle.
 
  [![NPM][npm-image]][npm-url]
  [![Build Status][travis-image]][travis-url]

@@ -1,7 +1,7 @@
 {
     "name": "qwebs",
     "version": "0.1.64",
-    "description": "Back-end web server",
+    "description": "Web application framework",
     "main": "index.js",
     "dependencies": {
         "html-compress": "latest",
@@ -27,22 +27,22 @@
         "url": "https://github.com/BenoitClaveau/qwebs.git"
     },
     "keywords": [
+        "web",
+        "application",
+        "server",
+        "dependency-injection",
         "webserver",
         "promise",
         "api",
         "stream",
         "backend",
         "back-end",
-        "back",
-        "end",
-        "web",
-        "server",
-        "q",
         "http",
         "router",
         "routing",
         "route",
-        "backbone",
+        "webcomponents",
+        "polymer",
         "angular",
         "react"
     ],
