@@ -224,7 +224,7 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
   * $responseProxy: extand http.ServerResponse.
   * $response: default response extension.
   * $qjimp: convert and manipulate images.
-  * $repository: load and retrieve files store in a folder.
+  * $initializer: service registry used to automatically call initialize function during the loading of Qwebs.
   
 ## Others Services
   
