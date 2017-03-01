@@ -25,17 +25,15 @@ describe("put", () => {
                         return $qwebs.invoke(request, response).then(res => {
                             expect(res.status).toBe("updated");
                             resolve();
-                        }).catch(error => {
-                            reject(error);
-                        }).then(() => {
-                            response.send({ request: request, statusCode: 500}); //close request
+                        }).catch(reject).then(() => {
+                            response.send({ request: request }); //close request
                         });
                     }).listen(1337);
                 });
 
                 let $client = $qwebs.resolve("$client");
-                $client.put({ url: "http://localhost:1337/update", json: { login: "test" }});
-                return promise;
+                let request = $client.put({ url: "http://localhost:1337/update", json: { login: "test" }});
+                return Promise.all([promise, request]);
         });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();

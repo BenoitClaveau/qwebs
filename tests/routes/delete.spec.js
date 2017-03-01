@@ -25,17 +25,15 @@ describe("post", () => {
                         return $qwebs.invoke(request, response).then(res => {
                             expect(res.status).toBe("deleted");
                             resolve();
-                        }).catch(error => {
-                            reject(error);
-                        }).then(() => {
-                            response.send({ request: request, statusCode: 500}); //close request
+                        }).catch(reject).then(() => {
+                            return response.send({ request: request }); //close request
                         });
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                $client.delete({ url: "http://localhost:1337/delete", json: { login: "test" }});
-                return promise;
+                let request = $client.delete({ url: "http://localhost:1337/delete", json: { login: "test" }});
+                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack).toBeNull();

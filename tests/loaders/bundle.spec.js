@@ -18,7 +18,7 @@ describe("bundleLoader", () => {
             let $qwebs = new Qwebs({ dirname: __dirname, config: { bundle: "bundle.json" }});
             let $config = $qwebs.resolve("$config");
             let $router = $qwebs.resolve("$router");
-
+            
             return new BundleLoader($qwebs, $config, $router).load().then(assets => {
                 expect(assets.length).toEqual(1);
                 expect(assets[0].route).toEqual("app.css");

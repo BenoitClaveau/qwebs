@@ -25,17 +25,15 @@ describe("get", () => {
                         return $qwebs.invoke(request, response).then(res => {
                             expect(res.whoiam).toBe("I'm Info service.");
                             resolve();
-                        }).catch(error => {
-                            reject(error);
-                        }).then(() => {
-                            response.send({ request: request, statusCode: 500}); //close request
+                        }).catch(reject).then(() => {
+                            response.send({ request: request }); //close request
                         });
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                $client.get({ url: "http://localhost:1337/get" });
-                return promise;
+                let request = $client.get({ url: "http://localhost:1337/get" });
+                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();

@@ -23,19 +23,15 @@ describe("post", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        }).then(() => {
-                            response.send({ request: request, statusCode: 500}); //close request
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject).then(() => {
+                            response.send({ request: request }); //close request
                         });
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                $client.post({ url: "http://localhost:1337/save", json: { login: "test" }});
-                return promise;
+                let request = $client.post({ url: "http://localhost:1337/save", json: { login: "test" }});
+                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
@@ -56,22 +52,18 @@ describe("post", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        }).then(() => {
-                            response.send({ request: request, statusCode: 500}); //close request
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject).then(() => {
+                            response.send({ request: request }); //close request
                         });
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                $client.post({ url: "http://localhost:1337/save", formData: { 
+                let request = $client.post({ url: "http://localhost:1337/save", formData: { 
                     login: "test",
                     file: fs.createReadStream(__dirname + '/../services/images/world.png'),
                 }});
-                return promise;
+                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack).toBeNull();
@@ -92,19 +84,15 @@ describe("post", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            resolve();
-                        }).catch(error => {
-                            reject(error);
-                        }).then(() => {
-                            response.send({ request: request, statusCode: 500}); //close request
+                        return $qwebs.invoke(request, response).then(resolve).catch(reject).then(() => {
+                            response.send({ request: request }); //close request
                         });
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                $client.post({ url: "http://localhost:1337/save", form: { login: "test" }});
-                return promise;
+                let request = $client.post({ url: "http://localhost:1337/save", form: { login: "test" }});
+                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack).toBeNull();

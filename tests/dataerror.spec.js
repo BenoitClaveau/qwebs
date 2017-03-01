@@ -16,9 +16,7 @@ describe("dataerror", () => {
             expect(error.message).toEqual("Mon erreur.");
             expect(error.header["Content-Type"]).toEqual("application/json");
             expect(error.statusCode).toEqual(500);
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
     
     it("statusCode 503", done => {
@@ -26,9 +24,7 @@ describe("dataerror", () => {
             throw new DataError({ statusCode: 503 });
         }).catch(error => {
             expect(error.statusCode).toEqual(503);
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
     
     it("ContentType image/png", done => {
@@ -39,9 +35,7 @@ describe("dataerror", () => {
             throw new DataError({ header: header });
         }).catch(error => {
             expect(error.statusCode).toEqual(500);
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
     
     it("data", done => {
@@ -49,19 +43,15 @@ describe("dataerror", () => {
             throw new DataError({ data: { value: "33" }});
         }).catch(error => {
             expect(error.data.value).toEqual("33");
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
     
     it("data array", done => {
         return Promise.resolve().then(() => {
             throw new DataError({ data: [1,2] });
         }).catch(error => {
-            expect(error.data.length).toEqual(2);
-        }).then(() => {
-            done();
-        });
+            expect(error.data.array.length).toEqual(2);
+        }).then(done);
     });
     
     it("with stack", done => {
@@ -71,8 +61,6 @@ describe("dataerror", () => {
             throw new DataError({ stack: error.stack });
         }).catch(error => {
             expect(error.stack).not.toBeUndefined();
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
 });
