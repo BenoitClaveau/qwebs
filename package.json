@@ -1,6 +1,6 @@
 {
     "name": "qwebs",
-    "version": "0.1.84",
+    "version": "0.1.85",
     "description": "Web application framework",
     "main": "index.js",
     "dependencies": {
