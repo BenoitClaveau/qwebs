@@ -9,7 +9,6 @@
 
  Discover our [starter kit](https://www.npmjs.com/package/qwebs-starter-kit-polymer) with [Polymer](https://www.polymer-project.org/).
 
-<a name="server"/>
 ## Create your server
 
 ```js
@@ -29,7 +28,6 @@ qwebs.load();
   * [0 disk access at runtime](#disk) 
   * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
 
-<a name="routing"/>
 ## Routing
 
 Our goal is to find the final route as fast as possible.
