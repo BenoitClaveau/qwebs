@@ -56,8 +56,8 @@ qwebs.post("/user", "$users", "save");
 ...
 ```
 
-<a name="service"/>
 ## Define your service
+<a name="service"/>
 
 ```js
 class ApplicationService {
