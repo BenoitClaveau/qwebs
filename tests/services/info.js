@@ -6,6 +6,10 @@
 
 "use strict";
 
+var JSONStream = require('JSONStream');
+const Writable = require('stream').Writable;
+const Readable = require('stream').Readable;
+
 class InfoService {
 	constructor() {	
 	};
@@ -15,34 +19,70 @@ class InfoService {
 	};
 
 	getInfo(request, response) {
-		return {
+		let content = {
 			whoiam: this.whoiam()
 		};
+		return response.send({ request: request, content: content });
 	};
 
 	getMessage(request, response) {
-		return {
+		let content = {
 			text: "hello world"
 		};
+		return response.send({ request: request, content: content });
+	};
+
+	getStreamNotReadable(request, response) {
+		var stream = new MyWritable();
+		return response.send({ request: request, stream: stream });
+	};
+
+	getStream(request, response) {
+		var stream = new MyReadable();
+		
+		// setTimeout(() => {	
+		// 	stream.write({ id: 2});
+		// 	setTimeout(() => {
+		// 		stream.write({ id: 3});
+		// 		stream.end();
+		// 	}, 1000);
+		// }, 1000);
+
+		return response.send({ request: request, stream: stream });
 	};
 	
 	save(request, response) {
-		return {
+		let content = {
 			status: "saved"
 		};
+		return response.send({ request: request, content: content });
 	};
 	
 	update(request, response) {
-		return {
+		let content = {
 			status: "updated"
 		};
+		return response.send({ request: request, content: content });
 	};
 	
 	delete(request, response) {
-		return {
+		let content = {
 			status: "deleted"
 		};
+		return response.send({ request: request, content: content });
 	};
 };
+
+class MyWritable extends Writable {
+  constructor(options) {
+    super(options);
+  }
+}
+
+class MyReadable extends Readable {
+  constructor(options) {
+    super(options);
+  }
+}
 
 exports = module.exports = InfoService;

@@ -30,7 +30,9 @@ describe("post", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.post({ url: "http://localhost:1337/save", json: { login: "test" }});
+                let request = $client.post({ url: "http://localhost:1337/save", json: { login: "test" }}).then(res => {
+                    expect(res.status).toBe("saved");
+                });
                 return Promise.all([promise, request]);
             });
         }).catch(error => {

@@ -23,7 +23,6 @@ describe("post", () => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
                         return $qwebs.invoke(request, response).then(res => {
-                            expect(res.status).toBe("deleted");
                             resolve();
                         }).catch(reject).then(() => {
                             return response.send({ request: request }); //close request
@@ -32,7 +31,9 @@ describe("post", () => {
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.delete({ url: "http://localhost:1337/delete", json: { login: "test" }});
+                let request = $client.delete({ url: "http://localhost:1337/delete", json: { login: "test" }}).then(res => {
+                    expect(res.status).toBe("deleted");
+                });
                 return Promise.all([promise, request]);
             });
         }).catch(error => {

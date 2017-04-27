@@ -22,17 +22,16 @@ describe("get", () => {
             return $qwebs.load().then(() => {
                 let promise = new Promise((resolve, reject) => {
                     server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).then(res => {
-                            expect(res.whoiam).toBe("I'm Info service.");
-                            resolve();
-                        }).catch(reject).then(() => {
+                        return $qwebs.invoke(request, response).catch(reject).then(() => {
                             response.send({ request: request }); //close request
                         });
                     }).listen(1337);
                 });
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get" });
+                let request = $client.get({ url: "http://localhost:1337/get" }).then(res => {
+                    expect(res.whoiam).toBe("I'm Info service.");
+                });
                 return Promise.all([promise, request]);
             });
         }).catch(error => {
