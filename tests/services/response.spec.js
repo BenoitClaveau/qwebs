@@ -35,25 +35,24 @@ describe("request", () => {
     });
 
     afterAll(function() {
-        if ($qwebs) $qwebs.close();
         if (server) server.close();
     });
 
-    it("stream-not-readable", done => {
-        let $client = $qwebs.resolve("$client");
-        $client.get({ url: "http://localhost:1338/stream-not-readable" }).then(res => {
-            expect(res).toBeNull();
-        }).catch(error => {
-            expect(error.data.response.body).toBe("");
-        }).then(done);
-    }, 30000);
-
-    // it("stream", done => {
+    // it("stream-not-readable", done => {
     //     let $client = $qwebs.resolve("$client");
-    //     $client.get({ url: "http://localhost:1338/stream" }).then(res => {
+    //     $client.get({ url: "http://localhost:1338/stream-not-readable" }).then(res => {
     //         expect(res).toBeNull();
     //     }).catch(error => {
     //         expect(error.data.response.body).toBe("");
     //     }).then(done);
     // }, 30000);
+
+    it("stream", done => {
+        let $client = $qwebs.resolve("$client");
+        $client.get({ url: "http://localhost:1338/stream" }).then(res => {
+            expect(res).toBeNull();
+        }).catch(error => {
+            expect(error.data.response.body).toBe('{"message":"_read() is not implemented"}');
+        }).then(done);
+    }, 60000);
 });
