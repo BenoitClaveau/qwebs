@@ -33,15 +33,23 @@ class InfoService {
 	};
 
 	getStreamNotReadable(request, response) {
-		let stream = new Readable();
+		// let stream = new Readable();
 
-		stream.on('data', function(data) {
-			console.log("[DEBUG]", data)
-		});
+		// stream.on('data', function(data) {
+		// 	console.log("[DEBUG]", data.toString())
+		// });
 
-		stream.push('[{ "id": "1"}, { "id": "2"}]');
+		// stream.push('[{ "id": "1"}, { "id": "2"}]');
 
 		//stream.push({ id: 2});
+		//stream.push(null);
+
+		const stream = Readable({objectMode: true}); 
+		stream._read = () => {};                     
+
+		stream.push({
+			x: Math.random()
+		});
 		stream.push(null);
 
 		return response.send({ request: request, stream: stream });
