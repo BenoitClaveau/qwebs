@@ -40,7 +40,7 @@ describe("request", () => {
 
     it("stream-not-readable", done => {
         let $client = $qwebs.resolve("$client");
-        $client.get({ url: "http://localhost:1338/stream-not-readable" }).then(res => {
+        $client.get({ url: "http://localhost:1338/stream-not-readable", json: true }).then(res => {
             expect(res.body).toEqual("");
         }).catch(error => {
             expect(error.data.response.body).toBe("");

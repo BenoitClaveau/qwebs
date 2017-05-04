@@ -33,20 +33,22 @@ class InfoService {
 	};
 
 	getStreamNotReadable(request, response) {
-		var stream = new MyWritable();
+		let stream = new Readable();
+
+		stream.on('data', function(data) {
+			console.log("[DEBUG]", data)
+		});
+
+		stream.push('[{ "id": "1"}, { "id": "2"}]');
+
+		//stream.push({ id: 2});
+		stream.push(null);
+
 		return response.send({ request: request, stream: stream });
 	};
 
 	getStream(request, response) {
 		var stream = new MyReadable();
-		
-		// setTimeout(() => {	
-		// 	stream.write({ id: 2});
-		// 	setTimeout(() => {
-		// 		stream.write({ id: 3});
-		// 		stream.end();
-		// 	}, 1000);
-		// }, 1000);
 
 		return response.send({ request: request, stream: stream });
 	};
@@ -72,12 +74,6 @@ class InfoService {
 		return response.send({ request: request, content: content });
 	};
 };
-
-class MyWritable extends Writable {
-  constructor(options) {
-    super(options);
-  }
-}
 
 class MyReadable extends Readable {
   constructor(options) {
