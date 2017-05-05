@@ -14,13 +14,13 @@
         "JSONStream": "latest"
     },
     "devDependencies": {
-        "jasmine": "latest",
+        "mocka": "latest",
         "coveralls": "latest",
         "istanbul": "latest"
     },
     "scripts": {
-        "test": "node node_modules/jasmine/bin/jasmine tests",
-        "test-cover": "istanbul cover node_modules/jasmine/bin/jasmine --captureExceptions tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        "test": "node node_modules/mocka/bin/mocka tests",
+        "test-cover": "istanbul cover node_modules/mocka/bin/mocka --captureExceptions tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
     },
     "repository": {
         "type": "git",
