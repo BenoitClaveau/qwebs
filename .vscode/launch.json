@@ -10,7 +10,7 @@
       "name": "Test Request",
       "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine.js",
       "args": [
-        "${workspaceRoot}/tests/services/stream.spec.js"
+        "${workspaceRoot}/tests/services/*.spec.js"
       ]
     },
     {
