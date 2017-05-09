@@ -19,8 +19,8 @@
         "istanbul": "latest"
     },
     "scripts": {
-        "test": "node node_modules/jasmine/bin/jasmine tests",
-        "test-cover": "istanbul cover node_modules/jasmine/bin/jasmine --captureExceptions tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+        "test": "node node_modules/jasmine/bin/jasmine.js tests",
+        "test-cover": "istanbul cover node_modules/jasmine/bin/jasmine.js --captureExceptions tests && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
     },
     "repository": {
         "type": "git",
