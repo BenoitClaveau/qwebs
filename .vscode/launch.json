@@ -8,21 +8,19 @@
       "type": "node",
       "request": "launch",
       "name": "Test Request",
-      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine.js",
+      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
       "args": [
-        "${workspaceRoot}/tests/services/*.spec.js"
+        "tests/routes/*.spec.js"
       ]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Tester",
-      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine.js",
+      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
       "args": [
-        "--verbose",
-        "tests"
-      ],
-      "cwd": "${workspaceRoot}"
+        "tests/*.spec.js"
+      ]
     }
   ]
 }

@@ -20,19 +20,16 @@ describe("get", () => {
             $qwebs.get("/get", "$info", "getInfo");
 
             return $qwebs.load().then(() => {
-                let promise = new Promise((resolve, reject) => {
-                    server = http.createServer((request, response) => {
-                        return $qwebs.invoke(request, response).catch(reject).then(() => {
-                            response.send({ request: request }); //close request
-                        });
-                    }).listen(1337);
-                });
+                server = http.createServer((request, response) => {
+                    return $qwebs.invoke(request, response).catch(error => {
+                        return response.send({ statusCode: 500, request: request, content: error }); //close request
+                    });
+                }).listen(1337);
                 
                 let $client = $qwebs.resolve("$client");
-                let request = $client.get({ url: "http://localhost:1337/get" }).then(res => {
-                    expect(res.whoiam).toBe("I'm Info service.");
+                return $client.get({ url: "http://localhost:1337/get", json: true }).then(res => {
+                    expect(res.body.whoiam).toBe("I'm Info service.");
                 });
-                return Promise.all([promise, request]);
             });
         }).catch(error => {
             expect(error.stack + JSON.stringify(error.data)).toBeNull();

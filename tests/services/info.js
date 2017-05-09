@@ -18,6 +18,10 @@ class InfoService {
 		return "I'm Info service.";
 	};
 
+	helloworld() {
+		return "Hello world.";
+	};
+
 	getInfo(request, response) {
 		let content = {
 			whoiam: this.whoiam()
