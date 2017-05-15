@@ -9,7 +9,6 @@
 
  Discover our [starter kit](https://www.npmjs.com/package/qwebs-starter-kit-polymer) with [Polymer](https://www.polymer-project.org/).
 
-<a name="server"/>
 ## Create your server
 
 ```js
@@ -29,7 +28,6 @@ qwebs.load();
   * [0 disk access at runtime](#disk) 
   * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
 
-<a name="routing"/>
 ## Routing
 
 Our goal is to find the final route as fast as possible.
@@ -58,8 +56,8 @@ qwebs.post("/user", "$users", "save");
 ...
 ```
 
-<a name="service"/>
 ## Define your service
+<a name="service"/>
 
 ```js
 class ApplicationService {
@@ -263,7 +261,7 @@ $ git clone https://github.com/BenoitClaveau/qwebs --depth 1
 $ cd qwebs
 $ npm install
 $ cd tests
-$ node.exe "..\node_modules\jasmine-node\bin\jasmine-node" --verbose .
+$ node.exe "..\node_modules\jasmine\bin\jasmine" --verbose .
 ```
 
 [npm-image]: https://img.shields.io/npm/v/qwebs.svg

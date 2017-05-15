@@ -45,13 +45,13 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
-            item.register("$info", "getInfo");
+            item.register("$info", "whoiam");
             
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/info";
             return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
-               expect(res.whoiam).toBe("I'm Info service.");
+               expect(res).toBe("I'm Info service.");
             });
             
         }).catch(error => {
@@ -66,16 +66,16 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
-            item.register("$info", "getInfo");
+            item.register("$info", "whoiam");
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/info";
             
             return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
-                expect(res.whoiam).toBe("I'm Info service.");
+                expect(res).toBe("I'm Info service.");
                 
                 return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
-                    expect(res.whoiam).toBe("I'm Info service.");
+                    expect(res).toBe("I'm Info service.");
                 });
             });
             
@@ -91,17 +91,17 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
-            item.register("$info", "getInfo");
+            item.register("$info", "whoiam");
             item.load(mock.injector.resolve("$qwebs"));
             
             item = mock.router.get("/*");
-            item.register("$info", "getMessage");
+            item.register("$info", "helloworld");
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/info";
             
             return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
-                expect(res.whoiam).toBe("I'm Info service.");
+                expect(res).toBe("I'm Info service.");
             });
             
         }).catch(error => {
@@ -116,17 +116,17 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
-            item.register("$info", "getMessage");
+            item.register("$info", "helloworld");
             item.load(mock.injector.resolve("$qwebs"));
             
             item = mock.router.get("/info");
-            item.register("$info", "getInfo");
+            item.register("$info", "whoiam");
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/info";
             
             return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
-                expect(res.whoiam).toBe("I'm Info service.");
+                expect(res).toBe("I'm Info service.");
             });
             
         }).catch(error => {
@@ -141,17 +141,17 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
-            item.register("$info", "getMessage");
+            item.register("$info", "helloworld");
             item.load(mock.injector.resolve("$qwebs"));
             
             item = mock.router.get("/info");
-            item.register("$info", "getInfo");
+            item.register("$info", "whoiam");
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/info";
             
             return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
-                expect(res.text).toBe("hello world");
+                expect(res).toBe("Hello world.");
             });
             
         }).catch(error => {
@@ -166,17 +166,17 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/*");
-            item.register("$info", "getMessage");
+            item.register("$info", "helloworld");
             item.load(mock.injector.resolve("$qwebs"));
             
             item = mock.router.get("/*/*");
-            item.register("$info", "getInfo");
+            item.register("$info", "whoiam");
             item.load(mock.injector.resolve("$qwebs"));
             
             mock.request.url = "/test/3";
             
             return mock.router.invoke(mock.request, mock.response).then(res => {
-                expect(res.whoiam).toBe("I'm Info service.");
+                expect(res).toBe("I'm Info service.");
             });
             
         }).catch(error => {
@@ -191,10 +191,10 @@ describe("router", () => {
             mock.injector.inject("$info", "./services/info.js");
             
             let item = mock.router.get("/info");
-            item.register("$info", "getMessage");
+            item.register("$info", "helloworld");
 
             item = mock.router.get("/info");
-            item.register("$info", "getInfo");
+            item.register("$info", "whoiam");
             
             fail();
         }).catch(error => {

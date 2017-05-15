@@ -7,10 +7,20 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Test Request",
+      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
+      "args": [
+        "tests/routes/*.spec.js"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Tester",
-      "program": "${workspaceRoot}\\node_modules\\jasmine-node\\bin\\jasmine-node",
-      "args": ["--verbose","tests"],
-      "cwd": "${workspaceRoot}"
+      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
+      "args": [
+        "tests/*.spec.js"
+      ]
     }
   ]
 }
