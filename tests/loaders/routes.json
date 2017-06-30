@@ -3,6 +3,6 @@
         { "name": "$info", "location": "../services/info"}
     ],
     "locators": [
-        { "get": "/info", "service": "$info", "method": "getInfo" }
+        { "get": "/info", "service": "$info", "method": "getInfo"}
     ]
 }

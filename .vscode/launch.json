@@ -10,7 +10,7 @@
       "name": "Test Request",
       "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
       "args": [
-        "tests/routes/*.spec.js"
+        "tests/*.spec.js"
       ]
     },
     {
