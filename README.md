@@ -9,16 +9,7 @@
 
  Discover our [starter kit](https://www.npmjs.com/package/qwebs-starter-kit-polymer) with [Polymer](https://www.polymer-project.org/).
 
-## Create your server
-
-```js
-const Qwebs = require('qwebs');
-
-let qwebs = new Qwebs();
-qwebs.load();
-```
-
-## Features
+# Features
 
   * [Promise](#promise) 
   * [Separate routes and services](#service) 
@@ -28,7 +19,76 @@ qwebs.load();
   * [0 disk access at runtime](#disk) 
   * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
 
-## Routing
+
+# Installation
+
+```shell
+npm install $qwebs --save
+npm install $qwebs-http --save
+```
+
+## Create a service.js
+
+```service.js
+"use strict";
+
+class Service {
+	constructor() {	
+};
+
+index(request, response) {
+ let content = {
+  text: `hello ${request.params.name}`
+ };
+ return response.send({ request: request, content: content });
+};
+
+exports = module.exports = Service;
+```
+
+## Define routes.json
+
+```routes.json
+{
+    "services": [
+        { "name": "$http", "location": "qwebs-http"},
+        { "name": "$service", "location": "./service"}
+    ],
+    "locators": [
+        { "get": "/:name", "service": "$service", "method": "index" },
+    ]
+}
+```
+
+## Create config.json
+
+```config.json
+{
+    "routes": "./routes.json",
+    "http": {
+        "port": 3000
+    }
+}
+```
+
+## Enjoy
+
+Create a server.js
+
+```server.js
+"use strict";
+
+const Qwebs = require("qwebs");
+new Qwebs().load();
+```
+
+Run server on http://localhost:3000
+
+```shell
+node server.js
+```
+
+# Routing
 
 Our goal is to find the final route as fast as possible.
 We use a tree data structure to represent all routes.
@@ -36,6 +96,7 @@ We use a tree data structure to represent all routes.
   * get(route, service, method)
   * post(route, service, method)
   * put(route, service, method)
+  * patch(route, service, method)
   * delete(route, service, method)
 
 ```routes.json
@@ -50,16 +111,20 @@ We use a tree data structure to represent all routes.
 }
 ```
 
-```or server.js
+```or in javascript
 qwebs.get("/user/:id", "$users", "get"); 
 qwebs.post("/user", "$users", "save");
 ...
 ```
 
-## Define your service
+# Services
 <a name="service"/>
 
-```js
+Qwebs is deigned for POO.
+Create service, define a route and attached them in routes.json.
+Qwebs has an dependency injector for easier integration. 
+
+```service.js
 class ApplicationService {
     //$config service is automatically injected
     constructor($config) {
@@ -90,15 +155,22 @@ exports = module.exports = ApplicationService;
 
 Just declare the service name in your constructor.
 
-```js
-//services/user.js
+```services/user.js
 class UserService {
+    //Config service wil be created as a singleton and injected when UserService will be created
     constructor($config)
 ```
 
 Qwebs will create your service with its dependencies.
 
-```js
+```routes.json
+{
+    "services": [
+        { "name": "$user", "location": "../services/user"}
+        ...
+```
+
+```on server.js
 //server.js
 qwebs.inject("$user", "./services/user");
 ```
@@ -106,7 +178,7 @@ qwebs.inject("$user", "./services/user");
 <a name="response"/>
 ## Response
 
-Your response is automatically compressed with Gzip or Deflate.
+Http response are automatically extended to compressed with Gzip or Deflate.
 
   * response.send({request, statusCode, header, content, stream})
     - [request](https://nodejs.org/api/http.html#http_class_http_clientrequest)
@@ -115,16 +187,12 @@ Your response is automatically compressed with Gzip or Deflate.
     - content: js, html, json, ... *(call response.write(content))*
     - or
     - [stream](https://nodejs.org/api/stream.html) *(call stream.pipe(response))*
-  
-  * qwebs.invoke(request, response, overridenUrl)
-    - Usefull to route to an asset
-   
-$response sevice could be overridden
+
+You could override this default behaviour with POO. Override the default response service and inject the new one in Qwebs.
 
 <a name="oop"/>
-##### override response.send
-```js
-//services/myresponse.js
+##### How override response.send ?
+```services/my-response.js
 "use strict";
 
 const DataError = require("qwebs").DataError;
@@ -135,14 +203,14 @@ class MyResponseService extends ResponseService {
         super();
     };
 
-    send(response, data) {
+    send(response, dataToSend) {
         return new Promise((resolve, reject) => {
-            if (data == undefined) reject(new DataError({ message: "No data." }));
+            if (dataToSend == undefined) reject(new DataError({ message: "No data." }));
 
-            data.header = data.header || {};
-            data.header["Cache-Control"] = "private";
-            data.header["Expires"] = new Date(Date.now() + 3000).toUTCString();
-            return super.send(response, data).then(resolve).catch(reject);
+            dataToSend.header = data.header || {};
+            dataToSend.header["Cache-Control"] = "private";
+            dataToSend.header["Expires"] = new Date(Date.now() + 3000).toUTCString();
+            return super.send(response, dataToSend).then(resolve).catch(reject);
         });
     };
 };
@@ -150,7 +218,7 @@ class MyResponseService extends ResponseService {
 exports = module.exports = MyResponseService;
 ```
 
-Replace $response service in $injector.
+Then replace $response service in $injector.
 
 ```routes.json
 {
@@ -161,7 +229,7 @@ Replace $response service in $injector.
 ```
 
 ```or server.js
-qwebs.inject("$response", "./services/myresponse");
+qwebs.inject("$response", "./services/my-response");
 ```
 
 <a name="disk"/>
@@ -173,10 +241,10 @@ Uploaded images are not saved in temporary files. $qjimp service is designed to 
 <a name="bundle"/>
 ## Bundle (bundle.json)
 
-Create your own css or js bundle.
+You could create your own css or js bundle without WebPack.
 Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. You don't need to compile your sass via an external program.
 
-```json
+```bundle.json
 {
     "/app.js":[
         "bower_components/angular-material/angular-material.js",
@@ -233,12 +301,6 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
   * [$https](https://www.npmjs.com/package/qwebs-https)
   * [$nodemailer](https://www.npmjs.com/package/qwebs-nodemailer)
   * [$bitbucket](https://www.npmjs.com/package/qwebs-bitbucket-deploy)
-
-## Installation
-
-```bash
-$ npm install qwebs
-```
 
 ## Examples
 

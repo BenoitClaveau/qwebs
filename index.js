@@ -14,4 +14,4 @@ module.exports.ToArray = require('./lib/utils/stream/toarray');
 module.exports.ToBuffer = require('./lib/utils/stream/tobuffer');
 module.exports.walk = require('./lib/utils/walk');
 module.exports.QJimp = require('./lib/services/qjimp');
-module.exports.Client = require('./lib/utils/client');
+module.exports.Client = require('./lib/services/client');
