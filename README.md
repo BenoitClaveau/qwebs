@@ -18,6 +18,8 @@
   * [Compression & minification](#bundle) 
   * [0 disk access at runtime](#disk) 
   * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
+  * [Configuration](#config)
+  
 
 
 # Installation
@@ -274,6 +276,23 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
     </body>
 </html>
 ```
+
+# Configuration
+<a name="config"/>
+
+  * CORS
+
+```config.json
+{
+    "cors": {
+        "enabled": true,
+        "allow-origin": "*",
+        "max-age": 3600,
+        "allow-headers": "Content-Type, Access-Control-Allow-Headers, Authorization"
+    }
+}
+```
+
 
 <a name="promise"/>
 ## Promise
