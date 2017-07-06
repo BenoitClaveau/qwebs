@@ -320,6 +320,9 @@ Qwebs includes a [Sass](https://www.npmjs.com/package/node-sass) preprocessor. Y
   * [$https](https://www.npmjs.com/package/qwebs-https)
   * [$nodemailer](https://www.npmjs.com/package/qwebs-nodemailer)
   * [$bitbucket](https://www.npmjs.com/package/qwebs-bitbucket-deploy)
+  * [$aws-s3](https://www.npmjs.com/package/qwebs-aws-s3)
+  * [$aws-ses](https://www.npmjs.com/package/qwebs-aws-ses)
+  * [aws api gateway](https://www.npmjs.com/package/qwebs-aws-api-gateway)
 
 ## Examples
 
