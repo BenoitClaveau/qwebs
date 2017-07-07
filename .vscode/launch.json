@@ -10,7 +10,7 @@
       "name": "Tests",
       "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
       "args": [
-        "${workspaceRoot}/tests/injector.spec.js"
+        "${workspaceRoot}/tests/utils/string.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }
