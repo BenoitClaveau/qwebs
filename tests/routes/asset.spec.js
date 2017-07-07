@@ -20,11 +20,7 @@ describe("asset", () => {
                 
                 let asset = new Asset($qwebs, $config, "/api", "text/css");
             });
-        }).catch(error => {
-            expect(error).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("create empty route", done => {
@@ -38,9 +34,7 @@ describe("asset", () => {
             });
         }).catch(error => {
             expect(error.message).toEqual("Route is not defined.");
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
     
     it("invoke", done => {
@@ -64,9 +58,7 @@ describe("asset", () => {
             expect(data).not.toBeNull();
         }).catch(error => {
             expect(error.message).toEqual("Content is empty"); //TODO
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
     
     it("bundle css", done => {
@@ -83,11 +75,7 @@ describe("asset", () => {
             expect(asset.content).not.toBeNull();
             expect(asset.contentDeflate).not.toBeNull();
             expect(asset.contentGzip).not.toBeNull();
-        }).catch(error => {
-            expect(error).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("bundle js", done => {
@@ -104,10 +92,6 @@ describe("asset", () => {
             expect(asset.content).not.toBeNull();
             expect(asset.contentDeflate).not.toBeNull();
             expect(asset.contentGzip).not.toBeNull();
-        }).catch(error => {
-            expect(error).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 });

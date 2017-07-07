@@ -27,11 +27,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("GET,POST,PUT,DELETE,HEAD,OPTIONS");
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 
     it("get", done => {
@@ -55,11 +51,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("GET");
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 
     it("post", done => {
@@ -83,11 +75,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("POST");
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 
     it("put", done => {
@@ -111,11 +99,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("PUT");
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 
     it("delete", done => {
@@ -139,10 +123,6 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("DELETE");
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 });

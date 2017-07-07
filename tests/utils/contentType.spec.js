@@ -27,12 +27,7 @@ describe("contentType", () => {
             expect(contentTypeExtractor.getFromExt(".appcache")).toEqual("text/cache-manifest");
             expect(contentTypeExtractor.getFromExt(".map")).toEqual("application/json");
             expect(contentTypeExtractor.getFromExt(".md")).toEqual("text/x-markdown");
-        })
-        .catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("getFromExt exception", done => {
@@ -40,11 +35,6 @@ describe("contentType", () => {
         return Promise.resolve().then(() => {            
             expect(contentTypeExtractor.getFromExt(".mp3")).toEqual("audio/mpeg");
             fail();
-        })
-        .catch(error => {
-            expect(error.stack).not.toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
 });

@@ -32,11 +32,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("size", done => {
@@ -52,12 +48,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(800);
                 expect(size.height).toBe(550);
             });
-
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("clone", done => {
@@ -77,11 +68,7 @@ describe("qjimp", () => {
                     });
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("crop", done => {
@@ -106,11 +93,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(400);
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("resize", done => {
@@ -135,11 +118,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(225);
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("cropAndResize same ratio", done => {
@@ -158,11 +137,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(225);
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("cropAndResize great ratio", done => {
@@ -181,11 +156,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(500);
                 expect(size.height).toBe(225);
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("cropAndResize less ratio", done => {
@@ -204,11 +175,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(300);
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("scale", done => {
@@ -231,11 +198,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(275);
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 
     it("lightness", done => {
@@ -251,12 +214,7 @@ describe("qjimp", () => {
             }).then(result => {
                 expect(result).toBe(1);
             });
-
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("lightness", done => {
@@ -272,12 +230,7 @@ describe("qjimp", () => {
             }).then(result => {
                 expect(result).toBe(0.75);
             });
-
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("greyscale", done => {
@@ -303,11 +256,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("contrast", done => {
@@ -333,11 +282,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("blur", done => {
@@ -363,11 +308,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("opacity", done => {
@@ -393,11 +334,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("smartResize crop", done => {
@@ -423,11 +360,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("smartResize extend", done => {
@@ -453,10 +386,6 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 });

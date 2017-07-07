@@ -21,10 +21,6 @@ describe("assetsLoader", () => {
                 expect(assets[0].route).toEqual("/assets/user.svg");
                 expect(assets[1].route).toEqual("/main.html");
             });
-        }).catch(error => {
-            expect(error).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 });

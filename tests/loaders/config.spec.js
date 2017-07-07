@@ -16,11 +16,7 @@ describe("configLoader", () => {
             };
             let config = new ConfigLoader($qwebs).create({ folder: "public1" });
             expect(config.folder).toEqual("public1");
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("create from file", done => {
@@ -30,10 +26,6 @@ describe("configLoader", () => {
             };
             let config = new ConfigLoader($qwebs).create("config.json");
             expect(config.folder).toEqual("public2");
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 });

@@ -10,7 +10,6 @@ const PathRegex = require('../../lib/utils/pathRegex');
 describe("pathRegex", () => {
 
     it("match static", done => {
-        
         return Promise.resolve().then(() => {
             let pathRegex = new PathRegex("/api", false, false);
             expect(pathRegex.match("/api").match).toEqual(true);
@@ -18,12 +17,7 @@ describe("pathRegex", () => {
             expect(pathRegex.match("/api/value").match).toEqual(false);
             expect(pathRegex.match("/api/").match).toEqual(true);
             expect(pathRegex.match("/api-1").match).toEqual(false);
-        })
-        .catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("match dynamic", done => {
@@ -35,12 +29,7 @@ describe("pathRegex", () => {
             expect(pathRegex.match("/api/value").match).toEqual(true);
             expect(pathRegex.match("/api/").match).toEqual(false);
             expect(pathRegex.match("/api/1/2").match).toEqual(false);
-        })
-        .catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("match generic", done => {
@@ -52,12 +41,7 @@ describe("pathRegex", () => {
             expect(pathRegex.match("/api/value").match).toEqual(true);
             expect(pathRegex.match("/api/").match).toEqual(true);
             expect(pathRegex.match("/api/1/2").match).toEqual(true);
-        })
-        .catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
     
     it("params", done => {
@@ -65,11 +49,6 @@ describe("pathRegex", () => {
         return Promise.resolve().then(() => {
             let pathRegex = new PathRegex("/api/:id", false, false);
             expect(pathRegex.match("/api/1").params.id).toEqual("1");
-        })
-        .catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 });

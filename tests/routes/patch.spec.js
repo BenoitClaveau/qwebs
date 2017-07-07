@@ -30,10 +30,8 @@ describe("patch", () => {
                 return $client.patch({ url: "http://localhost:1337/update", json: { login: "test" }}).then(res => {
                     expect(res.body.status).toBe("updated");
                 });
-        });
-        }).catch(error => {
-            expect(error.stack + JSON.stringify(error.data)).toBeNull();
-        }).then(() => {
+            });
+        }).catch(fail).then(() => {
             if (server) server.close();
             done();
         });

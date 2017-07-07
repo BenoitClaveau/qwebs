@@ -32,9 +32,7 @@ describe("post", () => {
                     expect(res.body.status).toBe("saved");
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
+        }).catch(fail).then(() => {
             if (server) server.close();
             done();
         });
@@ -61,9 +59,7 @@ describe("post", () => {
                     file: fs.createReadStream(__dirname + '/../services/images/world.png'),
                 }});
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
+        }).catch(fail).then(() => {
             if (server) server.close();
             done();
         });
@@ -87,9 +83,7 @@ describe("post", () => {
                 let $client = $qwebs.resolve("$client");
                 return $client.post({ url: "http://localhost:1337/save", form: { login: "test" }});
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
+        }).catch(fail).then(() => {
             if (server) server.close();
             done();
         });

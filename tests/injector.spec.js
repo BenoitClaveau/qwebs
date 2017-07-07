@@ -10,7 +10,6 @@ const Injector = require('../lib/injector');
 describe("injector", () => {
 
     it("inject & resolve", done => {
-        
         return Promise.resolve().then(() => {
             let $qwebs = {
                 root: __dirname
@@ -22,15 +21,10 @@ describe("injector", () => {
             let $info = injector.resolve("$info");
             expect($info).not.toBeNull();
             expect($info.whoiam()).toBe("I'm Info service.");
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("inject & load", done => {
-        
         return Promise.resolve().then(() => {
             let $qwebs = {
                 root: __dirname
@@ -45,16 +39,10 @@ describe("injector", () => {
             let $info = injector.resolve("$info");
             expect($info).not.toBeNull();
             expect($info.whoiam()).toBe("I'm Info service.");
-            
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("try to inject es5", done => {
-        
         return Promise.resolve().then(() => {
             let $qwebs = {
                 root: __dirname
@@ -67,12 +55,8 @@ describe("injector", () => {
             injector.load();
             
             let $info = injector.resolve("$info");
-            fail();
-        }).catch(error => {
-            expect(error.message).toEqual("No constructor found.");
-        }).then(() => {
-            done();
-        });
+            expect($info instanceof require("./services/info.es5")).toBe(true);
+        }).catch(fail).then(done);
     });
     
     it("try to inject cyclic reference", done => {
@@ -90,11 +74,9 @@ describe("injector", () => {
             injector.load();
             
             let $info = injector.resolve("$info1");
-            fail();
+            throw new Error("Qwebs must generate a cyclic reference error.");
         }).catch(error => {
             expect(error.message).toEqual("Cyclic reference.");
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
 });

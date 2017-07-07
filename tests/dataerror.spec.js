@@ -59,8 +59,6 @@ describe("dataerror", () => {
             throw new Error();
         }).catch(error => {
             throw new DataError({ stack: error.stack });
-        }).catch(error => {
-            expect(error.stack).not.toBeUndefined();
-        }).then(done);
+        }).catch(fail).then(done);
     });
 });

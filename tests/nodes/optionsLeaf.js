@@ -19,10 +19,6 @@ describe("options", () => {
             return optionsLeaf;
         }).then(leaf => {
             expect(leaf.router).not.toBeNull();  
-        }).catch(error => {
-            expect(error).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).then(done).catch(fail);
     });
 });

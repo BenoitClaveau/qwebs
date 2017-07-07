@@ -53,12 +53,7 @@ describe("router", () => {
             return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
                expect(res).toBe("I'm Info service.");
             });
-            
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("route *", done => {
@@ -77,13 +72,8 @@ describe("router", () => {
                 return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
                     expect(res).toBe("I'm Info service.");
                 });
-            });
-            
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+            });    
+        }).catch(fail).then(done);
     });
     
     it("multiple", done => {
@@ -103,12 +93,7 @@ describe("router", () => {
             return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
                 expect(res).toBe("I'm Info service.");
             });
-            
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("multiple invert declaration", done => {
@@ -128,12 +113,7 @@ describe("router", () => {
             return mock.router.invoke(mock.request, mock.response, "/info").then(res => {
                 expect(res).toBe("I'm Info service.");
             });
-            
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("multiple redirection", done => {
@@ -153,12 +133,7 @@ describe("router", () => {
             return mock.router.invoke(mock.request, mock.response, "/test").then(res => {
                 expect(res).toBe("Hello world.");
             });
-            
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("multiple token", done => {
@@ -178,12 +153,7 @@ describe("router", () => {
             return mock.router.invoke(mock.request, mock.response).then(res => {
                 expect(res).toBe("I'm Info service.");
             });
-            
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
-            done();
-        });
+        }).catch(fail).then(done);
     });
     
     it("multiple end route", done => {
@@ -196,11 +166,9 @@ describe("router", () => {
             item = mock.router.get("/info");
             item.register("$info", "whoiam");
             
-            fail();
+            throw new Error("Qwebs must generate a multiple end route error.");
         }).catch(error => {
             expect(error.message).toEqual("Multiple end route.");
-        }).then(() => {
-            done();
-        });
+        }).then(done);
     });
 });

@@ -31,9 +31,7 @@ describe("post", () => {
                     expect(res.body.status).toBe("deleted");
                 });
             });
-        }).catch(error => {
-            expect(error.stack).toBeNull();
-        }).then(() => {
+        }).catch(fail).then(() => {
             if (server) server.close();
             done();
         });

@@ -31,9 +31,7 @@ describe("get", () => {
                     expect(res.body.whoiam).toBe("I'm Info service.");
                 });
             });
-        }).catch(error => {
-            expect(error.stack + JSON.stringify(error.data)).toBeNull();
-        }).then(() => {
+        }).catch(fail).then(() => {
             if (server) server.close();
             done();
         });
