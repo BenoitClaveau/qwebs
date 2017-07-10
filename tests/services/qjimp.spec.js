@@ -32,7 +32,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("size", done => {
@@ -48,7 +48,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(800);
                 expect(size.height).toBe(550);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("clone", done => {
@@ -68,7 +68,7 @@ describe("qjimp", () => {
                     });
                 });
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("crop", done => {
@@ -93,7 +93,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(400);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("resize", done => {
@@ -118,7 +118,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(225);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("cropAndResize same ratio", done => {
@@ -137,7 +137,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(225);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("cropAndResize great ratio", done => {
@@ -156,7 +156,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(500);
                 expect(size.height).toBe(225);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("cropAndResize less ratio", done => {
@@ -175,7 +175,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(300);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("scale", done => {
@@ -198,7 +198,7 @@ describe("qjimp", () => {
                 expect(size.width).toBe(400);
                 expect(size.height).toBe(275);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("lightness", done => {
@@ -214,7 +214,7 @@ describe("qjimp", () => {
             }).then(result => {
                 expect(result).toBe(1);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("lightness", done => {
@@ -230,7 +230,7 @@ describe("qjimp", () => {
             }).then(result => {
                 expect(result).toBe(0.75);
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("greyscale", done => {
@@ -256,7 +256,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("contrast", done => {
@@ -282,7 +282,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("blur", done => {
@@ -308,7 +308,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("opacity", done => {
@@ -334,7 +334,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("smartResize crop", done => {
@@ -360,7 +360,7 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("smartResize extend", done => {
@@ -386,6 +386,6 @@ describe("qjimp", () => {
             }).then(() => {
                 expect(fs.existsSync(output)).toBe(true);
 			});
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

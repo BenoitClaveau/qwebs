@@ -27,7 +27,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("GET,POST,PUT,DELETE,HEAD,OPTIONS");
                 });
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("get", done => {
@@ -51,7 +51,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("GET");
                 });
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("post", done => {
@@ -75,7 +75,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("POST");
                 });
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("put", done => {
@@ -99,7 +99,7 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("PUT");
                 });
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("delete", done => {
@@ -123,6 +123,6 @@ describe("options", () => {
                     expect(res.header.Allow).toBe("DELETE");
                 });
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

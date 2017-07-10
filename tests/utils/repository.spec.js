@@ -15,6 +15,6 @@ describe("qjimp", () => {
             let repository = new Repository(path.resolve(__dirname,"../services/images"));
             var properties = Object.keys(repository);
             expect(properties.length).toBe(9);
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

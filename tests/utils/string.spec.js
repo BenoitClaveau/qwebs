@@ -13,27 +13,27 @@ describe("StringUtils", () => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.camelCaseToDash("$testModel");
             expect(res).toEqual("$test-model");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("camelCaseToDash", done => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.camelCaseToDash("oauth2Model");
             expect(res).toEqual("oauth2-model");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("camelCaseToDash", done => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.dashToCamelCase("test-model");
             expect(res).toEqual("testModel");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 
     it("camelCaseToDash", done => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.dashToCamelCase("oauth2-model");
             expect(res).toEqual("oauth2Model");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

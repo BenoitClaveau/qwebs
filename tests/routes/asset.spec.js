@@ -20,7 +20,7 @@ describe("asset", () => {
                 
                 let asset = new Asset($qwebs, $config, "/api", "text/css");
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("create empty route", done => {
@@ -75,7 +75,7 @@ describe("asset", () => {
             expect(asset.content).not.toBeNull();
             expect(asset.contentDeflate).not.toBeNull();
             expect(asset.contentGzip).not.toBeNull();
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("bundle js", done => {
@@ -92,6 +92,6 @@ describe("asset", () => {
             expect(asset.content).not.toBeNull();
             expect(asset.contentDeflate).not.toBeNull();
             expect(asset.contentGzip).not.toBeNull();
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

@@ -25,6 +25,6 @@ describe("routesLoader", () => {
                 expect(routes.locators[0].service).toEqual("$info");
                 expect(routes.locators[0].method).toEqual("getInfo");
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

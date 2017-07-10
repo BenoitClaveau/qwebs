@@ -17,7 +17,7 @@ describe("pathRegex", () => {
             expect(pathRegex.match("/api/value").match).toEqual(false);
             expect(pathRegex.match("/api/").match).toEqual(true);
             expect(pathRegex.match("/api-1").match).toEqual(false);
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("match dynamic", done => {
@@ -29,7 +29,7 @@ describe("pathRegex", () => {
             expect(pathRegex.match("/api/value").match).toEqual(true);
             expect(pathRegex.match("/api/").match).toEqual(false);
             expect(pathRegex.match("/api/1/2").match).toEqual(false);
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("match generic", done => {
@@ -41,7 +41,7 @@ describe("pathRegex", () => {
             expect(pathRegex.match("/api/value").match).toEqual(true);
             expect(pathRegex.match("/api/").match).toEqual(true);
             expect(pathRegex.match("/api/1/2").match).toEqual(true);
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("params", done => {
@@ -49,6 +49,6 @@ describe("pathRegex", () => {
         return Promise.resolve().then(() => {
             let pathRegex = new PathRegex("/api/:id", false, false);
             expect(pathRegex.match("/api/1").params.id).toEqual("1");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

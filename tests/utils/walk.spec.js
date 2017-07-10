@@ -22,6 +22,6 @@ describe("walk", () => {
             expect(files[4].slice(__dirname.length)).toEqual("/stream/data/page2.html");
             expect(files[5].slice(__dirname.length)).toEqual("/string.spec.js");
             expect(files[6].slice(__dirname.length)).toEqual("/walk.spec.js");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

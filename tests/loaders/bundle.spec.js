@@ -24,7 +24,7 @@ describe("bundleLoader", () => {
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("load css", done => {
@@ -40,7 +40,7 @@ describe("bundleLoader", () => {
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("load scss", done => {
@@ -56,6 +56,6 @@ describe("bundleLoader", () => {
                 expect(assets[0].route).toEqual("app.css");
                 expect(assets[0].contentType).toEqual("text/css");
             });
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });

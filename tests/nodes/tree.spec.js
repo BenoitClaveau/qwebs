@@ -16,7 +16,7 @@ describe("tree", () => {
             tree.push({ id: 1, route: "/" });
             expect(tree.findOne("").router.id).toEqual(1);
             expect(tree.findOne("/").router.id).toEqual(1);
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("parameters priority", done => {
@@ -31,7 +31,7 @@ describe("tree", () => {
             let item = tree.findOne("api/alert");
             expect(item.router.id).toEqual(3);
             expect(item.params.test).toEqual("alert");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("parameters priority", done => {
@@ -46,7 +46,7 @@ describe("tree", () => {
             let item = tree.findOne("api/alert");
             expect(item.router.id).toEqual(3);
             expect(item.params.test).toEqual("alert");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("parameters priority", done => {
@@ -61,7 +61,7 @@ describe("tree", () => {
             let item = tree.findOne("api/alert");
             expect(item.router.id).toEqual(3);
             expect(item.params.test).toEqual("alert");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
     
     it("multiple parameters", done => {
@@ -76,6 +76,6 @@ describe("tree", () => {
             expect(item.router.id).toEqual(1);
             expect(item.params.route).toEqual("data");
             expect(item.params.value).toEqual("1");
-        }).then(done).catch(fail);
+        }).catch(fail).then(done);
     });
 });
