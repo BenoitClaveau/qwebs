@@ -7,10 +7,16 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Server",
+      "program": "${workspaceRoot}/server.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Tests",
       "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
       "args": [
-        "${workspaceRoot}/tests/utils/string.spec.js"
+        "${workspaceRoot}/tests/*.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }
