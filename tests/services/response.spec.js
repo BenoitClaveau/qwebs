@@ -21,7 +21,7 @@ describe("reponse", () => {
         });
 
         let $qwebs = new Qwebs({ dirname: __dirname, config: {}});
-        $qwebs.inject("$info", "../services/info");
+        $qwebs.inject("$info", "./info");
         $qwebs.get("/stream", "$info", "getStream");
         $qwebs.get("/stream-with-string", "$info", "getStreamWithString");
         $qwebs.get("/stream-multiple-types", "$info", "getStreamMultipleTypes");
