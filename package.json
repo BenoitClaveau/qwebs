@@ -1,17 +1,18 @@
 {
     "name": "qwebs",
-    "version": "0.2.21",
+    "version": "0.2.22",
     "description": "Web application framework",
     "main": "index.js",
     "dependencies": {
-        "html-compress": "latest",
+        "JSONStream": "latest",
         "clean-css": "latest",
-        "multiparty": "latest",
-        "uglify-js": "latest",
-        "sass.js": "latest",
+        "html-compress": "latest",
         "jimp": "latest",
+        "multiparty": "latest",
+        "qs": "latest",
         "request": "latest",
-        "JSONStream": "latest"
+        "sass.js": "latest",
+        "uglify-js": "latest"
     },
     "devDependencies": {
         "jasmine": "latest",
