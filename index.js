@@ -7,6 +7,7 @@
 'use strict';
 
 module.exports = require('./lib/qwebs');
+module.exports.Factory = require('./lib/factory');
 module.exports.DataError = require('./lib/dataerror');
 module.exports.Repository = require('./lib/utils/repository');
 module.exports.MergeStream = require('./lib/utils/stream/mergestream');
