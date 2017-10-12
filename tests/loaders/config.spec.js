@@ -7,6 +7,10 @@
 
 const ConfigLoader = require("../../lib/loaders/config");
 
+require("process").on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 describe("configLoader", () => {
 
     it("create from object", done => {

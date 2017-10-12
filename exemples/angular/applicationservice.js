@@ -39,12 +39,12 @@ class ApplicationService {
         let buffer = Buffer.from(data64, "base64");
         return this.$qjimp.toImage(buffer).then(image => {
             return this.$qjimp.toBuffer(image, "image/jpeg").then(newBuffer => {
-                let header = { 
+                let headers = { 
                     "Content-Type": "image/jpeg",
                     "Expires": new Date(Date.now() + 604800000).toString(), /* 1000 * 60 * 60 * 24 * 7 (7 days)*/
                     "Etag": '"0.0.1"'
                 };
-                return response.send({ header: header, request: request, content: newBuffer })
+                return response.send({ headers: headers, request: request, content: newBuffer })
             });
         });
     };

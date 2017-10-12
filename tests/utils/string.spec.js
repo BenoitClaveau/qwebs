@@ -7,6 +7,10 @@
 
 const stringUtils = require('../../lib/utils/string');
 
+require("process").on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 describe("StringUtils", () => {
 
     it("camelCaseToDash", done => {

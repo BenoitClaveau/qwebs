@@ -7,6 +7,10 @@
 
 const Qwebs = require("../lib/qwebs");
 
+require("process").on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 describe("routesLoader", () => {
     
     it("load", done => {

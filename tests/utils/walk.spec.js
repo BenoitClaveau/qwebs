@@ -7,6 +7,10 @@
 
 const walk = require('../../lib/utils/walk');
 
+require("process").on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 describe("walk", () => {
 
     it("get", done => {

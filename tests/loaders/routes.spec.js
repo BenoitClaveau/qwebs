@@ -8,6 +8,10 @@
 const Qwebs = require("../../lib/qwebs");
 const RoutesLoader = require("../../lib/loaders/routes");
 
+require("process").on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 describe("routesLoader", () => {
     
     it("load", done => {
@@ -20,8 +24,8 @@ describe("routesLoader", () => {
             return new RoutesLoader($qwebs, $config).load().then(routes => {
                 expect(routes.services.length).toEqual(1);            
                 expect(routes.services[0].name).toEqual("$info");
-                expect(routes.services[0].location).toEqual("../services/info");
-                expect(routes.locators[0].get).toEqual("/info");
+                expect(routes.services[0].location).toEqual("../services/info.es6");
+                expect(routes.locators[0].get).toEqual("/info.es6");
                 expect(routes.locators[0].service).toEqual("$info");
                 expect(routes.locators[0].method).toEqual("getInfo");
             });

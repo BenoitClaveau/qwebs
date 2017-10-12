@@ -14,7 +14,7 @@
         "istanbul": "latest"
     },
     "scripts": {
-        "test": "node node_modules/jasmine/bin/jasmine.js tests",
+        "test": "node node_modules/jasmine/bin/jasmine.js tests/*.spec.js",
         "test-cover": "node_modules/.bin/istanbul cover node_modules/jasmine/bin/jasmine.js tests/*.spec.js"
     },
     "repository": {

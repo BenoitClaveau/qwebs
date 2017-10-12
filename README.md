@@ -104,7 +104,7 @@ We use a tree data structure to represent all routes.
 ```routes.json
 {
     "services": [
-        { "name": "$user", "location": "../services/info"}
+        { "name": "$user", "location": "../services/info.es6"}
     ],
     "locators": [
         { "get": "/user/:id", "service": "$user", "method": "get" },
@@ -182,10 +182,10 @@ qwebs.inject("$user", "./services/user");
 
 Http response are automatically extended to compressed with Gzip or Deflate.
 
-  * response.send({request, statusCode, header, content, stream})
+  * response.send({request, statusCode, headers, content, stream})
     - [request](https://nodejs.org/api/http.html#http_class_http_clientrequest)
     - [statusCode](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.1)
-    - [header](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
+    - [headers](http://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2) 
     - content: js, html, json, ... *(call response.write(content))*
     - or
     - [stream](https://nodejs.org/api/stream.html) *(call stream.pipe(response))*
@@ -197,7 +197,7 @@ You could override this default behaviour with POO. Override the default respons
 ```services/my-response.js
 "use strict";
 
-const DataError = require("qwebs").DataError;
+const WebError = require("qwebs").WebError;
 const ResponseService = require("qwebs/lib/services/response");
 
 class MyResponseService extends ResponseService {
@@ -207,11 +207,11 @@ class MyResponseService extends ResponseService {
 
     send(response, dataToSend) {
         return new Promise((resolve, reject) => {
-            if (dataToSend == undefined) reject(new DataError({ message: "No data." }));
+            if (dataToSend == undefined) reject(new WebError({ message: "No data." }));
 
-            dataToSend.header = data.header || {};
-            dataToSend.header["Cache-Control"] = "private";
-            dataToSend.header["Expires"] = new Date(Date.now() + 3000).toUTCString();
+            dataToSend.headers = data.headers || {};
+            dataToSend.headers["Cache-Control"] = "private";
+            dataToSend.headers["Expires"] = new Date(Date.now() + 3000).toUTCString();
             return super.send(response, dataToSend).then(resolve).catch(reject);
         });
     };

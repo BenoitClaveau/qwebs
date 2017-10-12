@@ -7,6 +7,10 @@
 
 const PathRegex = require('../../lib/utils/pathRegex');
 
+require("process").on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 describe("pathRegex", () => {
 
     it("match static", done => {

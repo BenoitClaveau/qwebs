@@ -9,6 +9,10 @@ const Repository = require('../../lib/utils/repository');
 const fs = require("fs");
 const path = require('path');
 
+require("process").on('unhandledRejection', (reason, p) => {
+    console.error('Unhandled Rejection at:', p, 'reason:', reason);
+});
+
 describe("qjimp", () => {
     it("toImage & toBuffer", done => {
         return Promise.resolve().then(() => {

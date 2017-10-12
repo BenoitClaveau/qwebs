@@ -1,0 +1,8 @@
+{
+    "services": [
+        { "name": "$info", "location": "../services/info.es6"}
+    ],
+    "locators": [
+        { "get": "/info.es6", "service": "$info", "method": "getInfo"}
+    ]
+}
