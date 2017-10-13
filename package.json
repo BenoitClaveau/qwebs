@@ -4,7 +4,6 @@
     "description": "Web application framework",
     "main": "index.js",
     "dependencies": {
-        "JSONStream": "latest",
         "jimp": "latest",
         "request": "latest"
     },
