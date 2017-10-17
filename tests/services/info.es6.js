@@ -6,7 +6,6 @@
 
 "use strict";
 
-var JSONStream = require('JSONStream');
 const Writable = require('stream').Writable;
 const Readable = require('stream').Readable;
 
