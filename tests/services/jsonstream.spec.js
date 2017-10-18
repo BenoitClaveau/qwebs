@@ -8,8 +8,8 @@
 const fs = require ('fs');
 const { join } = require('path');
 const file = join(__dirname, 'data','npm.array.json')
-const JSONStream = require('../../services/jsonstream');
-const StreamFromArray = require('../../stream/fromarray');
+const JSONStream = require('../../lib/services/jsonstream');
+const StreamFromArray = require('../../lib/stream/fromarray');
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -29,8 +29,8 @@ describe("JSON", () => {
         output.on("end", (end) => {
             console.log(end)
         })
-        output.on("finish", (end) => {
-            console.log(end)
+        output.on("finish", () => {
+            console.log("end")
         })
         stream.array = data;
     })
