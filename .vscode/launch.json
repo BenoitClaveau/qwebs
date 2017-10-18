@@ -16,7 +16,7 @@
       "name": "Tests",
       "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
       "args": [
-        "${workspaceRoot}/tests/services/json.spec.js"
+        "${workspaceRoot}/tests/services/jsonstream.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }

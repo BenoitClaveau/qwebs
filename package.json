@@ -1,52 +1,54 @@
 {
-    "name": "qwebs",
-    "version": "1.0.0",
-    "description": "Web application framework",
-    "main": "index.js",
-    "dependencies": {
-        "jimp": "latest",
-        "request": "latest"
-    },
-    "devDependencies": {
-        "jasmine": "latest",
-        "coveralls": "latest",
-        "istanbul": "latest"
-    },
-    "scripts": {
-        "test": "node node_modules/jasmine/bin/jasmine.js tests/*.spec.js",
-        "test-cover": "node_modules/.bin/istanbul cover node_modules/jasmine/bin/jasmine.js tests/*.spec.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/BenoitClaveau/qwebs.git"
-    },
-    "keywords": [
-        "web",
-        "application",
-        "server",
-        "dependency-injection",
-        "webserver",
-        "promise",
-        "api",
-        "stream",
-        "backend",
-        "back-end",
-        "http",
-        "router",
-        "routing",
-        "route",
-        "webcomponents",
-        "polymer",
-        "angular",
-        "react"
-    ],
-    "author": {
-        "name": "Benoît Claveau",
-        "email": "benoit.claveau@gmail.com"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/BenoitClaveau/qwebs/issues"
-    },
-    "homepage": "https://github.com/BenoitClaveau/qwebs"
+  "name": "qwebs",
+  "version": "1.0.0",
+  "description": "Web application framework",
+  "main": "index.js",
+  "dependencies": {
+    "jimp": "latest",
+    "jsonparse": "^1.3.1",
+    "request": "latest",
+    "through": "^2.3.8"
+  },
+  "devDependencies": {
+    "jasmine": "latest",
+    "coveralls": "latest",
+    "istanbul": "latest"
+  },
+  "scripts": {
+    "test": "node node_modules/jasmine/bin/jasmine.js tests/*.spec.js",
+    "test-cover": "node_modules/.bin/istanbul cover node_modules/jasmine/bin/jasmine.js tests/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BenoitClaveau/qwebs.git"
+  },
+  "keywords": [
+    "web",
+    "application",
+    "server",
+    "dependency-injection",
+    "webserver",
+    "promise",
+    "api",
+    "stream",
+    "backend",
+    "back-end",
+    "http",
+    "router",
+    "routing",
+    "route",
+    "webcomponents",
+    "polymer",
+    "angular",
+    "react"
+  ],
+  "author": {
+    "name": "Benoît Claveau",
+    "email": "benoit.claveau@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BenoitClaveau/qwebs/issues"
+  },
+  "homepage": "https://github.com/BenoitClaveau/qwebs"
 }
