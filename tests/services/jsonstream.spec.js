@@ -8,7 +8,8 @@
 const fs = require ('fs');
 const { join } = require('path');
 const file = join(__dirname, 'data','npm.array.json')
-const { parse } = new require('../../lib/services/jsonstream');
+const JSONStream = require('../../services/jsonstream');
+const StreamFromArray = require('../../stream/fromarray');
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -17,32 +18,44 @@ require("process").on('unhandledRejection', (reason, p) => {
 describe("JSON", () => {
 
     it("parse empty", done => {
-        const expected = JSON.parse(fs.readFileSync(file));
-        let parser = parse();
-
-        let parsed = [];
-        parser.on('data', data => {
-            console.log(data);
-            parsed.push(data)
-        });
+        const data = JSON.parse(fs.readFileSync(file));
         
-        fs.createReadStream(file).pipe(parser);
-        let stream = fs.createReadStream(file)
-        // stream.on("data", data => {
-        //     console.log(data.toString());
-        // })
-        // stream.on("error", error => {
-        //     console.error(error);
-        // })
-
-        return new Promise((resolve, reject) => {
-            parser.on('end', () => {
-                resolve();
-            })
-            parser.on('error', error => {
-                reject(error);
-            })
-        }).catch(fail).then(done)
+        let stream = new StreamFromArray();
+        let stringify = new JSONStream();
+        const output = stream.pipe(stringify);
+        output.on("data", (data) => {
+            console.log(data)
+        })
+        output.on("end", (end) => {
+            console.log(end)
+        })
+        output.on("finish", (end) => {
+            console.log(end)
+        })
+        stream.array = data;
     })
+
+    // it("parse empty", done => {
+    //     const expected = JSON.parse(fs.readFileSync(file));
+    //     let parser = parse();
+
+    //     let parsed = [];
+    //     parser.on('data', data => {
+    //         console.log(data);
+    //         parsed.push(data)
+    //     });
+        
+    //     //fs.createReadStream(file).pipe(parser);
+    //     let stream = fs.createReadStream(file)
+
+    //     return new Promise((resolve, reject) => {
+    //         parser.on('end', () => {
+    //             resolve();
+    //         })
+    //         parser.on('error', error => {
+    //             reject(error);
+    //         })
+    //     }).catch(fail).then(done)
+    // })
 
 });
