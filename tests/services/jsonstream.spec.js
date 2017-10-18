@@ -8,7 +8,10 @@
 const fs = require ('fs');
 const { join } = require('path');
 const file = join(__dirname, 'data','npm.array.json')
-const JSONStream = require('../../lib/services/jsonstream');
+const MYJSON = new require('../../lib/services/json');
+const $JSON = new MYJSON();
+const MYJSONStream = new require('../../lib/services/json-stream');
+const $JSONStream = new MYJSONStream($JSON);
 const StreamFromArray = require('../../lib/stream/fromarray');
 
 require("process").on('unhandledRejection', (reason, p) => {
@@ -21,16 +24,17 @@ describe("JSON", () => {
         const data = JSON.parse(fs.readFileSync(file));
         
         let stream = new StreamFromArray();
-        let stringify = new JSONStream();
-        const output = stream.pipe(stringify);
+        const output = stream.pipe($JSONStream.stringify);
         output.on("data", (data) => {
-            console.log(data)
+            if (["[", "]", ","].some(e => e == data)) return;
+            const item = JSON.parse(data);
+            console.log(item.value.rev);
         })
         output.on("end", (end) => {
-            console.log(end)
+            console.log("* end *")
         })
         output.on("finish", () => {
-            console.log("end")
+            console.log("* finish *")
         })
         stream.array = data;
     })
