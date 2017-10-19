@@ -15,31 +15,31 @@ require("process").on('unhandledRejection', (reason, p) => {
 describe("JSON", () => {
 
     it("parse empty", done => {
-        expect(json.parse("{}")).toEqual({});
+        expect(json.parse("{}")).to.be({});
         done();
     })
             
     it("parse property", done => {
         const obj = json.parse(`{ "name": "benoît"}`);
-        expect(obj.name).toEqual("benoît");
+        expect(obj.name).to.be("benoît");
         done();
     });
 
     it("parse number", done => {
         const obj = json.parse(`{ "version": ${1}}`);
-        expect(obj.version).toEqual(1);
+        expect(obj.version).to.be(1);
         done();
     });
 
     it("parse date", done => {
         const date = new Date();
         const obj = json.parse(`{ "date": "${date.toJSON()}"}`);
-        expect(obj.date).toEqual(date);
+        expect(obj.date).to.be(date);
     });
 
     it("parse boolean", done => {
         const date = new Date();
         const obj = json.parse(`{ "activated": true}`);
-        expect(obj.activated).toEqual(true);
+        expect(obj.activated).to.be(true);
     });
 });

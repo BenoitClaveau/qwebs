@@ -16,28 +16,28 @@ describe("StringUtils", () => {
     it("camelCaseToDash", done => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.camelCaseToDash("$testModel");
-            expect(res).toEqual("$test-model");
+            expect(res).to.be("$test-model");
         }).catch(fail).then(done);
     });
 
     it("camelCaseToDash", done => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.camelCaseToDash("oauth2Model");
-            expect(res).toEqual("oauth2-model");
+            expect(res).to.be("oauth2-model");
         }).catch(fail).then(done);
     });
 
     it("camelCaseToDash", done => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.dashToCamelCase("test-model");
-            expect(res).toEqual("testModel");
+            expect(res).to.be("testModel");
         }).catch(fail).then(done);
     });
 
     it("camelCaseToDash", done => {
         return Promise.resolve().then(() => {  
             let res = stringUtils.dashToCamelCase("oauth2-model");
-            expect(res).toEqual("oauth2Model");
+            expect(res).to.be("oauth2Model");
         }).catch(fail).then(done);
     });
 });

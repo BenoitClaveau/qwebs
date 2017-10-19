@@ -6,12 +6,8 @@
 "use strict";
 
 const Qwebs = require("../../lib/qwebs");
-const ServicesLoader = require("../../lib/loaders/Services");
+const ServicesLoader = require("../../lib/loaders/services");
 const expect = require('expect.js');
-
-require("process").on('unhandledRejection', (reason, p) => {
-    console.error('Unhandled Rejection at:', p, 'reason:', reason);
-});
 
 describe("ServicesLoader", () => {
     
@@ -22,7 +18,7 @@ describe("ServicesLoader", () => {
         let $config = $qwebs.resolve("$config");
         
         const loader = new ServicesLoader($qwebs, $fileLoader, $config);
-        const file = await loader.load();
+        const file = loader.load();
 
         expect(file.services.length).to.be(1);            
         expect(file.services[0].name).to.be("$info");

@@ -80,7 +80,7 @@ describe("injector", () => {
             let $info = injector.resolve("$info1");
             throw new Error("Qwebs must generate a cyclic reference error.");
         }).catch(error => {
-            expect(error.message).toEqual("Cyclic reference.");
+            expect(error.message).to.be("Cyclic reference.");
         }).then(done);
     });
 
@@ -99,7 +99,7 @@ describe("injector", () => {
             
             let $info = injector.resolve("$info1");
         }).catch(error => {
-            expect(error.message).toEqual("Error on require.");
+            expect(error.message).to.be("Error on require.");
         }).then(done);
     });
 });

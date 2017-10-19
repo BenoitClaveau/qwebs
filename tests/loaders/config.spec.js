@@ -6,30 +6,22 @@
 "use strict";
 
 const ConfigLoader = require("../../lib/loaders/config");
+const FileLoader = require("../../lib/services/file-loader");
+const expect = require('expect.js');
 
-require("process").on('unhandledRejection', (reason, p) => {
-    console.error('Unhandled Rejection at:', p, 'reason:', reason);
-});
+describe("ConfigLoader", () => {
 
-describe("configLoader", () => {
-
-    it("create from object", done => {
-        return Promise.resolve().then(() => {
-            let $qwebs = {
-                root: __dirname
-            };
-            let config = new ConfigLoader($qwebs).create({ folder: "public1" });
-            expect(config.folder).toEqual("public1");
-        }).catch(fail).then(done);
+    it("load from object", async () => {
+        const $qwebs = { root: __dirname }; //mock qwebs;
+        const $fileLoader = new FileLoader($qwebs);
+        const config = await new ConfigLoader($fileLoader).load({ folder: "public1" });
+        expect(config.folder).to.be("public1");
     });
     
-    it("create from file", done => {
-        return Promise.resolve().then(() => {
-             let $qwebs = {
-                root: __dirname
-            };
-            let config = new ConfigLoader($qwebs).create("config.json");
-            expect(config.folder).toEqual("public2");
-        }).catch(fail).then(done);
+    it("load from file", async () => {
+        const $qwebs = { root: __dirname }; //mock qwebs;
+        const $fileLoader = new FileLoader($qwebs);
+        const config = await  new ConfigLoader($fileLoader).load("config.json");
+        expect(config.folder).to.be("public2");
     });
 });

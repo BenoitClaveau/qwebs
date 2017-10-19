@@ -18,14 +18,14 @@ describe("walk", () => {
         return Promise.resolve().then(() => {
             
             let files = walk.get(__dirname);
-            expect(files.length).toEqual(7);
-            expect(files[0].slice(__dirname.length)).toEqual("/contentType.spec.js");
-            expect(files[1].slice(__dirname.length)).toEqual("/pathRegex.spec.js");
-            expect(files[2].slice(__dirname.length)).toEqual("/repository.spec.js");
-            expect(files[3].slice(__dirname.length)).toEqual("/stream/data/page1.html");
-            expect(files[4].slice(__dirname.length)).toEqual("/stream/data/page2.html");
-            expect(files[5].slice(__dirname.length)).toEqual("/string.spec.js");
-            expect(files[6].slice(__dirname.length)).toEqual("/walk.spec.js");
+            expect(files.length).to.be(7);
+            expect(files[0].slice(__dirname.length)).to.be("/contentType.spec.js");
+            expect(files[1].slice(__dirname.length)).to.be("/pathRegex.spec.js");
+            expect(files[2].slice(__dirname.length)).to.be("/repository.spec.js");
+            expect(files[3].slice(__dirname.length)).to.be("/stream/data/page1.html");
+            expect(files[4].slice(__dirname.length)).to.be("/stream/data/page2.html");
+            expect(files[5].slice(__dirname.length)).to.be("/string.spec.js");
+            expect(files[6].slice(__dirname.length)).to.be("/walk.spec.js");
         }).catch(fail).then(done);
     });
 });

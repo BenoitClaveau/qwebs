@@ -17,9 +17,9 @@ describe("WebError", () => {
         return Promise.resolve().then(() => {
             throw new WebError({ message: "Mon erreur."});
         }).catch(error => {
-            expect(error.message).toEqual("Mon erreur.");
-            expect(error.headers["Content-Type"]).toEqual("application/json");
-            expect(error.statusCode).toEqual(500);
+            expect(error.message).to.be("Mon erreur.");
+            expect(error.headers["Content-Type"]).to.be("application/json");
+            expect(error.statusCode).to.be(500);
         }).then(done);
     });
     
@@ -27,7 +27,7 @@ describe("WebError", () => {
         return Promise.resolve().then(() => {
             throw new WebError({ statusCode: 503 });
         }).catch(error => {
-            expect(error.statusCode).toEqual(503);
+            expect(error.statusCode).to.be(503);
         }).then(done);
     });
     
@@ -38,7 +38,7 @@ describe("WebError", () => {
             };
             throw new WebError({ headers: headers });
         }).catch(error => {
-            expect(error.statusCode).toEqual(500);
+            expect(error.statusCode).to.be(500);
         }).then(done);
     });
     
@@ -46,7 +46,7 @@ describe("WebError", () => {
         return Promise.resolve().then(() => {
             throw new WebError({ data: { value: "33" }});
         }).catch(error => {
-            expect(error.data.value).toEqual("33");
+            expect(error.data.value).to.be("33");
         }).then(done);
     });
     
@@ -54,7 +54,7 @@ describe("WebError", () => {
         return Promise.resolve().then(() => {
             throw new WebError({ data: [1,2] });
         }).catch(error => {
-            expect(error.data.array.length).toEqual(2);
+            expect(error.data.array.length).to.be(2);
         }).then(done);
     });
     
@@ -64,7 +64,7 @@ describe("WebError", () => {
         }).catch(error => {
             throw new WebError({ stack: error.stack });
         }).catch(error => {
-            expect(error.statusCode).toEqual(500);
+            expect(error.statusCode).to.be(500);
         }).catch(fail).then(done);
     });
 });
