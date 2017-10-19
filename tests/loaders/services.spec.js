@@ -15,7 +15,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("ServicesLoader", () => {
     
-    it("load", async done => {
+    it("load", async () => {
         
         let $qwebs = new Qwebs({ dirname: __dirname, config: { services: "services.json" }});
         let $fileLoader = $qwebs.resolve("$fileLoader");
@@ -27,6 +27,5 @@ describe("ServicesLoader", () => {
         expect(file.services.length).to.be(1);            
         expect(file.services[0].name).to.be("$info");
         expect(file.services[0].location).to.be("../services/info.es6");
-        done();
     });
 });
