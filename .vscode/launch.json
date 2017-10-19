@@ -14,9 +14,9 @@
       "type": "node",
       "request": "launch",
       "name": "Tests",
-      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/mocha",
       "args": [
-        "${workspaceRoot}/tests/services/jsonstream.spec.js"
+        "${workspaceRoot}/tests/loaders/services.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }

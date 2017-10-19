@@ -7,6 +7,7 @@
 
 const Qwebs = require("../../lib/qwebs");
 const ServicesLoader = require("../../lib/loaders/Services");
+const expect = require('expect.js');
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -14,18 +15,18 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("ServicesLoader", () => {
     
-    it("load", done => {
+    it("load", async done => {
         
-        return Promise.resolve().then(() => {
+        let $qwebs = new Qwebs({ dirname: __dirname, config: { services: "services.json" }});
+        let $fileLoader = $qwebs.resolve("$fileLoader");
+        let $config = $qwebs.resolve("$config");
+        
+        const loader = new ServicesLoader($qwebs, $fileLoader, $config);
+        const file = await loader.load();
 
-            let $qwebs = new Qwebs({ dirname: __dirname, config: { services: "services.json" }});
-            let $config = $qwebs.resolve("$config");
-            
-            return new RoutesLoader($qwebs, $config).load().then(file => {
-                expect(file.services.length).toEqual(1);            
-                expect(file.services[0].name).toEqual("$info");
-                expect(file.services[0].location).toEqual("../services/info.es6");
-            });
-        }).catch(fail).then(done);
+        expect(file.services.length).to.be(1);            
+        expect(file.services[0].name).to.be("$info");
+        expect(file.services[0].location).to.be("../services/info.es6");
+        done();
     });
 });
