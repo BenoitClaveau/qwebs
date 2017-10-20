@@ -105,7 +105,7 @@ $ git clone https://github.com/BenoitClaveau/qwebs --depth 1
 $ cd qwebs
 $ npm install
 $ cd tests
-$ node.exe "..\node_modules\jasmine\bin\jasmine" --verbose .
+$ node.exe "../node_modules/mocha/bin/mocha" .
 ```
 
 [npm-image]: https://img.shields.io/npm/v/qwebs.svg
