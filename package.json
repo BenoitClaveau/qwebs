@@ -4,10 +4,9 @@
   "description": "Web application framework",
   "main": "index.js",
   "dependencies": {
+    "oups": "latest",
     "jimp": "latest",
-    "jsonparse": "latest",
-    "request": "latest",
-    "through": "latest"
+    "request": "latest"
   },
   "devDependencies": {
     "coveralls": "latest",
@@ -16,7 +15,7 @@
     "mocha": "latest"
   },
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha tests",
+    "test": "node node_modules/mocha/bin/mocha tests",
     "test-cover": "node_modules/.bin/istanbul cover node_modules/mocha/bin/mocha tests"
   },
   "repository": {
@@ -24,24 +23,20 @@
     "url": "https://github.com/BenoitClaveau/qwebs.git"
   },
   "keywords": [
-    "web",
-    "application",
-    "server",
     "dependency-injection",
-    "webserver",
+    "injection",
+    "injector",
     "promise",
     "api",
     "stream",
-    "backend",
-    "back-end",
-    "http",
+    "async",
+    "await",
     "router",
     "routing",
     "route",
-    "webcomponents",
-    "polymer",
-    "angular",
-    "react"
+    "service",
+    "services",
+    "poo"
   ],
   "author": {
     "name": "Benoît Claveau",

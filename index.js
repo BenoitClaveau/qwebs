@@ -7,8 +7,6 @@
 'use strict';
 
 module.exports = require('./lib/qwebs');
-module.exports.Singleton = require('./lib/singleton');
-module.exports.WebError = require('./lib/weberror');
 module.exports.Repository = require('./lib/utils/repository');
 module.exports.MergeStream = require('./lib/stream/mergestream');
 module.exports.ToArray = require('./lib/stream/toarray');
