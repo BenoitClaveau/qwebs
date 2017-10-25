@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const Injector = require('../lib/injector');
 
 require("process").on('unhandledRejection', (reason, p) => {

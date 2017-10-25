@@ -5,19 +5,19 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const Qwebs = require("../../lib/qwebs");
 const ServicesLoader = require("../../lib/loaders/services");
-const expect = require('expect.js');
 
 describe("ServicesLoader", () => {
     
     it("load", async () => {
         
         let $qwebs = new Qwebs({ dirname: __dirname, config: { services: "services.json" }});
-        let $file = $qwebs.resolve("$file");
+        let $fs = $qwebs.resolve("$fs");
         let $config = $qwebs.resolve("$config");
         
-        const loader = new ServicesLoader($qwebs, $file, $config);
+        const loader = new ServicesLoader($qwebs, $fs, $config);
         const file = loader.load();
 
         expect(file.services.length).to.be(1);            

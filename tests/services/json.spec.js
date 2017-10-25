@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const JSON = new require('../../lib/services/json');
 const json = new JSON();
 

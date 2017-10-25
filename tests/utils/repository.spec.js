@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const Repository = require('../../lib/utils/repository');
 const fs = require("fs");
 const path = require('path');

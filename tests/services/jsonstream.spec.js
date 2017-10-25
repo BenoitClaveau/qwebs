@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const fs = require ('fs');
 const { join } = require('path');
 const file = join(__dirname, 'data','npm.array.json')

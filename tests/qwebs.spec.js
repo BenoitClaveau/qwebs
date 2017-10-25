@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const Qwebs = require("../lib/qwebs");
 
 require("process").on('unhandledRejection', (reason, p) => {

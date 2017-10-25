@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const walk = require('../../lib/utils/walk');
 
 require("process").on('unhandledRejection', (reason, p) => {

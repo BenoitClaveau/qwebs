@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const ContentType = new require('../../lib/services/content-type');
 
 require("process").on('unhandledRejection', (reason, p) => {

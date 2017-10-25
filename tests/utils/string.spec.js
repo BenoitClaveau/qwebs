@@ -5,6 +5,7 @@
  */
 "use strict";
 
+const expect = require("expect.js");
 const stringUtils = require('../../lib/utils/string');
 
 require("process").on('unhandledRejection', (reason, p) => {
