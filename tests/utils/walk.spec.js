@@ -14,7 +14,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("walk", () => {
 
-    it("get", done => {
+    it("get", async (done) => {
         
         return Promise.resolve().then(() => {
             

@@ -14,7 +14,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("ContentType", () => {
 
-    it("getFromExt", done => {
+    it("getFromExt", async (done) => {
         const contentType = new ContentType();
         contentType.getFromExt(".json").expect("application/json");
         contentType.getFromExt(".png").expect("image/png");

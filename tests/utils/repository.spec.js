@@ -15,7 +15,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 });
 
 describe("qjimp", () => {
-    it("toImage & toBuffer", done => {
+    it("toImage & toBuffer", async (done) => {
         return Promise.resolve().then(() => {
             let repository = new Repository(path.resolve(__dirname,"../services/images"));
             var properties = Object.keys(repository);

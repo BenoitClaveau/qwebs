@@ -14,22 +14,21 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("injector", () => {
 
-    it("inject & resolve", done => {
-        return Promise.resolve().then(() => {
-            let $qwebs = {
-                root: __dirname
-            };
-             
-            let injector = new Injector();
-            injector.inject("$qwebs", $qwebs);
-            injector.inject("$info", "./services/info.es6");
-            let $info = injector.resolve("$info");
-            expect($info).not.toBeNull();
-            expect($info.whoiam()).toBe("I'm Info service.");
-        }).catch(fail).then(done);
+    it("inject & resolve", async (done) => {
+        let $qwebs = {
+            root: __dirname
+        };
+            
+        let injector = new Injector();
+        injector.inject("$qwebs", $qwebs);
+        injector.inject("$info", "./services/info.es6");
+        let $info = injector.resolve("$info");
+
+        expect($info).not.toBeNull();
+        expect($info.whoiam()).toBe("I'm Info service.");
     });
     
-    it("inject & load", done => {
+    it("inject & load", async (done) => {
         return Promise.resolve().then(() => {
             let $qwebs = {
                 root: __dirname
@@ -47,7 +46,7 @@ describe("injector", () => {
         }).catch(fail).then(done);
     });
     
-    it("try to inject es5", done => {
+    it("try to inject es5", async (done) => {
         return Promise.resolve().then(() => {
             let $qwebs = {
                 root: __dirname
@@ -64,7 +63,7 @@ describe("injector", () => {
         }).catch(fail).then(done);
     });
     
-    it("try to inject cyclic reference", done => {
+    it("try to inject cyclic reference", async (done) => {
         
         return Promise.resolve().then(() => {
             let $qwebs = {
@@ -85,7 +84,7 @@ describe("injector", () => {
         }).then(done);
     });
 
-    it("try to inject non exisiting module", done => {
+    it("try to inject non exisiting module", async (done) => {
         
         return Promise.resolve().then(() => {
             let $qwebs = {

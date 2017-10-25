@@ -42,7 +42,7 @@ describe("JSON", () => {
         stream.array = data;
     })
 
-    // it("parse empty", done => {
+    // it("parse empty", async (done) => {
     //     const expected = JSON.parse(fs.readFileSync(file));
     //     let parser = parse();
 
