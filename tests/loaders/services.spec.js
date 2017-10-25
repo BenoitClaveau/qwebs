@@ -20,7 +20,7 @@ describe("ServicesLoader", () => {
         const loader = new ServicesLoader($qwebs, $fs, $config);
         const file = loader.load();
 
-        expect(file.services.length).to.be(1);            
+        expect(file.services.length).to.be(1);
         expect(file.services[0].name).to.be("$info");
         expect(file.services[0].location).to.be("../services/info.es6");
     });

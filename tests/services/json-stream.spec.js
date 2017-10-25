@@ -6,13 +6,10 @@
 "use strict";
 
 const expect = require("expect.js");
-const fs = require ('fs');
-const { join } = require('path');
-const file = join(__dirname, 'data','npm.array.json')
-const MYJSON = new require('../../lib/services/json');
-const $JSON = new MYJSON();
-const MYJSONStream = new require('../../lib/services/json-stream');
-const $JSONStream = new MYJSONStream($JSON);
+const MyJSON = new require('../../lib/services/json');
+const $JSON = new MyJSON();
+const MyJSONStream = new require('../../lib/services/json-stream');
+const $JSONStream = new MyJSONStream($JSON);
 const StreamFromArray = require('../../lib/stream/fromarray');
 
 require("process").on('unhandledRejection', (reason, p) => {
@@ -21,8 +18,13 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("JSON", () => {
 
-    it("parse empty", done => {
-        const data = JSON.parse(fs.readFileSync(file));
+    it("parse empty", async () => {
+        const qwebs = new Qwebs();
+        const $fs = qwebs.resolve("$fs");
+        const $JSON = qwebs.resolve("$JSON");
+        const $JSONStream = qwebs.resolve("$JSONStream");
+    
+        const data = $fs.load("./data.npm.array.json");
         
         let stream = new StreamFromArray();
         const output = stream.pipe($JSONStream.stringify);
