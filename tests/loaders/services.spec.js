@@ -14,10 +14,10 @@ describe("ServicesLoader", () => {
     it("load", async () => {
         
         let $qwebs = new Qwebs({ dirname: __dirname, config: { services: "services.json" }});
-        let $fileLoader = $qwebs.resolve("$fileLoader");
+        let $file = $qwebs.resolve("$file");
         let $config = $qwebs.resolve("$config");
         
-        const loader = new ServicesLoader($qwebs, $fileLoader, $config);
+        const loader = new ServicesLoader($qwebs, $file, $config);
         const file = loader.load();
 
         expect(file.services.length).to.be(1);            
