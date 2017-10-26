@@ -1,5 +1,6 @@
 # Qwebs
- Web application framework with native promise, dependency-injection and bundle.
+
+ async/await application framework with dependency-injection.
 
  [![NPM][npm-image]][npm-url]
  [![Build Status][travis-image]][travis-url]
@@ -7,29 +8,41 @@
  [![NPM Download][npm-image-download]][npm-url]
  [![Dependencies Status][david-dm-image]][david-dm-url]
 
+```shell
+npm install $qwebs --save
+```
+
  Discover our [starter kit](https://www.npmjs.com/package/qwebs-starter-kit-polymer) with [Polymer](https://www.polymer-project.org/).
 
 # Features
 
-  * [Promise](#promise) 
-  * [Separate services](#service) 
+  * [Promise & async/await](#async/await) 
+  * [Single config file](#config) 
   * [Dependency injection](#di) 
   * [Object oriented programming (OOP)](#oop) 
+  * [Separate services](#service) 
   * [Compression & minification](#bundle) 
   * [0 disk access at runtime](#disk) 
   * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
   * [Configuration](#config)
   
-# Installation
+<a name="async/await"/>
+## Promise & async/await
 
-```shell
-npm install $qwebs --save
-npm install $qwebs-http --save
-```
+  * Easier to read
+  * Easier to maintain in the future
+  * Easier error handling
 
-## Define services.json
+## Services
+<a name="service"/>
 
-```services.json
+Develop your own service in a separate file. Your don't need to instanciate it. Qwebs [DI](#di) do that job. If you use another service just inject it in your constructor.
+
+> What is the main avantage to use DI ?
+>
+> You could easily override any service. Unit testing will be easy.
+
+```qwebs.json
 {
     "services": [
         { "name": "$http", "location": "qwebs-http"},
@@ -38,17 +51,10 @@ npm install $qwebs-http --save
 }
 ```
 
+<a name="config"/>
 ## Create config.json
 
 Qwebs embed a configuration manager. 
-
-
-# Services
-<a name="service"/>
-
-Qwebs is deigned for POO.
-Your service do not need to be instanciate. Qwebs [DI](#di) do that job.
-
 
 <a name="di"/>
 ## Dependency injection
@@ -69,13 +75,6 @@ Qwebs will create your service with its dependencies.
         { "name": "$user", "location": "../services/user"}
         ...
 ```
-
-<a name="promise"/>
-## Promise
-
-  * Easier to read
-  * Easier to maintain in the future
-  * Easier error handling
 
 ## Services
 
