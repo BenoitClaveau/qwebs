@@ -28,7 +28,7 @@ describe("injector", () => {
         expect($info.whoiam()).toBe("I'm Info service.");
     });
     
-    it("inject & load", async (done) => {
+    it("inject & import", async (done) => {
         return Promise.resolve().then(() => {
             let $qwebs = {
                 root: __dirname
@@ -38,7 +38,7 @@ describe("injector", () => {
             injector.inject("$qwebs", $qwebs);
             injector.inject("$info", "./services/info.es6");
             
-            injector.load();
+            injector.import();
             
             let $info = injector.resolve("$info");
             expect($info).not.toBeNull();
@@ -46,7 +46,7 @@ describe("injector", () => {
         }).catch(fail).then(done);
     });
 
-    it("inject & load", async (done) => {
+    it("inject & import", async (done) => {
         return Promise.resolve().then(() => {
             let $qwebs = {
                 root: __dirname
@@ -56,7 +56,7 @@ describe("injector", () => {
             injector.inject("$qwebs", $qwebs);
             injector.inject("$info", "./services/info.mount.es6");
             
-            injector.load();
+            injector.import();
             
             let $info = injector.resolve("$info");
             expect($info).not.toBeNull();
@@ -74,7 +74,7 @@ describe("injector", () => {
             injector.inject("$qwebs", $qwebs);
             injector.inject("$info", "./services/info.es5");
             
-            injector.load();
+            injector.import();
             
             let $info = injector.resolve("$info");
             expect($info instanceof require("./services/info.es5")).toBe(true);
@@ -93,7 +93,7 @@ describe("injector", () => {
             injector.inject("$info1", "./services/info1");
             injector.inject("$info2", "./services/info2");
             
-            injector.load();
+            injector.import();
             
             let $info = injector.resolve("$info1");
             throw new Error("Qwebs must generate a cyclic reference error.");
@@ -113,7 +113,7 @@ describe("injector", () => {
             injector.inject("$qwebs", $qwebs);
             injector.inject("$dummy", "./services/dummy");
             
-            injector.load();
+            injector.import();
             
             let $info = injector.resolve("$info1");
         }).catch(error => {
