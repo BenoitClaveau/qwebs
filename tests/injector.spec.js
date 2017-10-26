@@ -45,6 +45,24 @@ describe("injector", () => {
             expect($info.whoiam()).toBe("I'm Info service.");
         }).catch(fail).then(done);
     });
+
+    it("inject & load", async (done) => {
+        return Promise.resolve().then(() => {
+            let $qwebs = {
+                root: __dirname
+            };
+            
+            let injector = new Injector();
+            injector.inject("$qwebs", $qwebs);
+            injector.inject("$info", "./services/info.mount.es6");
+            
+            injector.load();
+            
+            let $info = injector.resolve("$info");
+            expect($info).not.toBeNull();
+            expect($info.whoiam()).toBe("I'm Info service.");
+        }).catch(fail).then(done);
+    });
     
     it("try to inject es5", async (done) => {
         return Promise.resolve().then(() => {

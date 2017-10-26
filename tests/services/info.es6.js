@@ -6,8 +6,8 @@
 
 "use strict";
 
-const Writable = require('stream').Writable;
-const Readable = require('stream').Readable;
+const { Writable } = require('stream');
+const { Readable } = require('stream');
 
 class InfoService {
 	constructor() {	
