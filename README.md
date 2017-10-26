@@ -16,11 +16,10 @@ npm install $qwebs --save
 
 # Features
 
-  * [Promise & async/await](#async/await) 
+  * [Promise & async/await](#async/await)
+  * [Services & POO](#services) 
+  * [Dependency injection](#di)
   * [Single config file](#config) 
-  * [Dependency injection](#di) 
-  * [Object oriented programming (OOP)](#oop) 
-  * [Separate services](#service) 
   * [Compression & minification](#bundle) 
   * [0 disk access at runtime](#disk) 
   * [Bundle](#bundle) css, [sass](https://www.npmjs.com/package/node-sass)
@@ -51,11 +50,6 @@ Develop your own service in a separate file. Your don't need to instanciate it. 
 }
 ```
 
-<a name="config"/>
-## Create config.json
-
-Qwebs embed a configuration manager. 
-
 <a name="di"/>
 ## Dependency injection
 
@@ -75,6 +69,18 @@ Qwebs will create your service with its dependencies.
         { "name": "$user", "location": "../services/user"}
         ...
 ```
+
+### Lifecycle
+
+1. import module
+1. constructor()
+1. mount()
+
+<a name="config"/>
+## Create config.json
+
+Qwebs embed a configuration manager. 
+
 
 ## Services
 
