@@ -1,6 +1,6 @@
 {
   "name": "qwebs",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.0",
   "description": "Web application framework",
   "main": "index.js",
   "dependencies": {
@@ -15,8 +15,8 @@
     "mocha": "latest"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha tests",
-    "test-cover": "node_modules/.bin/istanbul cover node_modules/mocha/bin/mocha tests"
+    "test": "node node_modules/mocha/bin/mocha --recursive tests",
+    "test-cover": "node_modules/.bin/istanbul cover node_modules/mocha/bin/mocha --recursive tests"
   },
   "repository": {
     "type": "git",

@@ -18,7 +18,7 @@ describe("ServicesLoader", () => {
         let $config = $qwebs.resolve("$config");
         
         const loader = new ServicesLoader($qwebs, $fs, $config);
-        const file = loader.load();
+        const file = await loader.load();
 
         expect(file.services.length).to.be(1);
         expect(file.services[0].name).to.be("$info");

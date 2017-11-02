@@ -17,7 +17,7 @@ describe("FileSystem", () => {
 
     it("readFile", async () => {
         const file = await fs.readFile("./data/npm.array.json");
-        expect(file.length).to.be(4028);            
+        expect(file.length).to.be(386268);            
     });
 
     it("statSync", async () => {

@@ -13,111 +13,81 @@ require("process").on('unhandledRejection', (reason, p) => {
 });
 
 describe("injector", () => {
-
-    it("inject & resolve", async (done) => {
-        let $qwebs = {
-            root: __dirname
-        };
+    it("inject & resolve", async () => {
+        let qwebs = { root: __dirname };
             
         let injector = new Injector();
-        injector.inject("$qwebs", $qwebs);
+        injector.inject("$qwebs", qwebs);
         injector.inject("$info", "./services/info.es6");
-        let $info = injector.resolve("$info");
+        const info = await injector.resolve("$info");
 
-        expect($info).not.toBeNull();
-        expect($info.whoiam()).toBe("I'm Info service.");
+        expect(info).to.be.ok();
+        expect(info.whoiam()).to.be("I'm Info service.");
     });
     
-    it("inject & import", async (done) => {
-        return Promise.resolve().then(() => {
-            let $qwebs = {
-                root: __dirname
-            };
-            
-            let injector = new Injector();
-            injector.inject("$qwebs", $qwebs);
-            injector.inject("$info", "./services/info.es6");
-            
-            injector.import();
-            
-            let $info = injector.resolve("$info");
-            expect($info).not.toBeNull();
-            expect($info.whoiam()).toBe("I'm Info service.");
-        }).catch(fail).then(done);
-    });
-
-    it("inject & import", async (done) => {
-        return Promise.resolve().then(() => {
-            let $qwebs = {
-                root: __dirname
-            };
-            
-            let injector = new Injector();
-            injector.inject("$qwebs", $qwebs);
-            injector.inject("$info", "./services/info.mount.es6");
-            
-            injector.import();
-            
-            let $info = injector.resolve("$info");
-            expect($info).not.toBeNull();
-            expect($info.whoiam()).toBe("I'm Info service.");
-        }).catch(fail).then(done);
-    });
-    
-    it("try to inject es5", async (done) => {
-        return Promise.resolve().then(() => {
-            let $qwebs = {
-                root: __dirname
-            };
-            
-            let injector = new Injector();
-            injector.inject("$qwebs", $qwebs);
-            injector.inject("$info", "./services/info.es5");
-            
-            injector.import();
-            
-            let $info = injector.resolve("$info");
-            expect($info instanceof require("./services/info.es5")).toBe(true);
-        }).catch(fail).then(done);
-    });
-    
-    it("try to inject cyclic reference", async (done) => {
+    it("inject & import", async () => {
+        let qwebs = { root: __dirname };
         
-        return Promise.resolve().then(() => {
-            let $qwebs = {
-                root: __dirname
-            };
-            
-            let injector = new Injector();
-            injector.inject("$qwebs", $qwebs);
-            injector.inject("$info1", "./services/info1");
-            injector.inject("$info2", "./services/info2");
-            
-            injector.import();
-            
-            let $info = injector.resolve("$info1");
-            throw new Error("Qwebs must generate a cyclic reference error.");
-        }).catch(error => {
-            expect(error.message).to.be("Cyclic reference.");
-        }).then(done);
+        let injector = new Injector();
+        injector.inject("$qwebs", qwebs);
+        injector.inject("$info", "./services/info.es6");
+        await injector.import();
+        
+        let info = await injector.resolve("$info");
+        expect(info).to.be.ok();
+        expect(info.whoiam()).to.be("I'm Info service.");
     });
 
-    it("try to inject non exisiting module", async (done) => {
+    it("inject & import", async () => {
+        let qwebs = { root: __dirname };
         
-        return Promise.resolve().then(() => {
-            let $qwebs = {
-                root: __dirname
-            };
+        let injector = new Injector();
+        injector.inject("$qwebs", qwebs);
+        injector.inject("$info", "./services/info.mount.es6");
+        await injector.import();
+        
+        let info = await injector.resolve("$info");
+        expect(info).to.be.ok();
+        expect(info.whoiam()).to.be("I'm Info service.");
+    });
+    
+    it("try to inject es5", async () => {
+        let qwebs = { root: __dirname };
             
-            let injector = new Injector();
-            injector.inject("$qwebs", $qwebs);
+        let injector = new Injector();
+        injector.inject("$qwebs", qwebs);
+        injector.inject("$info", "./services/info.es5");
+        await injector.import();
+        
+        let info = await injector.resolve("$info");
+        expect(info instanceof require("./services/info.es5")).to.be(true);
+    });
+    
+    it("try to inject cyclic reference", async () => {
+        let qwebs = { root: __dirname };
+        
+        let injector = new Injector();
+        injector.inject("$qwebs", qwebs);
+        injector.inject("$info1", "./services/info1");
+        injector.inject("$info2", "./services/info2");
+        try {
+            await injector.import();
+            fail();
+        }
+        catch(error) {
+        }
+    });
+
+    it("try to inject non exisiting module", async () => {
+        let qwebs = { root: __dirname };
+        
+        let injector = new Injector();
+        injector.inject("$qwebs", qwebs);
+        try {
             injector.inject("$dummy", "./services/dummy");
-            
-            injector.import();
-            
-            let $info = injector.resolve("$info1");
-        }).catch(error => {
-            expect(error.message).to.be("Error on require.");
-        }).then(done);
+            fail();
+        }
+        catch(error) {
+        }
     });
 });

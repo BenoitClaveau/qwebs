@@ -15,7 +15,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 describe("routesLoader", () => {
     
     it("load", () => {
-        const $qwebs = new Qwebs({ dirname: __dirname, config: "config.json"});
-        expect($qwebs).to.be.defined();
+        const qwebs = new Qwebs({ dirname: __dirname, config: "config.json"});
+        expect(qwebs).to.be.ok();
     });
 });

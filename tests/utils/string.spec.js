@@ -14,31 +14,23 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("StringUtils", () => {
 
-    it("camelCaseToDash", async (done) => {
-        return Promise.resolve().then(() => {  
-            let res = stringUtils.camelCaseToDash("$testModel");
-            expect(res).to.be("$test-model");
-        }).catch(fail).then(done);
+    it("camelCaseToDash", () => {
+        let res = stringUtils.camelCaseToDash("$testModel");
+        expect(res).to.be("$test-model");
     });
 
-    it("camelCaseToDash", async (done) => {
-        return Promise.resolve().then(() => {  
-            let res = stringUtils.camelCaseToDash("oauth2Model");
-            expect(res).to.be("oauth2-model");
-        }).catch(fail).then(done);
+    it("camelCaseToDash", () => {
+        let res = stringUtils.camelCaseToDash("oauth2Model");
+        expect(res).to.be("oauth2-model");
     });
 
-    it("camelCaseToDash", async (done) => {
-        return Promise.resolve().then(() => {  
-            let res = stringUtils.dashToCamelCase("test-model");
-            expect(res).to.be("testModel");
-        }).catch(fail).then(done);
+    it("camelCaseToDash", () => {
+        let res = stringUtils.dashToCamelCase("test-model");
+        expect(res).to.be("testModel");
     });
 
-    it("camelCaseToDash", async (done) => {
-        return Promise.resolve().then(() => {  
-            let res = stringUtils.dashToCamelCase("oauth2-model");
-            expect(res).to.be("oauth2Model");
-        }).catch(fail).then(done);
+    it("camelCaseToDash", () => {
+        let res = stringUtils.dashToCamelCase("oauth2-model");
+        expect(res).to.be("oauth2Model");
     });
 });

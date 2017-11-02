@@ -6,11 +6,7 @@
 "use strict";
 
 const expect = require("expect.js");
-const MyJSON = new require('../../lib/services/json');
-const $JSON = new MyJSON();
-const MyJSONStream = new require('../../lib/services/json-stream');
-const $JSONStream = new MyJSONStream($JSON);
-const StreamFromArray = require('../../lib/stream/fromarray');
+const Qwebs = require("../../lib/qwebs");
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -20,11 +16,10 @@ describe("JSON", () => {
 
     it("parse empty", async () => {
         const qwebs = new Qwebs();
-        const $fs = qwebs.resolve("$fs");
-        const $JSON = qwebs.resolve("$JSON");
-        const $JSONStream = qwebs.resolve("$JSONStream");
-    
-        const data = $fs.load("./data.npm.array.json");
+        const $fs = await qwebs.resolve("$fs");
+        const $JSON = await qwebs.resolve("$JSON");
+        const $JSONStream = await qwebs.resolve("$JSONStream");
+        const data = await $fs.load("./data/npm.array.json");
         
         let stream = new StreamFromArray();
         const output = stream.pipe($JSONStream.stringify);
@@ -42,7 +37,7 @@ describe("JSON", () => {
         stream.array = data;
     })
 
-    // it("parse empty", async (done) => {
+    // it("parse empty", async () => {
     //     const expected = JSON.parse(fs.readFileSync(file));
     //     let parser = parse();
 

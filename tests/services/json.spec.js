@@ -15,30 +15,27 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("JSON", () => {
 
-    it("parse empty", async (done) => {
-        expect(json.parse("{}")).to.be({});
-        done();
+    it("parse empty", () => {
+        expect(json.parse("{}")).to.be.empty();
     })
             
-    it("parse property", async (done) => {
+    it("parse property", () => {
         const obj = json.parse(`{ "name": "benoît"}`);
         expect(obj.name).to.be("benoît");
-        done();
     });
 
-    it("parse number", async (done) => {
+    it("parse number", () => {
         const obj = json.parse(`{ "version": ${1}}`);
         expect(obj.version).to.be(1);
-        done();
     });
 
-    it("parse date", async (done) => {
+    it("parse date", () => {
         const date = new Date();
         const obj = json.parse(`{ "date": "${date.toJSON()}"}`);
-        expect(obj.date).to.be(date);
+        expect(obj.date).to.equal(date);
     });
 
-    it("parse boolean", async (done) => {
+    it("parse boolean", () => {
         const date = new Date();
         const obj = json.parse(`{ "activated": true}`);
         expect(obj.activated).to.be(true);
