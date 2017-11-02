@@ -12,16 +12,10 @@ const ServicesLoader = require("../../lib/loaders/services");
 describe("ServicesLoader", () => {
     
     it("load", async () => {
-        
-        let $qwebs = new Qwebs({ dirname: __dirname, config: { services: "services.json" }});
-        let $fs = $qwebs.resolve("$fs");
-        let $config = $qwebs.resolve("$config");
-        
-        const loader = new ServicesLoader($qwebs, $fs, $config);
-        const file = await loader.load();
-
-        expect(file.services.length).to.be(1);
-        expect(file.services[0].name).to.be("$info");
-        expect(file.services[0].location).to.be("../services/info.es6");
+        let qwebs = new Qwebs({ dirname: __dirname, config: { services: "services.json" }});
+        let $injector = await qwebs.resolve("$injector");
+        expect(Object.entries($injector.container).length).to.be(11);
+        let $loader = await qwebs.resolve("$services-loader");
+        expect(Object.entries($injector.container).length).to.be(12);
     });
 });

@@ -12,10 +12,11 @@ require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
 });
 
-describe("routesLoader", () => {
+describe("qwebs", () => {
     
-    it("load", () => {
+    it("load", async () => {
         const qwebs = new Qwebs({ dirname: __dirname, config: "config.json"});
-        expect(qwebs).to.be.ok();
+        await qwebs.mount();
+        //await qwebs.unmount();
     });
 });

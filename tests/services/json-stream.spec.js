@@ -6,7 +6,9 @@
 "use strict";
 
 const expect = require("expect.js");
-const Qwebs = require("../../lib/qwebs");
+const Qwebs = require("../../index");
+const { FromArray } = require("../../index");
+//const Qwebs = require("../../lib/qwebs");
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -15,13 +17,13 @@ require("process").on('unhandledRejection', (reason, p) => {
 describe("JSON", () => {
 
     it("parse empty", async () => {
-        const qwebs = new Qwebs();
+        let qwebs = new Qwebs({ dirname: __dirname });
         const $fs = await qwebs.resolve("$fs");
         const $JSON = await qwebs.resolve("$JSON");
         const $JSONStream = await qwebs.resolve("$JSONStream");
         const data = await $fs.load("./data/npm.array.json");
         
-        let stream = new StreamFromArray();
+        let stream = new FromArray(data);
         const output = stream.pipe($JSONStream.stringify);
         output.on("data", (data) => {
             if (["[", "]", ","].some(e => e == data)) return;
@@ -34,8 +36,7 @@ describe("JSON", () => {
         output.on("finish", () => {
             console.log("* finish *")
         })
-        stream.array = data;
-    })
+    }, 5000)
 
     // it("parse empty", async () => {
     //     const expected = JSON.parse(fs.readFileSync(file));

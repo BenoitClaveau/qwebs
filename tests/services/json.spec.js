@@ -32,7 +32,7 @@ describe("JSON", () => {
     it("parse date", () => {
         const date = new Date();
         const obj = json.parse(`{ "date": "${date.toJSON()}"}`);
-        expect(obj.date).to.equal(date);
+        expect(obj.date).to.eql(date);
     });
 
     it("parse boolean", () => {

@@ -6,8 +6,8 @@
 "use strict";
 
 const expect = require("expect.js");
-const FileSystem = new require('../../lib/services/fs');
-const fs = new FileSystem({ root: __dirname });
+const FileSystem = require('../../lib/services/fs');
+const $fs = new FileSystem({ root: __dirname });
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -16,17 +16,17 @@ require("process").on('unhandledRejection', (reason, p) => {
 describe("FileSystem", () => {
 
     it("readFile", async () => {
-        const file = await fs.readFile("./data/npm.array.json");
+        const file = await $fs.readFile("./data/npm.array.json");
         expect(file.length).to.be(386268);            
     });
 
-    it("statSync", async () => {
-        const stat = await fs.load("./data");
-        expect(file.length).to.be(4028);            
+    it("stat", async () => {
+        const stat = await $fs.stat("./data");
+        expect(stat.mode).to.be(16822);            
     });
 
     it("load", async () => {
-        const file = await fs.load("./data/npm.array.json");
+        const file = await $fs.load("./data/npm.array.json");
         expect(file.length).to.be(4028);            
     });
 });

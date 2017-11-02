@@ -16,7 +16,8 @@
       "name": "Tests",
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "args": [
-        "${workspaceRoot}/tests/injector.spec.js"
+        "--recursive",
+        "${workspaceRoot}/tests"
       ],
       "cwd": "${workspaceRoot}"
     }
