@@ -24,41 +24,15 @@ describe("JSON", () => {
         const data = await $fs.load("./data/npm.array.json");
         
         let stream = new FromArray(data);
-        const output = stream.pipe($JSONStream.stringify);
-        output.on("data", (data) => {
-            if (["[", "]", ","].some(e => e == data)) return;
-            const item = JSON.parse(data);
-            console.log(item.value.rev);
-        })
-        output.on("end", (end) => {
-            console.log("* end *")
-        })
-        output.on("finish", () => {
-            console.log("* finish *")
-        })
-    }, 5000)
-
-    // it("parse empty", async () => {
-    //     const expected = JSON.parse(fs.readFileSync(file));
-    //     let parser = parse();
-
-    //     let parsed = [];
-    //     parser.on('data', data => {
-    //         console.log(data);
-    //         parsed.push(data)
-    //     });
-        
-    //     //fs.createReadStream(file).pipe(parser);
-    //     let stream = fs.createReadStream(file)
-
-    //     return new Promise((resolve, reject) => {
-    //         parser.on('end', () => {
-    //             resolve();
-    //         })
-    //         parser.on('error', error => {
-    //             reject(error);
-    //         })
-    //     }).catch(fail).then(done)
-    // })
-
+        const output = stream.pipe($JSONStream.stringify)
+            .on("data", (data) => {
+                if (["[", "]", ","].some(e => e == data)) return;
+                const item = JSON.parse(data);
+                console.log(item.value.rev);
+            }).on("finish", () => {
+                console.log("finish");
+            }).on("end", (end) => {
+                console.log("end");
+            })
+    }).timeout(5000)
 });
