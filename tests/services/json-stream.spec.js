@@ -8,7 +8,6 @@
 const expect = require("expect.js");
 const Qwebs = require("../../index");
 const { FromArray } = require("../../index");
-//const Qwebs = require("../../lib/qwebs");
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
