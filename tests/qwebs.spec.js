@@ -16,7 +16,7 @@ describe("qwebs", () => {
     
     it("load", async () => {
         const qwebs = new Qwebs({ dirname: __dirname, config: "config.json"});
-        await qwebs.mount();
-        //await qwebs.unmount();
+        await qwebs.load();
+        await qwebs.unload();
     });
 });

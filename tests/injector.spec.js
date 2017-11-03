@@ -25,26 +25,26 @@ describe("injector", () => {
         expect(info.whoiam()).to.be("I'm Info service.");
     });
     
-    it("inject & import", async () => {
+    it("inject & load", async () => {
         let qwebs = { root: __dirname };
         
         let injector = new Injector();
         injector.inject("$qwebs", qwebs);
         injector.inject("$info", "./services/info.es6");
-        await injector.import();
+        await injector.load();
         
         let info = await injector.resolve("$info");
         expect(info).to.be.ok();
         expect(info.whoiam()).to.be("I'm Info service.");
     });
 
-    it("inject & import", async () => {
+    it("inject & load", async () => {
         let qwebs = { root: __dirname };
         
         let injector = new Injector();
         injector.inject("$qwebs", qwebs);
         injector.inject("$info", "./services/info.mount.es6");
-        await injector.import();
+        await injector.load();
         
         let info = await injector.resolve("$info");
         expect(info).to.be.ok();
@@ -57,7 +57,7 @@ describe("injector", () => {
         let injector = new Injector();
         injector.inject("$qwebs", qwebs);
         injector.inject("$info", "./services/info.es5");
-        await injector.import();
+        await injector.load();
         
         let info = await injector.resolve("$info");
         expect(info instanceof require("./services/info.es5")).to.be(true);
@@ -71,7 +71,7 @@ describe("injector", () => {
         injector.inject("$info1", "./services/info1");
         injector.inject("$info2", "./services/info2");
         try {
-            await injector.import();
+            await injector.load();
             fail();
         }
         catch(error) {
