@@ -21,6 +21,9 @@ class InfoService {
 		return "Hello world.";
 	};
 
+	/**
+	 * @json("test", "toto")
+	 */
 	getInfo(request, response) {
 		let content = {
 			whoiam: this.whoiam()
