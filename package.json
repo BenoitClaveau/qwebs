@@ -1,11 +1,12 @@
 {
   "name": "qwebs",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Web application framework",
   "main": "index.js",
   "dependencies": {
-    "oups": "latest",
+    "chalk": "^2.3.0",
     "jimp": "latest",
+    "oups": "latest",
     "request": "latest"
   },
   "devDependencies": {
