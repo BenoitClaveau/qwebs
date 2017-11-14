@@ -23,6 +23,9 @@ class InfoService {
 
 	/**
 	 * @json("test", "toto")
+	 * comment
+	 * @objectMode
+	 * @empty()
 	 */
 	getInfo(request, response) {
 		let content = {
@@ -31,6 +34,11 @@ class InfoService {
 		return response.send({ request: request, content: content });
 	};
 
+	/**
+	 * @test("titi", "toto")
+	 * @info("titi", "toto") message("titi", "toto")
+	 * text1 text2 text3
+	 */
 	getMessage(request, response) {
 		let content = {
 			text: "hello world"
