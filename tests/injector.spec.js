@@ -17,8 +17,8 @@ describe("injector", () => {
         let qwebs = { root: __dirname };
             
         let injector = new Injector();
-        injector.inject("$qwebs", qwebs);
-        injector.inject("$info", "./services/info.es6");
+        await injector.inject("$qwebs", qwebs);
+        await injector.inject("$info", "./services/info.es6");
         const info = await injector.resolve("$info");
 
         expect(info).to.be.ok();
@@ -29,8 +29,8 @@ describe("injector", () => {
         let qwebs = { root: __dirname };
         
         let injector = new Injector();
-        injector.inject("$qwebs", qwebs);
-        injector.inject("$info", "./services/info.es6");
+        await injector.inject("$qwebs", qwebs);
+        await injector.inject("$info", "./services/info.es6");
         await injector.load();
         
         let info = await injector.resolve("$info");
@@ -42,8 +42,8 @@ describe("injector", () => {
         let qwebs = { root: __dirname };
         
         let injector = new Injector();
-        injector.inject("$qwebs", qwebs);
-        injector.inject("$info", "./services/info.mount.es6");
+        await injector.inject("$qwebs", qwebs);
+        await injector.inject("$info", "./services/info.mount.es6");
         await injector.load();
         
         let info = await injector.resolve("$info");
@@ -55,8 +55,8 @@ describe("injector", () => {
         let qwebs = { root: __dirname };
             
         let injector = new Injector();
-        injector.inject("$qwebs", qwebs);
-        injector.inject("$info", "./services/info.es5");
+        await injector.inject("$qwebs", qwebs);
+        await injector.inject("$info", "./services/info.es5");
         await injector.load();
         
         let info = await injector.resolve("$info");
@@ -67,9 +67,9 @@ describe("injector", () => {
         let qwebs = { root: __dirname };
         
         let injector = new Injector();
-        injector.inject("$qwebs", qwebs);
-        injector.inject("$info1", "./services/info1");
-        injector.inject("$info2", "./services/info2");
+        await injector.inject("$qwebs", qwebs);
+        await injector.inject("$info1", "./services/info1");
+        await injector.inject("$info2", "./services/info2");
         try {
             await injector.load();
             fail();
@@ -82,7 +82,7 @@ describe("injector", () => {
         let qwebs = { root: __dirname };
         
         let injector = new Injector();
-        injector.inject("$qwebs", qwebs);
+        await injector.inject("$qwebs", qwebs);
         try {
             injector.inject("$dummy", "./services/dummy");
             fail();
