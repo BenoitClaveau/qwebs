@@ -18,5 +18,5 @@ describe("qwebs", () => {
         const qwebs = new Qwebs({ dirname: __dirname, config: "config.json"});
         await qwebs.load();
         await qwebs.unload();
-    });
+    }, 5000);
 });
