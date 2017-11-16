@@ -17,7 +17,7 @@
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "args": [
         "--recursive",
-        "${workspaceRoot}/tests/*.spec.js"
+        "${workspaceRoot}/tests/services/json-stream.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }

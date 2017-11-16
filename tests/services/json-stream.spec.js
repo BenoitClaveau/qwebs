@@ -7,6 +7,7 @@
 
 const expect = require("expect.js");
 const Qwebs = require("../../index");
+const fs = require("fs");
 const { FromArray } = require("../../index");
 
 require("process").on('unhandledRejection', (reason, p) => {
@@ -15,7 +16,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("JSON", () => {
 
-    it("parse empty", async () => {
+    xit("parse empty", async () => {
         let qwebs = new Qwebs({ dirname: __dirname });
         const $fs = await qwebs.resolve("$fs");
         const $JSON = await qwebs.resolve("$JSON");
@@ -33,5 +34,19 @@ describe("JSON", () => {
             }).on("end", (end) => {
                 console.log("end");
             })
+    })
+
+    it("parse empty", async () => {
+        let qwebs = new Qwebs({ dirname: __dirname });
+        await qwebs.load();
+        const $json = await qwebs.resolve("$json-stream");
+
+        fs.createReadStream(`${__dirname}/../data/npm.array.json`)
+            .pipe($json.parse()).on("data", chunk => {
+                console.log(chunk)
+            }).on("end", () => {
+                console.log("----- END ----")
+            });
+
     }).timeout(5000)
 });
