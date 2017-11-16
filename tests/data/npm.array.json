@@ -1,5 +1,5 @@
 [
-    {"id":"","key":"","value":{"rev":"1-2f11e026763c10730d8b19ba5dce7565"}},
+    {"id":"","key":"","value":{"rev":"1-2f11e026763c10730d8b19ba5dce7565"}, "boolean": true, "number": 45, "float": 0.178 },
     {"id":"3scale","key":"3scale","value":{"rev":"3-db3d574bf0ecdfdf627afeaa21b4bdaa"}},
     {"id":"7digital-api","key":"7digital-api","value":{"rev":"20-21d11832780e2368aabc946598a41dd5"}},
     {"id":"AMD","key":"AMD","value":{"rev":"7-3b4305a9c786ab4c5ce611e7f0de0aca"}},

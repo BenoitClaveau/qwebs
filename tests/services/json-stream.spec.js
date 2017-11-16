@@ -14,39 +14,33 @@ require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
 });
 
-describe("JSON", () => {
+describe("json-stream", () => {
 
-    xit("parse empty", async () => {
-        let qwebs = new Qwebs({ dirname: __dirname });
-        const $fs = await qwebs.resolve("$fs");
-        const $JSON = await qwebs.resolve("$JSON");
-        const $JSONStream = await qwebs.resolve("$JSONStream");
-        const data = await $fs.load("./data/npm.array.json");
-        
-        let stream = new FromArray(data);
-        const output = stream.pipe($JSONStream.stringify)
-            .on("data", (data) => {
-                if (["[", "]", ","].some(e => e == data)) return;
-                const item = JSON.parse(data);
-                console.log(item.value.rev);
-            }).on("finish", () => {
-                console.log("finish");
-            }).on("end", (end) => {
-                console.log("end");
-            })
-    })
+    // it("parse array", async () => {
+    //     let qwebs = new Qwebs({ dirname: __dirname });
+    //     await qwebs.load();
+    //     const $json = await qwebs.resolve("$json-stream");
+    //     const parser = $json.parse();
 
-    it("parse empty", async () => {
+    //     fs.createReadStream(`${__dirname}/../data/npm.array.json`)
+    //         .pipe(parser).on("data", chunk => {
+    //             console.log(chunk)
+    //         }).on("end", () => {
+    //             console.log("----- END ----")
+    //         });
+    // }).timeout(5000)
+
+    it("parse object", async () => {
         let qwebs = new Qwebs({ dirname: __dirname });
         await qwebs.load();
         const $json = await qwebs.resolve("$json-stream");
+        const parser = $json.parse();
 
-        fs.createReadStream(`${__dirname}/../data/npm.array.json`)
-            .pipe($json.parse()).on("data", chunk => {
+        fs.createReadStream(`${__dirname}/../data/npm.object.json`)
+            .pipe(parser).on("data", chunk => {
                 console.log(chunk)
             }).on("end", () => {
                 console.log("----- END ----")
             });
-
     }).timeout(5000)
 });
