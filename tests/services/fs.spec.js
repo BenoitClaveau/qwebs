@@ -16,7 +16,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 describe("FileSystem", () => {
 
     it("readFile", async () => {
-        const file = await $fs.readFile("./data/npm.array.json");
+        const file = await $fs.readFile(`${__dirname}/../data/npm.array.json`);
         expect(file.length).to.be(386268);            
     });
 
@@ -26,7 +26,7 @@ describe("FileSystem", () => {
     });
 
     it("load", async () => {
-        const file = await $fs.load("./data/npm.array.json");
+        const file = await $fs.load(`${__dirname}/../data/npm.array.json`);
         expect(file.length).to.be(4028);            
     });
 });
