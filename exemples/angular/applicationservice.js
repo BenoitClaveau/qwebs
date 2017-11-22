@@ -37,8 +37,8 @@ class ApplicationService {
         let data64 = match[3];
         
         let buffer = Buffer.from(data64, "base64");
-        return this.$qjimp.toImage(buffer).then(image => {
-            return this.$qjimp.toBuffer(image, "image/jpeg").then(newBuffer => {
+        return this.$qjimp.read(buffer).then(image => {
+            return this.$qjimp.image.getBuffer(, "image/jpeg").then(newBuffer => {
                 let headers = { 
                     "Content-Type": "image/jpeg",
                     "Expires": new Date(Date.now() + 604800000).toString(), /* 1000 * 60 * 60 * 24 * 7 (7 days)*/
