@@ -16,31 +16,29 @@ require("process").on('unhandledRejection', (reason, p) => {
 
 describe("json-stream", () => {
 
-    // it("parse array", async () => {
-    //     let qwebs = new Qwebs({ dirname: __dirname });
-    //     await qwebs.load();
-    //     const $json = await qwebs.resolve("$json-stream");
-    //     const parser = $json.parse();
+    it("parse array", async () => {
+        let qwebs = new Qwebs({ dirname: __dirname });
+        await qwebs.load();
+        const $json = await qwebs.resolve("$json-stream");
 
-    //     fs.createReadStream(`${__dirname}/../data/npm.array.json`)
-    //         .pipe(parser).on("data", chunk => {
-    //             console.log(chunk)
-    //         }).on("end", () => {
-    //             console.log("----- END ----")
-    //         });
-    // }).timeout(5000)
+        fs.createReadStream(`${__dirname}/../data/npm.array.json`)
+            .pipe($json.parse()).on("data", chunk => {
+                console.log(chunk)
+            }).on("end", () => {
+                console.log("END")
+            });
+    }).timeout(5000)
 
     it("parse object", async () => {
         let qwebs = new Qwebs({ dirname: __dirname });
         await qwebs.load();
         const $json = await qwebs.resolve("$json-stream");
-        const parser = $json.parse();
 
         fs.createReadStream(`${__dirname}/../data/npm.object.json`)
-            .pipe(parser).on("data", chunk => {
+            .pipe($json.parse()).on("data", chunk => {
                 console.log(chunk)
             }).on("end", () => {
-                console.log("----- END ----")
+                console.log("END")
             });
     }).timeout(5000)
 });
