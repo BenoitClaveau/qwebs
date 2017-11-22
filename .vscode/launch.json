@@ -17,7 +17,7 @@
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "args": [
         "--recursive",
-        "${workspaceRoot}/tests/services/qjimp.spec.js"
+        "${workspaceRoot}/tests/services/*.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }

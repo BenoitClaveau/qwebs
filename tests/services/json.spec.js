@@ -19,14 +19,24 @@ describe("JSON", () => {
         expect(json.parse("{}")).to.be.empty();
     })
             
-    it("parse property", () => {
+    it("parse string", () => {
         const obj = json.parse(`{ "name": "benoît"}`);
         expect(obj.name).to.be("benoît");
     });
 
     it("parse number", () => {
-        const obj = json.parse(`{ "version": ${1}}`);
+        const obj = json.parse(`{ "version": 1}`);
         expect(obj.version).to.be(1);
+    });
+
+    it("parse float", () => {
+        const obj = json.parse(`{ "version": 0.487877 }`);
+        expect(obj.version).to.be(0.487877);
+    });
+
+    it("parse negative number", () => {
+        const obj = json.parse(`{ "version": -99 }`);
+        expect(obj.version).to.be(-99);
     });
 
     it("parse date", () => {
@@ -37,7 +47,7 @@ describe("JSON", () => {
 
     it("parse boolean", () => {
         const date = new Date();
-        const obj = json.parse(`{ "activated": true}`);
+        const obj = json.parse(`{ "activated": true }`);
         expect(obj.activated).to.be(true);
     });
 });

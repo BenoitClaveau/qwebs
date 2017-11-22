@@ -17,11 +17,11 @@ describe("FileSystem", () => {
 
     it("readFile", async () => {
         const file = await $fs.readFile(`${__dirname}/../data/npm.array.json`);
-        expect(file.length).to.be(386268);            
+        expect(file.length).to.be(386316);            
     });
 
     it("stat", async () => {
-        const stat = await $fs.stat("./data");
+        const stat = await $fs.stat(`${__dirname}/../data`);
         expect(stat.mode).to.be(16822);            
     });
 

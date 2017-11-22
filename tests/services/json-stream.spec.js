@@ -23,9 +23,8 @@ describe("json-stream", () => {
 
         fs.createReadStream(`${__dirname}/../data/npm.array.json`)
             .pipe($json.parse()).on("data", chunk => {
-                console.log(chunk)
-            }).on("end", () => {
-                console.log("END")
+                expect(chunk).property("id");
+                expect(chunk).property("key");
             });
     }).timeout(5000)
 
@@ -36,9 +35,9 @@ describe("json-stream", () => {
 
         fs.createReadStream(`${__dirname}/../data/npm.object.json`)
             .pipe($json.parse()).on("data", chunk => {
-                console.log(chunk)
-            }).on("end", () => {
-                console.log("END")
+                expect(chunk.offset).to.be(0);
+                expect(chunk.rows.length).to.be(4028);
+                expect(chunk.total_rows).to.be(4028);
             });
     }).timeout(5000)
 });
