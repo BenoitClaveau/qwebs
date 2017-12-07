@@ -17,7 +17,7 @@ require("process").on('unhandledRejection', (reason, p) => {
 describe("json-stream", () => {
 
     it("parse array", async () => {
-        let qwebs = new Qwebs({ dirname: __dirname });
+        let qwebs = new Qwebs({ dirname: __dirname, config: {}});
         await qwebs.load();
         const $json = await qwebs.resolve("$json-stream");
 
@@ -29,7 +29,7 @@ describe("json-stream", () => {
     }).timeout(5000)
 
     it("parse object", async () => {
-        let qwebs = new Qwebs({ dirname: __dirname });
+        let qwebs = new Qwebs({ dirname: __dirname, config: {} });
         await qwebs.load();
         const $json = await qwebs.resolve("$json-stream");
 

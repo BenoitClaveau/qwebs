@@ -6,17 +6,16 @@
 "use strict";
 
 const expect = require("expect.js");
-const Qwebs = require("../lib/qwebs");
+const Walk = require('../../lib/services/walk');
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
 });
 
-describe("qwebs", () => {
-    
-    it("load", async () => {
-        const qwebs = new Qwebs({ dirname: __dirname });
-        await qwebs.load();
-        await qwebs.unload();
-    }, 5000);
+describe("walk", () => {
+    it("get", () => {
+        let files = new Walk().get(__dirname);
+        expect(files.length).to.be(11);
+        expect(files[0].slice(__dirname.length)).to.be("/fs.spec.js");
+    });
 });

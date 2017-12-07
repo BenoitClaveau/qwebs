@@ -18,7 +18,7 @@ describe("injector", () => {
             
         let injector = new Injector();
         await injector.inject("$qwebs", qwebs);
-        await injector.inject("$info", "./services/info.es6");
+        await injector.inject("$info", `${__dirname}/services/info.es6`);
         const info = await injector.resolve("$info");
 
         expect(info).to.be.ok();
@@ -30,7 +30,7 @@ describe("injector", () => {
         
         let injector = new Injector();
         await injector.inject("$qwebs", qwebs);
-        await injector.inject("$info", "./services/info.es6");
+        await injector.inject("$info", `${__dirname}/services/info.es6`);
         await injector.load();
         
         let info = await injector.resolve("$info");
@@ -43,7 +43,7 @@ describe("injector", () => {
         
         let injector = new Injector();
         await injector.inject("$qwebs", qwebs);
-        await injector.inject("$info", "./services/info.mount.es6");
+        await injector.inject("$info", `${__dirname}/services/info.mount.es6`);
         await injector.load();
         
         let info = await injector.resolve("$info");
@@ -60,7 +60,7 @@ describe("injector", () => {
         await injector.load();
         
         let info = await injector.resolve("$info");
-        expect(info instanceof require("./services/info.es5")).to.be(true);
+        expect(info instanceof require(`${__dirname}/services/info.es5`)).to.be(true);
     });
     
     it("try to inject cyclic reference", async () => {
@@ -68,8 +68,8 @@ describe("injector", () => {
         
         let injector = new Injector();
         await injector.inject("$qwebs", qwebs);
-        await injector.inject("$info1", "./services/info1");
-        await injector.inject("$info2", "./services/info2");
+        await injector.inject("$info1", `${__dirname}/services/info1`);
+        await injector.inject("$info2", `${__dirname}/services/info2`);
         try {
             await injector.load();
             fail();
@@ -84,7 +84,7 @@ describe("injector", () => {
         let injector = new Injector();
         await injector.inject("$qwebs", qwebs);
         try {
-            injector.inject("$dummy", "./services/dummy");
+            injector.inject("$dummy", `${__dirname}/services/dummy`);
             fail();
         }
         catch(error) {

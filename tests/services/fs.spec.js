@@ -25,8 +25,8 @@ describe("FileSystem", () => {
         expect(stat.mode).to.be(16822);            
     });
 
-    it("load", async () => {
-        const file = await $fs.load(`${__dirname}/../data/npm.array.json`);
+    it("load", () => {
+        const file = $fs.loadSync(`${__dirname}/../data/npm.array.json`);
         expect(file.length).to.be(4028);            
     });
 });
