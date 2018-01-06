@@ -7,6 +7,7 @@
 
 const expect = require("expect.js");
 const StringService = require('../../lib/services/string');
+const dummy = new StringService();
 
 require("process").on('unhandledRejection', (reason, p) => {
     console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -42,5 +43,10 @@ describe("StringUtils", () => {
     it("capitalizeFirstLetter", () => {
         let res = StringService.capitalizeFirstLetter("");
         expect(res).to.be("");
+    });
+
+    it("capitalizeFirstLetter property", () => {
+        let res = "mon texte".capitalizeFirstLetter();
+        expect(res).to.be("Mon texte");
     });
 });
