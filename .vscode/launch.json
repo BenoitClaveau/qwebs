@@ -20,6 +20,17 @@
         "${workspaceRoot}/tests/**/*.spec.js"
       ],
       "cwd": "${workspaceRoot}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Single test",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--recursive",
+        "${workspaceRoot}/tests/services/string.spec.js"
+      ],
+      "cwd": "${workspaceRoot}"
     }
   ]
 }
