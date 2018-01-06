@@ -1,5 +1,0 @@
-{
-	"folder": "loaders/public",
-    "bundle": "loaders/bundle.json",
-    "routes": "loaders/routes.json"
-}

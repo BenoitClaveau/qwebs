@@ -1,0 +1,5 @@
+{
+    "services": [
+        { "name": "$info", "location": "../services/info.es6"}
+    ]
+}

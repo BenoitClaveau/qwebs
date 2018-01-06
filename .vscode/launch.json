@@ -14,9 +14,10 @@
       "type": "node",
       "request": "launch",
       "name": "Tests",
-      "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "args": [
-        "${workspaceRoot}/tests/services/*.spec.js"
+        "--recursive",
+        "${workspaceRoot}/tests/**/*.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }

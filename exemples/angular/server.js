@@ -4,7 +4,7 @@ const http = require("http");
 const Qwebs = require('../../lib/qwebs');
 
 let qwebs = new Qwebs({});
-qwebs.inject("$app", "./applicationservice");
+await qwebs.inject("$app", "./applicationservice");
 qwebs.get("/", "$app", "index");
 qwebs.get("/cities", "$app", "cities"); 
 qwebs.post("/city", "$app", "city"); 
