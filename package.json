@@ -1,6 +1,10 @@
 {
   "name": "qwebs",
+<<<<<<< HEAD
   "version": "1.0.0-beta.23",
+=======
+  "version": "1.0.0-beta.26",
+>>>>>>> 5b8cd8acae8c79bf705d9e3ac1429058bea14d0e
   "description": "Web application framework",
   "main": "index.js",
   "dependencies": {
