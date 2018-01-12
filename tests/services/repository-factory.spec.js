@@ -20,6 +20,6 @@ describe("Repository", () => {
         const repositoryFactory = await qwebs.resolve("$repository-factory");
         let repository = repositoryFactory.create(__dirname);
         var properties = Object.keys(repository);
-        expect(properties.length).to.be(11);
+        expect(properties.length).to.be(0);
     });
 });
