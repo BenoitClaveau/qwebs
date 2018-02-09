@@ -28,7 +28,7 @@
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "args": [
         "--recursive",
-        "${workspaceRoot}/tests/services/string.spec.js"
+        "${workspaceRoot}/tests/services/crypto.spec.js"
       ],
       "cwd": "${workspaceRoot}"
     }

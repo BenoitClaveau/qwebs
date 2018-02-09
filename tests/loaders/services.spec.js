@@ -15,6 +15,6 @@ describe("ServicesLoader", () => {
         let qwebs = new Qwebs({ dirname: __dirname, config: { services: "./services.json" }});
         await qwebs.load();
         let $injector = await qwebs.resolve("$injector");
-        expect(Object.entries($injector.container).length).to.be(13);
+        expect(Object.entries($injector.container).length).to.be(15);
     });
 });
