@@ -12,7 +12,7 @@ require("process").on("unhandledRejection", (reason, p) => {
     console.error("Unhandled Rejection at:", p, "reason:", reason);
 });
 
-describe("walk", () => {
+describe("crypto", () => {
     it("encrypted", () => {
         const crypto = new Crypto();
         const iv = crypto.iv;
